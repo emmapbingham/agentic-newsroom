@@ -1,0 +1,91 @@
+{
+ "n_activities_raw": 3283,
+ "n_activities_canonical": 2940,
+ "full_dist_canonical_all_years": {
+  "unclear": 2127,
+  "relief": 585,
+  "protection": 52,
+  "mixed": 46,
+  "monitoring": 130
+ },
+ "split_all_years_allconf": {
+  "n_directional": 683,
+  "n_total_kept": 2940,
+  "relief": 585,
+  "protection": 52,
+  "mixed": 46,
+  "relief_pct": 0.857,
+  "protection_pct": 0.076
+ },
+ "split_all_years_conf80": {
+  "n_directional": 539,
+  "n_total_kept": 1486,
+  "relief": 495,
+  "protection": 22,
+  "mixed": 22,
+  "relief_pct": 0.918,
+  "protection_pct": 0.041
+ },
+ "split_y2025_allconf": {
+  "n_directional": 177,
+  "n_total_kept": 1318,
+  "relief": 153,
+  "protection": 14,
+  "mixed": 10,
+  "relief_pct": 0.864,
+  "protection_pct": 0.079
+ },
+ "split_y2025_conf80": {
+  "n_directional": 146,
+  "n_total_kept": 642,
+  "relief": 132,
+  "protection": 7,
+  "mixed": 7,
+  "relief_pct": 0.904,
+  "protection_pct": 0.048
+ },
+ "cohort_2025": {
+  "new2025_genuine": {
+   "n_canonical": 371,
+   "directional": {
+    "n_directional": 37,
+    "n_total_kept": 371,
+    "relief": 31,
+    "protection": 3,
+    "mixed": 3,
+    "relief_pct": 0.838,
+    "protection_pct": 0.081
+   },
+   "unclear": 310,
+   "monitoring": 24
+  },
+  "new2025_incumbent": {
+   "n_canonical": 345,
+   "directional": {
+    "n_directional": 40,
+    "n_total_kept": 345,
+    "relief": 36,
+    "protection": 3,
+    "mixed": 1,
+    "relief_pct": 0.9,
+    "protection_pct": 0.075
+   },
+   "unclear": 295,
+   "monitoring": 10
+  },
+  "established": {
+   "n_canonical": 563,
+   "directional": {
+    "n_directional": 100,
+    "n_total_kept": 563,
+    "relief": 86,
+    "protection": 8,
+    "mixed": 6,
+    "relief_pct": 0.86,
+    "protection_pct": 0.08
+   },
+   "unclear": 415,
+   "monitoring": 48
+  }
+ }
+}

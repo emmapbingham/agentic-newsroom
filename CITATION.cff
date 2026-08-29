@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use these skills or reference this methodology, please cite it as below."
+title: "An agentic data newsroom: reusable Agent Skills for investigative journalism over federal lobbying disclosures"
+abstract: >-
+  Winning entry to the GAIN Agentic AI Investigative Journalism Challenge
+  (Northwestern University, 2026). Seven MIT-licensed Agent Skills spanning
+  the full pipeline from raw records to verified finding — dataset profiling,
+  verifiable SQLite ingestion, corpus orientation, and a three-skill newsroom
+  workflow (screen design, lead surfacing with editorial gates, and
+  cross-session case tracking with builder/skeptic/judge verification) — plus
+  the findings report and complete investigation working state they produced
+  over House and Senate lobbying disclosures and congressional press releases,
+  2022–2026 Q1.
+type: software
+authors:
+  - family-names: Bingham
+    given-names: Emma
+  - family-names: Clester
+    given-names: Ian
+repository-code: "https://github.com/emmapbingham/agentic-newsroom"
+license: MIT
+date-released: 2026-08-28
+keywords:
+  - investigative journalism
+  - computational journalism
+  - agent skills
+  - large language models
+  - lobbying disclosure
+  - data journalism

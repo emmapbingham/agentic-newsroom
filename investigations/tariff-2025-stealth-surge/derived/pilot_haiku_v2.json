@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Names Section 232 and IEEPA; no directional verb on tariffs"
+  },
+  {
+    "id": 2,
+    "label": "unclear",
+    "confidence": 0.3,
+    "rationale": "Mentions Section 232/301 investigations; no concrete ask stated"
+  },
+  {
+    "id": 3,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports temporary reduction or suspension of duties"
+  },
+  {
+    "id": 4,
+    "label": "unclear",
+    "confidence": 0.25,
+    "rationale": "Names reciprocal tariff and sectoral tariffs; impact topic, not verb"
+  },
+  {
+    "id": 5,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports temporary reduction or suspension of duties"
+  },
+  {
+    "id": 6,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Lists bills relating to healthcare/infrastructure; no tariff ask"
+  },
+  {
+    "id": 7,
+    "label": "monitoring",
+    "confidence": 0.85,
+    "rationale": "Will monitor, follow tariffs; no concrete ask stated"
+  },
+  {
+    "id": 8,
+    "label": "monitoring",
+    "confidence": 0.9,
+    "rationale": "Monitor and evaluate impacts of global tariffs"
+  },
+  {
+    "id": 9,
+    "label": "monitoring",
+    "confidence": 0.85,
+    "rationale": "Monitor and engage on MTB, 301, deferment, suspensions"
+  },
+  {
+    "id": 10,
+    "label": "monitoring",
+    "confidence": 0.9,
+    "rationale": "Monitor legislative action on MTB, 301, deferment, suspensions"
+  },
+  {
+    "id": 11,
+    "label": "monitoring",
+    "confidence": 0.9,
+    "rationale": "Monitor and review Administration's tariff proposals and legislation"
+  },
+  {
+    "id": 12,
+    "label": "monitoring",
+    "confidence": 0.85,
+    "rationale": "Monitoring related to MTB and trade bills"
+  },
+  {
+    "id": 13,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Legislation to extend temporary suspension of duty"
+  },
+  {
+    "id": 14,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Legislation to extend temporary suspension of duty"
+  },
+  {
+    "id": 15,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Legislation to extend temporary suspension of duty"
+  },
+  {
+    "id": 16,
+    "label": "mixed",
+    "confidence": 0.8,
+    "rationale": "Supports suspending tariffs; concerned about 50% tariff expansion"
+  },
+  {
+    "id": 17,
+    "label": "mixed",
+    "confidence": 0.8,
+    "rationale": "Supports suspending tariffs; opposed to derivative petition"
+  },
+  {
+    "id": 18,
+    "label": "unclear",
+    "confidence": 0.15,
+    "rationale": "Context-setting on supply chains; no tariff ask"
+  },
+  {
+    "id": 19,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Urged to eliminate Section 232; robust exclusions process; discussed benefits of tariff elimination"
+  },
+  {
+    "id": 20,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Discussed elimination of industrial tariffs; robust exclusions process"
+  },
+  {
+    "id": 21,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Discussed elimination of industrial tariffs; robust exclusions process"
+  },
+  {
+    "id": 22,
+    "label": "mixed",
+    "confidence": 0.75,
+    "rationale": "Modernize MTB; reform de minimis; raise tariffs on China; repeal MFN"
+  },
+  {
+    "id": 23,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Opposition to imposing new tariffs; unnecessary tariffs burden"
+  },
+  {
+    "id": 24,
+    "label": "unclear",
+    "confidence": 0.25,
+    "rationale": "Lists tariff issues and instruments; no concrete ask stated"
+  },
+  {
+    "id": 25,
+    "label": "mixed",
+    "confidence": 0.85,
+    "rationale": "Support restoring tariffs to Jan 19 baseline; increase congressional oversight"
+  },
+  {
+    "id": 26,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports GSP renewal, MTB renewal, removal of China 301 tariffs"
+  },
+  {
+    "id": 27,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports GSP renewal, MTB renewal, removal of China 301 tariffs"
+  },
+  {
+    "id": 28,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports GSP renewal, MTB renewal, removal of China 301 tariffs"
+  },
+  {
+    "id": 29,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports GSP renewal, MTB renewal, removal of China 301 tariffs"
+  },
+  {
+    "id": 30,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Eliminate industrial tariffs, Section 232; robust exclusions; MTB exemptions"
+  },
+  {
+    "id": 31,
+    "label": "mixed",
+    "confidence": 0.8,
+    "rationale": "Supports exclusions on tin mill; supports extending China exclusions and diplomatic resolution"
+  },
+    {
+    "id": 32,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports exclusion for tin mill; opposes new tariffs; extend/expand exclusions process"
+  },
+  {
+    "id": 33,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Supports exclusion for tin mill; opposes new tariffs; extend/expand exclusions process"
+  },
+  {
+    "id": 34,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Names tariffs with IVF access; direction not stated"
+  },
+  {
+    "id": 35,
+    "label": "unclear",
+    "confidence": 0.25,
+    "rationale": "Impact topic on Japan; no directional verb"
+  },
+  {
+    "id": 36,
+    "label": "unclear",
+    "confidence": 0.1,
+    "rationale": "Seaports and appropriations; no tariff ask"
+  },
+  {
+    "id": 37,
+    "label": "unclear",
+    "confidence": 0.1,
+    "rationale": "Vision care and eyewear; no tariff ask"
+  },
+  {
+    "id": 38,
+    "label": "unclear",
+    "confidence": 0.3,
+    "rationale": "Names MTB in COMPETES; no direction stated"
+  },
+  {
+    "id": 39,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Lists bills; no tariff verb or direction"
+  },
+  {
+    "id": 40,
+    "label": "unclear",
+    "confidence": 0.25,
+    "rationale": "Names Section 232 steel/aluminum; no verb or direction stated"
+  }
+]

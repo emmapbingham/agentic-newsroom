@@ -1,0 +1,36 @@
+{
+  "title": "GAIN newsroom",
+  "description": "Federal lobbying + congressional messaging corpus (gain.db) and the editorial ledgers (newsroom.db). Every claim must cite a source record — use the canned cite_* queries to resolve any citation to its public source.",
+  "databases": {
+    "gain": {
+      "description": "Senate LDA + LD-203, House LDA, member press releases, member crosswalk, derived_* tables. Immutable; rebuilt by scripts/build_gain_db.py.",
+      "queries": {
+        "cite_senate_filing": {
+          "title": "Cite a Senate filing",
+          "sql": "SELECT f.filing_uuid, f.filing_type_display, f.filing_year, f.filing_period_display, r.name AS registrant, c.name AS client, f.income, f.expenses, 'https://lda.senate.gov/filings/public/filing/' || f.filing_uuid || '/' AS source_url, f.url AS api_url FROM senate_filings f JOIN senate_registrants r ON r.id = f.registrant_id JOIN senate_clients c ON c.id = f.client_id WHERE f.filing_uuid = :filing_uuid"
+        },
+        "cite_house_filing": {
+          "title": "Cite a House filing",
+          "sql": "SELECT house_filing_id, doc_type, filing_year, filing_period, organization_name, client_name, source_file FROM house_filings WHERE house_filing_id = :house_filing_id"
+        },
+        "cite_press_release": {
+          "title": "Cite a press release",
+          "sql": "SELECT release_id, date, member_name, party, state, chamber, title, url AS source_url FROM press_releases WHERE release_id = :release_id"
+        }
+      }
+    },
+    "newsroom": {
+      "description": "Editorial ledgers — screens + screen_runs (the multiple-comparisons ledger), leads (surfaced candidates, append-only run-record), derived_tables (catalog of built shared tables), sweeps. Durable state, tracked in git.",
+      "queries": {
+        "leads_board": {
+          "title": "Leads board (story first)",
+          "sql": "SELECT l.slug, l.story, l.claim, l.scout_number, l.boring_explanation, l.surfaced_at, l.promoted_at, l.case_slug, s.name AS screen_name, r.run_at AS screen_run_at FROM leads l LEFT JOIN screen_runs r ON r.id = l.screen_run_id LEFT JOIN screens s ON s.id = r.screen_id ORDER BY l.promoted_at DESC NULLS LAST, l.surfaced_at DESC"
+        },
+        "screens_by_priority": {
+          "title": "Screens by status and priority",
+          "sql": "SELECT name, status, priority, contrast_type, derived_table, needs_table FROM screens ORDER BY status, CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 WHEN 'low' THEN 3 END, name"
+        }
+      }
+    }
+  }
+}

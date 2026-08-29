@@ -1,0 +1,736 @@
+{
+ "summary": "The 26-cell sweep converged on three story engines plus a cheap compliance vein. (1) Say-vs-pay at the member/committee grain: a dozen cells independently proposed the same money-side panel (LD-203 dollars from issue-active registrants per member, via honoree_member_map ≥0.9) and the same press-side panel (FTS topic counts per member-month) — both repeatedly probe-verified — gated by two small static config tables (issue→FTS-keyword map, committee→issue-code jurisdiction map) that nearly every cell flagged as its missing dependency. Build those four things first; they unblock say-vs-pay-chairs, pbm-guthrie, lead-lag-timing, and most silence/premium screens at once. (2) The cross-chamber engagement bridge turns the disclosure system into its own auditor: it already surfaced 970 senate duplicate filings (~$35M double-counted), a 3,255-vs-~50 house-only/senate-only client asymmetry, and GOV-code asymmetries — build second; it resolves the house-senate-discrepancy lead's methodology (the gap is missing clients, not income mismatch). One conflict needs an adjudication probe before building: scouts disagree on whether house_filings.senate_client_suffix maps to senate_clients.client_id (three cells say ~40-94% yes, one says no — prefer the UPPER(client_name) join and verify). (3) The 2025 transition/tariff shock (registrant income + registrant-issue panels) gives the timeliest narrative leads (Ballard/Miller surge, 204 first-time tariff registrants). The data-vs-law cluster delivers fully-verified named leads almost for free (Duncan Hunter's missing conviction disclosures, ISEMAN's retroactive income-zeroing, the 478-lobbyist RR-disclosure drop-off). The single biggest editorial risk across the slate: press-scraper coverage gaps for House chairs (Guthrie 16 releases, Jason Smith 10, Jordan 0) poison every 'silent gatekeeper' claim — the press panel must carry per-member coverage flags and absence leads must be restricted to full-coverage members before anything ships. Also note: several grid cells were never swept (data-vs-law × member, absence/self/source × lobbyist, population-structure × client) — schedule alongside the thin-cell re-sweeps.",
+ "instruments": [
+  {
+   "name": "member-issue-money-panel",
+   "grain": "member (bioguide) × issue_code × year",
+   "description": "Annual LD-203 contribution dollars received by each member from registrants active on each LDA issue code that year. Canonical join: senate_contribution_items → honoree_member_map (confidence ≥ 0.9, junk honoree_name filtered) → senate_contribution_filings.registrant_id → EXISTS check against senate_filings/senate_lobbying_activities for the issue code (EXISTS, never JOIN — probe-verified 100x dollar inflation otherwise). Carries contribution_type breakdown (feca vs he/me/pic — State Farm's $2.65M 'he' item to Foxx must not pollute feca analysis), n_distinct_registrants (count-based dedup), single-issue-registrant subtotal for clean attribution, and is_committee_member flag via the jurisdiction map. Attribution caveat baked into schema: dollars are registrant-level, not issue-restricted — multi-issue firms duplicate across codes; the single-issue subtotal ($310M / 201k items) is the headline-safe column.",
+   "key_columns": "bioguide, issue_code, year, total_dollars, feca_dollars, n_items, n_distinct_registrants, single_issue_registrant_dollars, is_committee_member, peer_mean, z_score",
+   "consumers": [
+    "say-vs-pay-chairs",
+    "pbm-guthrie",
+    "lead-lag-timing",
+    "committee-funded-silence",
+    "high-money-zero-press",
+    "rising-money-falling-voice",
+    "chair-transition-contribution-spike",
+    "silent-gatekeepers",
+    "chair-power-premium",
+    "copyright-quiet-money",
+    "tariff-2025-stealth-surge"
+   ],
+   "contrast_types": [
+    "absence",
+    "outlier-vs-peers",
+    "self-over-time",
+    "source-vs-source",
+    "population-structure"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × MEMBER",
+    "outlier-vs-peers × issue",
+    "self-over-time × issue",
+    "source-vs-source × member",
+    "absence × member",
+    "absence × client",
+    "absence × issue",
+    "population-structure × issue",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Proposed in some variant by nine cells — the single most-demanded artifact in the sweep. End-to-end chain probe-verified repeatedly (Jason Smith TAX $936k→$1.9M, Guthrie HCR, Comcast→Guthrie $1.48M). It is the money side of the corpus's unique say-vs-pay bridge and directly serves both top backlog leads plus six new ones."
+  },
+  {
+   "name": "issue-press-keyword-map",
+   "grain": "issue_code × FTS match expression (static reference, 79 rows)",
+   "description": "Hand-curated, version-controlled mapping from each LDA issue code to a press_fts MATCH expression (e.g. CPT → 'copyright OR patent OR trademark OR \"intellectual property\"'; TAR → 'tariff OR tariffs'). Stores the expression and a pre-computed validation hit count per code so every downstream ratio is auditable. Eight cells independently flagged this as the critical unverified component of their press instruments; building it once with a documented recall spot-check (read 20 matched releases per code) de-risks the entire press side of the corpus.",
+   "key_columns": "issue_code, fts_match_expr, press_n_total, notes",
+   "consumers": [
+    "member-press-topic-panel",
+    "issue-quarter-volume-press-panel",
+    "quiet-issue-quadrant",
+    "issue-lobby-press-lead-lag",
+    "committee-funded-silence",
+    "lead-lag-timing",
+    "copyright-quiet-money",
+    "gun-lobby-vacuum"
+   ],
+   "contrast_types": [
+    "absence",
+    "self-over-time",
+    "population-structure"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × MEMBER",
+    "outlier-vs-peers × client",
+    "outlier-vs-peers × issue",
+    "self-over-time × issue",
+    "source-vs-source × member",
+    "absence × member",
+    "absence × issue",
+    "population-structure × issue",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Pure config, an afternoon's work, but it is the load-bearing dependency for every press-side instrument and screen in the slate. FTS5 mechanics are verified (sub-second MATCH, OR syntax confirmed across ~15 codes); only the keyword curation and QA remain. Highest leverage-to-cost ratio in the sweep."
+  },
+  {
+   "name": "member-press-topic-panel",
+   "grain": "member (bioguide) × topic/issue_code × year-month",
+   "description": "Monthly press-release counts per member per topic via the keyword map, with total monthly releases as denominator (topic_share), peer stats within chamber × party, and — critically — per-member coverage flags (first_press_year, n_total_releases, full_2022_coverage boolean). The coverage flags are non-negotiable: scouts found Guthrie has 16 total releases, Jason Smith 10, Mike Johnson 17, Jim Jordan 0 — scraper gaps that masquerade as silence. All absence screens must filter on full coverage (≥100 releases, first_press_year ≤ 2022 — 247 members qualify).",
+   "key_columns": "bioguide, topic_slug, year_month, n_topic_releases, n_total_releases, topic_share, first_press_year, full_coverage_flag, peer_mean_share, z_score",
+   "consumers": [
+    "lead-lag-timing",
+    "say-vs-pay-chairs",
+    "pbm-guthrie",
+    "committee-funded-silence",
+    "high-money-zero-press",
+    "critic-takes-money",
+    "rising-money-falling-voice",
+    "silent-gatekeepers",
+    "gun-lobby-vacuum"
+   ],
+   "contrast_types": [
+    "absence",
+    "self-over-time",
+    "source-vs-source",
+    "outlier-vs-peers"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × MEMBER",
+    "self-over-time × member",
+    "source-vs-source × member",
+    "absence × member",
+    "absence × issue",
+    "population-structure × member"
+   ],
+   "rank_rationale": "Six cells proposed the same panel; it is the 'say' half of say-vs-pay and the time-series substrate for lead-lag-timing. FTS verified fast at scale (141k releases, bioguide on 99.9%). Ranked just below the money panel because its claims are only as good as the coverage flags it must carry."
+  },
+  {
+   "name": "cross-chamber-engagement-bridge",
+   "grain": "registrant × client (UPPER name match) × filing_year × quarter",
+   "description": "One canonical row per registrant-client-period engagement matched across chambers via house_filings.senate_registrant_id (100% coverage, verified) + UPPER(client_name) (92.6% match for major registrants) + period mapping (Q1↔first_quarter etc.). Per chamber: canonical income (MAX over same-period originals to absorb duplicates), raw strings, original-filing counts (>1 is the duplicate signal), sorted issue-code sets, client counts. Filters: originals only (exclude 1A-4A amendments, terminations, No Activity, no_lobbying='Y'); exclude 2026 partial year from baselines. UNRESOLVED CONFLICT to adjudicate before build: three cells report house_filings.senate_client_suffix = CAST(senate_clients.client_id AS TEXT) works for ~40-94% of filings; the source-vs-source × client cell says it is a House-internal ID that does not map. Run one decisive probe; default to the name join with suffix as corroboration. Income figures from the two chambers must never be summed (same engagement filed twice).",
+   "key_columns": "senate_registrant_id, client_key, filing_year, quarter, s_income_canonical, h_income_canonical, s_filing_count, h_filing_count, s_issue_codes, h_issue_codes, income_delta, match_method",
+   "consumers": [
+    "house-senate-discrepancy",
+    "senate-duplicate-filings",
+    "true-income-mismatch",
+    "house-only-client-gap",
+    "cross-chamber-gov-asymmetry",
+    "house-senate-client-disclosure-asymmetry",
+    "senate-duplicate-disclosure-inflation"
+   ],
+   "contrast_types": [
+    "source-vs-source",
+    "data-vs-law"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × REGISTRANT",
+    "outlier-vs-peers × client",
+    "self-over-time × registrant",
+    "source-vs-source × registrant",
+    "source-vs-source / client",
+    "source-vs-source × issue grain",
+    "data-vs-law × registrant",
+    "data-vs-law × client",
+    "absence × registrant",
+    "population-structure × registrant"
+   ],
+   "rank_rationale": "Ten cells built some version of this join; the source-vs-source × client cell fully resolved the methodology and used it to find genuinely new facts (970 duplicate filings, the client-omission asymmetry). It is the corpus's most unique capability — no published analysis compares the two chambers' parallel disclosure systems. One blocking probe (client_suffix dispute) before build."
+  },
+  {
+   "name": "committee-issue-jurisdiction-map",
+   "grain": "committee_id × issue_code (static reference, ~20-40 rows)",
+   "description": "Hand-coded mapping from full committees (and key subcommittees: HSJU03, HSWM02, HSIF Health) to primary and secondary LDA issue codes (HSWM→TAX/TRD/FIN; HSIF→HCR/MMM/PHA/TEC/ENG; SSAS/HSAS→DEF/HOM/AER; SSFI→TAX/FIN/MMM; HSJU/SSJU→CPT/IMM/LAW; appropriations→BUD; etc.). Seven cells require it for is_committee_member flags, jurisdiction-premium screens, and chair-silence screens. Documented as an approximation (jurisdictions overlap); a lead-generation heuristic, not a legal assignment. Note member_committees is current-Congress only — historical assignments are an external-data gap (congress-legislators may carry them; check before ingesting anything new).",
+   "key_columns": "committee_id, issue_code, is_primary",
+   "consumers": [
+    "member-issue-money-panel",
+    "committee-funded-silence",
+    "committee-sector-concentration-ratio",
+    "chair-transition-contribution-spike",
+    "say-vs-pay-chairs",
+    "pbm-guthrie",
+    "silent-gatekeepers",
+    "chair-power-premium"
+   ],
+   "contrast_types": [
+    "absence",
+    "population-structure",
+    "outlier-vs-peers"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × MEMBER",
+    "self-over-time × issue",
+    "absence × member",
+    "absence × client",
+    "absence × issue",
+    "population-structure × member",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Second static config dependency, demanded by seven cells. Cheap, fully deterministic, and the gate on every committee-grain screen. Sample mappings already probe-validated against observed committee-member money concentrations (finance 2.35x, health 1.86x)."
+  },
+  {
+   "name": "issue-quarter-volume-press-panel",
+   "grain": "issue_code × year × quarter (lobbying) joined to issue_code × year-month (press)",
+   "description": "Combined Senate+House lobbying volume per issue per quarter (activity counts kept per-chamber; registrants deduped via the bridge; income allocated as filing income / n_codes_in_filing to kill the 2.17x multi-code double-count) joined to monthly press counts from the keyword map. Computed companion view: quietness/divergence index (activity_share vs press_share, log divergence score, lobby-per-press normalized to the BUD ≈3.3 baseline) and YoY growth deltas (stealth-surge detection). Junk filters: LOC NATION client excluded from activity counts; 2026 Q1 flagged partial; null house issue codes (6%, all no-lobbying rows) excluded.",
+   "key_columns": "issue_code, year, quarter, senate_activities, house_activities, n_registrants_deduped, filing_weighted_income, press_n_monthly, lobby_per_press, divergence_score, yoy_lobby_growth, yoy_press_growth",
+   "consumers": [
+    "lead-lag-timing",
+    "issue-quarterly-surge",
+    "issue-lobby-press-lead-lag",
+    "quiet-issue-quadrant",
+    "tariff-2025-stealth-surge",
+    "copyright-quiet-money",
+    "gun-lobby-vacuum"
+   ],
+   "contrast_types": [
+    "self-over-time",
+    "population-structure",
+    "absence"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × issue",
+    "self-over-time × issue",
+    "absence × member",
+    "absence × issue",
+    "population-structure × issue",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Six cells proposed overlapping issue-time panels; merging the lobbying series, press series, and quietness math into one build is the direct enabler of lead-lag-timing (the backlog's only quantitative lead) and three new structural leads. All component queries probe-verified (TAR 444→1,506; CPT 14:1 ratio; complete 16-quarter coverage for all 79 codes)."
+  },
+  {
+   "name": "registrant-issue-panel",
+   "grain": "registrant × issue_code × year (with quarterly drill)",
+   "description": "Per-registrant per-issue activity counts, market share, z-score vs issue peers, first_year_seen / last_year_seen (new-entrant and exit flags), own-history z (2022-24 baseline vs 2025+), plus pct_gov columns (share of the registrant's activities coded GOV, per chamber) for the catch-all-coding screens. Senate primary; House counted separately via the bridge (counts may be combined, income may not). Powers concentration (HHI by issue-year), clearinghouse-monopoly detection, tariff new-entrant cohorts, and GOV miscoding analysis from one table.",
+   "key_columns": "registrant_id, issue_code, filing_year, n_acts_senate, n_acts_house, share_pct, z_vs_issue_peers, z_vs_own_history, first_year_seen, is_new_entrant, pct_gov_senate, pct_gov_house",
+   "consumers": [
+    "issue-new-entrant-rush",
+    "issue-clearinghouse-monopoly",
+    "cross-chamber-gov-asymmetry",
+    "gov-description-miscoding",
+    "tariff-2025-stealth-surge",
+    "gov-catch-all-miscoding",
+    "trump-transition-access-surge",
+    "house-senate-discrepancy"
+   ],
+   "contrast_types": [
+    "outlier-vs-peers",
+    "self-over-time",
+    "data-vs-law",
+    "population-structure"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × issue",
+    "self-over-time × registrant",
+    "self-over-time × issue",
+    "data-vs-law × issue",
+    "population-structure × registrant"
+   ],
+   "rank_rationale": "Five cells proposed near-identical registrant×issue panels; the merged version serves four contrast types and two of the slate's strongest new leads (tariff surge, GOV miscoding). All key probes verified (TAR new entrants = 204; SMI DEF z=23.8; Aurora 100% GOV; Efrus cross-chamber 33.8pp gap)."
+  },
+  {
+   "name": "member-contribution-profile-panel",
+   "grain": "member (bioguide) × year, plus all-period rollup",
+   "description": "Annual and total LD-203 receipts per member with: contribution-type subtotals (feca / he / me / pic — never mixed in headline figures), n_distinct_registrants, donor concentration (top-PAC share, top-3 share, industry entropy), chamber × party peer mean/sd and z-score, YoY deltas and spike flags, current committee role/rank columns, is_current filter (departed members read as falsely silent). Junk filters verified: contributor_name != 'SELF', amount_num > 0, date within 2022-2025 (future-dated junk items to 2046 confirmed in data), honoree confidence ≥ 0.9.",
+   "key_columns": "bioguide, year, feca_dollars, he_dollars, total_dollars, n_distinct_registrants, top3_pac_share, peer_z, yoy_pct_change, is_spike, current_role, is_current",
+   "consumers": [
+    "member-contribution-peer-outlier",
+    "chair-transition-contribution-spike",
+    "chair-power-premium",
+    "say-vs-pay-chairs",
+    "trump-transition-access-surge",
+    "committee-chair-premium-ranking"
+   ],
+   "contrast_types": [
+    "outlier-vs-peers",
+    "self-over-time",
+    "population-structure"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × MEMBER",
+    "self-over-time × member",
+    "population-structure × member"
+   ],
+   "rank_rationale": "Three cells proposed five overlapping member-contribution tables; one panel with type breakdown and peer stats serves them all. Probes are strong (Smith z=6.4; Guthrie +267% on gavel; Foxx 'he'-type trap identified). The type-separation requirement discovered by scouts is itself a correctness fix the whole slate inherits."
+  },
+  {
+   "name": "lobbyist-revolving-door-profile",
+   "grain": "senate lobbyist (lobbyist_id), with registrant-, issue-, and firm-level rollups",
+   "description": "One row per Senate lobbyist (stable lobbyist_id; House is name-only and explicitly excluded from this grain): junk-filtered canonical covered_position (exclude 'N/A', 'See prior filing', 'Legislative Consultant', 'Partner', '', len≤5), keyword-classified prior domain and seniority tier, client/issue/registrant counts, firm-peer relative-excess (rainmaker metric), LD-203 contribution totals via the direct senate_contribution_filings.lobbyist_id key, and per-honoree alignment rows with is_on_former_domain_committee flag. Rollups: revolver_pct by registrant-year and by issue-year (the DEF 41.9%→54.2% surge series), and the RR-vs-quarterly disclosure-gap columns (position disclosed on LD-1 registration but never on subsequent quarterlies).",
+   "key_columns": "lobbyist_id, canonical_covered_position, prior_domain_class, seniority_tier, n_clients, firm_relative_excess, total_contributions, rr_disclosed, quarterly_disclosed_count, disclosure_gap",
+   "consumers": [
+    "revolving-door-commerce",
+    "within-firm-rainmaker",
+    "issue-specialist-gatekeepers",
+    "rr-only-disclosers",
+    "revolving-door-surge-by-issue",
+    "on-domain-contribution-targeting",
+    "revolving-door-contribution-premium",
+    "defense-revolving-door-surge",
+    "rr-disclosure-dropoff",
+    "bgr-see-prior-flip"
+   ],
+   "contrast_types": [
+    "population-structure",
+    "outlier-vs-peers",
+    "self-over-time",
+    "data-vs-law"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × REGISTRANT",
+    "outlier-vs-peers × LOBBYIST",
+    "data-vs-law × lobbyist",
+    "population-structure × lobbyist",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Five cells converged on the revolving-door grain and the probes are unusually strong and mutually consistent (7,744 revolvers; 2.4x contribution premium; ~2x domain targeting; 478 RR-only disclosers; Ballard 14.5x rainmaker). Serves one backlog lead and four new ones. One caution: build as a Python script writing a derived table — the pure-SQL version hit temp-space limits."
+  },
+  {
+   "name": "registrant-income-panel",
+   "grain": "registrant × filing_year × quarter (Senate primary; House columns separate)",
+   "description": "Quarterly and annual Senate income per registrant (quarterly originals only, income_amt > 0), client counts, QoQ/YoY lag columns, plus separate (never summed) House income columns via the bridge. The substrate for transition-surge and growth-outlier screens and the income side of the Trump-access lead. Known caveats carried as columns: ~35% income sparsity (activity counts are the more reliable surge metric), 2026 Q1-only truncation flag, LOC NATION junk filer excluded.",
+   "key_columns": "registrant_id, filing_year, quarter, senate_income, house_income_separate, n_clients, qoq_pct_change, yoy_pct_change",
+   "consumers": [
+    "registrant-transition-income-surge",
+    "trump-transition-access-surge",
+    "house-senate-discrepancy",
+    "client-spend-spike-ranked"
+   ],
+   "contrast_types": [
+    "self-over-time",
+    "outlier-vs-peers"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × REGISTRANT",
+    "self-over-time × registrant",
+    "population-structure × registrant"
+   ],
+   "rank_rationale": "Three cells built the same income time series and independently verified the same outliers (Ballard +140% QoQ, Miller +117%, next peer 47%). Fewer consumers than the panels above but it anchors the most time-sensitive lead in the slate."
+  },
+  {
+   "name": "committee-role-contribution-premium",
+   "grain": "committee × member_role (chair / ranking / regular), and committee × sector × year",
+   "description": "Per-committee contribution totals by role (chair-to-regular and ranking-to-regular ratios; null model = 1.0) and per-committee-sector concentration ratios (committee members' per-capita receipts from jurisdiction-sector registrants vs non-members'; null model = 1.0). Built from member-contribution-profile-panel + member-issue-money-panel + the jurisdiction map; listed separately because its committee-grain rollup serves distinct verified screens. Probes: chair premium 2-7x across 25 committees (Homeland 6.52x, W&M 4.56x); sector ratios finance 2.35x, health 1.86x, defense 1.13x.",
+   "key_columns": "committee_id, role, n_members, avg_contributions, chair_to_regular_ratio, sector, concentration_ratio",
+   "consumers": [
+    "say-vs-pay-chairs",
+    "pbm-guthrie",
+    "committee-chair-premium-ranking",
+    "committee-sector-concentration-ratio",
+    "chair-power-premium"
+   ],
+   "contrast_types": [
+    "population-structure"
+   ],
+   "proposed_by_cells": [
+    "population-structure × member",
+    "population-structure × COMMITTEE"
+   ],
+   "rank_rationale": "Only two cells, but both verified the same striking ratios independently, and it is the population-level backbone that turns say-vs-pay-chairs from anecdote into structure. Cheap once its three upstream instruments exist."
+  },
+  {
+   "name": "client-lobby-profile-panel",
+   "grain": "client (UPPER-normalized name) × year, plus all-period rollup",
+   "description": "Client-name-grain panel (senate_clients.id is registrant-scoped — group by UPPER(name), verified): annual spend, YoY ratio, n_firms, n_issue_codes with is_new_issue flags, spend-decile peer stats (issue_deviation vs decile average 5.5 codes), entry/exit lifecycle (entry_status, exit_status with unclear_2026 truncation flag), pre-computed spike events (≥3x with stable ≥$100k prior), country, and top-client concentration for the firm side. Junk: LOC NATION flagged not silently dropped.",
+   "key_columns": "client_key, filing_year, year_income, yoy_ratio, n_firms, n_issue_codes, issue_deviation, entry_status, exit_status, spike_flag, country",
+   "consumers": [
+    "client-spend-spike-ranked",
+    "flash-foreign-clients",
+    "flash-lobbying-foreign-clients",
+    "foreign-influence",
+    "house-senate-discrepancy",
+    "ld203-contribution-blackout"
+   ],
+   "contrast_types": [
+    "outlier-vs-peers",
+    "self-over-time",
+    "absence"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × client",
+    "self-over-time × client",
+    "absence × client"
+   ],
+   "rank_rationale": "Three client-grain cells proposed heavily overlapping tables; merged once around the verified UPPER(name) identity rule. Solid probes (Gotion 9.2x, US Steel +776%, ZTE/Nord Stream 2 flash pattern) and it feeds the foreign-client leads, but it has fewer cross-cell consumers than the member/registrant panels."
+  },
+  {
+   "name": "registrant-client-engagement-lifecycle",
+   "grain": "registrant × client engagement (all-time)",
+   "description": "Per-engagement lifecycle: entry/exit year-quarter, tenure, total income, has_termination flag, is_ghost_engagement (vanished with income > $10k and no termination — 24 verified cases), is_zombie_registration (LD-1 with zero quarterlies and no termination — 16 cases), is_primary firm flag for firm-switch detection, churn rollups per registrant (Ballard 0/137 2022-clients retained to 2025).",
+   "key_columns": "registrant_id, client_key, entry_year, exit_year, tenure_quarters, total_income, has_termination, is_ghost_engagement, is_zombie_registration",
+   "consumers": [
+    "ghost-engagements",
+    "trump-transition-access-surge",
+    "house-senate-discrepancy",
+    "client-spend-spike-ranked"
+   ],
+   "contrast_types": [
+    "self-over-time",
+    "absence"
+   ],
+   "proposed_by_cells": [
+    "self-over-time × registrant",
+    "self-over-time × client",
+    "absence × registrant"
+   ],
+   "rank_rationale": "Three cells need engagement lifecycle for churn, firm-switch, and termination-compliance questions. Verified mechanics (termination_date populated, ghost/zombie counts confirmed) but the compliance findings are small-N, so it ranks mid-pack."
+  },
+  {
+   "name": "registrant-compliance-scorecard",
+   "grain": "registrant × year",
+   "description": "Per-registrant-year LDA hygiene metrics, all probe-verified: late quarterly filings vs statutory deadlines (dt_posted fully populated, ISO format; 2,268 registrant-years with lates; 34 firms >75% late), amendment rate and retroactive amendments filed ≥2 years late (652 total; ISEMAN 51 incl. bulk 2025 zeroing of 2022 income; PRIMACY 78), null-income persistence with House-income cross-check (income_amt NULL iff truly absent — verified no parse failures), and LD-203 completeness (58 active registrant-years with zero LD-203s; 996 missing one semi-annual period; 7 firms $5M+ income with 100% no-contribution reports). Exact statutory deadlines need confirmation before publishing days-late claims.",
+   "key_columns": "registrant_id, filing_year, late_pct, amend_pct, retroactive_amends, null_income_pct, house_income_crosscheck, has_midyear_ld203, has_yearend_ld203, pct_no_contribution_reports",
+   "consumers": [
+    "serial-late-filers",
+    "retroactive-income-revision",
+    "ld203-missing-or-all-zero",
+    "retroactive-income-zeroing",
+    "ld203-contribution-blackout",
+    "house-senate-discrepancy"
+   ],
+   "contrast_types": [
+    "data-vs-law",
+    "absence"
+   ],
+   "proposed_by_cells": [
+    "data-vs-law × registrant",
+    "absence × registrant",
+    "absence × client"
+   ],
+   "rank_rationale": "Consolidates the data-vs-law × registrant cell's four verified instruments plus the LD-203 gap work from two absence cells. Every metric was directly probed; it yields cheap, named, citable leads — but it serves the compliance vein rather than the marquee say-vs-pay story, hence mid-rank."
+  },
+  {
+   "name": "convicted-lobbyist-register",
+   "grain": "lobbyist × conviction × filing × chamber",
+   "description": "Union of senate_filing_conviction_disclosures (18 lobbyist_ids, stable key) and house_convictions (24 names, name-match with first-name guard for common surnames), one row per post-conviction filing with conviction_disclosed boolean, pardoned flag, and current client/issue context including the issue-specialist outlier ratio (Burkman GOV 43.9x). The post-conviction filter is mandatory — Burkman/Wohl early-2022 'gaps' predate their convictions and are false positives.",
+   "key_columns": "lobbyist_id_or_name, chamber, conviction_date, filing_id, post_conviction, conviction_disclosed, pardoned_flag, n_active_clients_2024plus, lda_url",
+   "consumers": [
+    "lobbyist-convictions",
+    "conviction-quarterly-gaps",
+    "hunter-conviction-disclosure-gaps",
+    "burkman-wohl-access-factory"
+   ],
+   "contrast_types": [
+    "data-vs-law",
+    "outlier-vs-peers"
+   ],
+   "proposed_by_cells": [
+    "outlier-vs-peers × LOBBYIST",
+    "data-vs-law × registrant",
+    "data-vs-law × lobbyist",
+    "data-vs-law × client"
+   ],
+   "rank_rationale": "Four cells touched convictions and their probes agree (Hunter 6/6 missing senate disclosures with verifiable UUIDs; Burkman 65 clients). Small N limits it to a handful of leads, but those leads are the most publication-ready in the slate — fully sourced, named, low build cost."
+  },
+  {
+   "name": "senate-duplicate-filings",
+   "grain": "registrant × client × year × period duplicate group (Senate only)",
+   "description": "All Senate quarterly groups where identical content (same registrant, client, period, type, income) was filed under multiple UUIDs — 970 groups, 1,004 extra filings, ~$35M inflated income, 437 registrants — detectable only via the cross-chamber comparison (House has exactly one filing). Stores all filing_uuids per group for lda.senate.gov verification plus dt_posted deltas and posted_by_name to separate same-minute clerical re-submissions from suspicious patterns. Distinct from the 72 byte-identical UUIDs already deduped on ingest.",
+   "key_columns": "registrant_id, client_id, filing_year, filing_period, income_amt, n_filings, filing_uuids, inflated_amount, hours_between_posts",
+   "consumers": [
+    "senate-duplicate-disclosure-inflation",
+    "house-senate-discrepancy",
+    "senate-duplicate-filings (screen)"
+   ],
+   "contrast_types": [
+    "source-vs-source"
+   ],
+   "proposed_by_cells": [
+    "source-vs-source / client"
+   ],
+   "rank_rationale": "Single-cell origin but a genuinely new, fully verified data-quality finding with its own lead; depends on the engagement bridge, so it comes nearly free once that ships."
+  },
+  {
+   "name": "foreign-entity-disclosure-consistency",
+   "grain": "client × chamber (FE disclosure presence) and registrant × chamber (entity rosters)",
+   "description": "For non-US clients: whether any senate_filing_foreign_entities / real (non-placeholder) house_foreign_entities rows exist across their filing history (1,311 senate clients with zero; 613/934 non-US House LD-1s with only empty rows), plus cross-chamber country mismatches (Senate says foreign, House says USA/null — 1,273 client_ids, 505 registrants) and per-registrant entity-roster diffs after Unicode/case normalization (the ByteDance 'gap' dissolved on normalization — a documented false-positive mode). Mandatory filter: house_foreign_entities WHERE name IS NOT NULL (45,210 of 47,983 rows are XML placeholders).",
+   "key_columns": "client_key, client_country, has_senate_fe, has_real_house_fe, country_mismatch_flag, registrant_id, h_only_entities_normalized",
+   "consumers": [
+    "foreign-influence",
+    "foreign-client-fe-omission",
+    "foreign-client-no-fe-disclosure",
+    "house-senate-client-disclosure-asymmetry"
+   ],
+   "contrast_types": [
+    "data-vs-law",
+    "source-vs-source"
+   ],
+   "proposed_by_cells": [
+    "data-vs-law × client",
+    "source-vs-source / client",
+    "source-vs-source × registrant"
+   ],
+   "rank_rationale": "Feeds the backlog foreign-influence lead with a within-LDA angle that needs no FARA ingest. Ranked low-mid because the legal trigger (20% ownership / foreign payer) means non-disclosure is often legitimate — every named case requires individual verification, and the placeholder-row trap makes naive counts wrong."
+  },
+  {
+   "name": "cross-chamber-code-amendment-delta",
+   "grain": "matched engagement × issue_code × direction, plus amendment-vs-house code-set deltas",
+   "description": "Long-form issue-code direction table (house_only / senate_only / both) per matched engagement, plus the amendment timeline table: initial Senate code set vs most-recent amendment vs House code set, with hours_to_amendment and house_caught_the_error flag (initial missing codes the House disclosed all along; amendment converged). Scale finding to respect: properly name-matched code divergence is near zero (3-4 cases/year) — the value is in the amendment-lag cases (113 same-day amendments in Q1 2024 alone; 204 with House counterparts) and in null-House-code vs sensitive Senate codes (TOB/FOR).",
+   "key_columns": "senate_registrant_id, client_key, filing_year, quarter, issue_code, direction, initial_codes, amended_codes, house_codes, hours_to_amendment, house_caught_the_error",
+   "consumers": [
+    "senate-initial-undercodes",
+    "house-senate-discrepancy",
+    "senate-underdisclosure-by-firm (candidate)"
+   ],
+   "contrast_types": [
+    "source-vs-source",
+    "data-vs-law"
+   ],
+   "proposed_by_cells": [
+    "source-vs-source × issue grain",
+    "source-vs-source × registrant",
+    "absence × registrant"
+   ],
+   "rank_rationale": "Heavily probed but the headline aggregate signal turned out near-zero; what survives is the narrower amendment-lag pattern. Ranked last among builds — worth doing only after the engagement bridge exists, and only if the undercodes screen shows day/week-scale lags rather than 7-minute clerical fixes."
+  }
+ ],
+ "screens": [
+  {
+   "name": "committee-funded-silence",
+   "contrast_type": "absence",
+   "instrument": "member-issue-money-panel",
+   "baseline": "Within-committee mean topic-press share for members with ≥10 (preferably ≥100) releases and full 2022 coverage — verified: E&C Health subcommittee 26.3%, Ways & Means tax 25.4%, Armed Services defense 33.9%.",
+   "description": "Committee members with top-quartile jurisdiction-sector money and bottom-quartile topic-press share vs their own committee peers. The committee baseline controls for the 'members just have different press styles' confound. Requires press coverage flags; exclude Guthrie/Jason Smith until coverage verified."
+  },
+  {
+   "name": "high-money-zero-press",
+   "contrast_type": "absence",
+   "instrument": "member-issue-money-panel",
+   "baseline": "Among members with ≥100 total releases and first_press_year ≤ 2022, ≥$200k from a sector with zero topic-matching releases is a verified hard outlier (probes: only 4 zero-defense and 19 zero-energy cases corpus-wide).",
+   "description": "Strictest silence test: absolute zero topic mentions from otherwise-active communicators receiving ≥$200k from that sector. Verified candidates: Adrian Smith ($309k health / 0), Kevin Hern ($286k / 0). Eliminates data-gap members by construction."
+  },
+  {
+   "name": "critic-takes-money",
+   "contrast_type": "source-vs-source",
+   "instrument": "member-press-topic-panel",
+   "baseline": "Members with ≥10 opposition-framed releases on an industry are expected to receive near-zero contributions from that industry's registrants (corpus median for vocal critics ≈ 0).",
+   "description": "Two-stage: FTS opposition-framed queries identify vocal critics; cross to industry-registrant contribution receipts. Verified anchor: Richard Neal, 34 drug-price-critical releases + ~$570k health-industry contributions (CVS $57.5k, AstraZeneca $17.5k). Output cites both the release URL and the LD-203 filing_uuid."
+  },
+  {
+   "name": "rising-money-falling-voice",
+   "contrast_type": "self-over-time",
+   "instrument": "member-issue-money-panel",
+   "baseline": "Member's own prior-year industry-contribution total and topic-press share; expected: stable or co-moving. Semi-annual LD-203 periods (mid_year/year_end) give clean buckets.",
+   "description": "Members whose sector contributions rise 2022→2025 while topic-press share falls or stays at zero (verified candidate: Buddy Carter, pharma $63k→$131k, pharma press flat/declining). Pre-specify the cohort (committee members with ≥$50k from the sector) to control multiple comparisons."
+  },
+  {
+   "name": "member-contribution-peer-outlier",
+   "contrast_type": "outlier-vs-peers",
+   "instrument": "member-contribution-profile-panel",
+   "baseline": "Chamber × party mean and stddev of total feca contributions for current members (each peer cell N ≥ 57, verified).",
+   "description": "Z-score ranking of current members' contribution receipts vs chamber×party peers, annotated with chair flag and registrant concentration. Verified: Jason Smith z=6.4, Jeffries z=5.68. feca-only to exclude honorary-expense distortion."
+  },
+  {
+   "name": "chair-transition-contribution-spike",
+   "contrast_type": "self-over-time",
+   "instrument": "member-contribution-profile-panel",
+   "baseline": "Each member's own 2022-2024 average annual feca receipts; null model: no change at gavel. Comparison cohort: non-chair members of same committee over the same transition.",
+   "description": "Members whose receipts spiked ≥2x in the year they gained a chair (Jan 2023 or Jan 2025 transitions). Verified: Guthrie +267% (2025, E&C chair), Jason Smith ~2x (2023, W&M chair) while non-TAX receipts stayed flat; outgoing chairs flat or declining. Chairmanship dates need external confirmation (member_committees is current-Congress only)."
+  },
+  {
+   "name": "committee-chair-premium-ranking",
+   "contrast_type": "population-structure",
+   "instrument": "committee-role-contribution-premium",
+   "baseline": "Null model: equal per-member receipts regardless of role; expected ratio 1.0. Observed population: chairs average $2.75M vs regular members $1.43M.",
+   "description": "Ranks all 49 full committees by chair-to-regular-average contribution ratio. Verified leaderboard: Homeland Security 6.52x, Rules 4.71x, Ways & Means 4.56x, T&I 3.81x. 25 committees exceed 1.5x."
+  },
+  {
+   "name": "committee-sector-concentration-ratio",
+   "contrast_type": "population-structure",
+   "instrument": "committee-role-contribution-premium",
+   "baseline": "Null model: a sector's contributions distribute uniformly across all members; concentration ratio = 1.0.",
+   "description": "Per committee-sector pair: per-capita receipts of jurisdiction-committee members from sector-active registrants vs all other members. Verified: finance 2.35x, health 1.86x, agriculture 1.53x, defense 1.13x — the cross-sector variation is itself the finding."
+  },
+  {
+   "name": "registrant-transition-income-surge",
+   "contrast_type": "self-over-time",
+   "instrument": "registrant-income-panel",
+   "baseline": "Each registrant's own Q4-2024 income; same-size-peer median Q4→Q1 change verified at +10-30%, with only 5 firms in the $1M+ tier crossing +100%.",
+   "description": "Ranks registrants by Q4-2024 → Q1-2025 income jump (the post-election quarter), $1M+ tier. Verified outliers: Ballard Partners +140%, Miller Strategies +117%, next peer +47%. Companion annual rank: 2022→2025 growth (Miller +480%, Ballard +388%, Mercury +280%)."
+  },
+  {
+   "name": "within-firm-rainmaker",
+   "contrast_type": "outlier-vs-peers",
+   "instrument": "lobbyist-revolving-door-profile",
+   "baseline": "Firm-average client count across all lobbyists at the same registrant (firms with ≥5 lobbyists; 1,274 qualify); expected relative excess = 0.",
+   "description": "Lobbyists whose client load far exceeds their own firm's average, annotated with revolving-door flag. Verified: Brian Ballard 489 clients = 14.5x firm average; Bryan Lanza 5.6x at Mercury. Also surfaces credential-anchor patterns (Bondi 6 clients, Wiles 1 at the same firm)."
+  },
+  {
+   "name": "issue-specialist-gatekeepers",
+   "contrast_type": "outlier-vs-peers",
+   "instrument": "lobbyist-revolving-door-profile",
+   "baseline": "Per-issue peer average of distinct clients per lobbyist (issues with ≥20 lobbyists); expected ratio 1.0, flag ≥10x.",
+   "description": "Lobbyists serving anomalously many clients on one issue code — sector gatekeepers. Verified: Jeffery Green DEF 100 clients at 33.8x peer avg; Russell Sullivan TAX 31.7x; Burkman GOV 43.9x (cross-feeds the convictions lead)."
+  },
+  {
+   "name": "issue-quarterly-surge",
+   "contrast_type": "self-over-time",
+   "instrument": "issue-quarter-volume-press-panel",
+   "baseline": "Each issue code's own 2022-2024 quarterly mean and stddev (≥8 baseline quarters, sd > 0); 2026 Q1 excluded as partial.",
+   "description": "Z-scores every issue-quarter cell vs its own history; returns top anomalies for 2025+. Verified anchors: TAR (444→1,506 annual), PHA z=2.73 in 2025 Q3. Bonferroni across 79 codes before claiming significance."
+  },
+  {
+   "name": "issue-new-entrant-rush",
+   "contrast_type": "self-over-time",
+   "instrument": "registrant-issue-panel",
+   "baseline": "Per-issue 2022-2024 average count of first-time registrants per year; flag ≥3x.",
+   "description": "Issue codes experiencing a land-rush of registrants with no prior history on that code. Verified: 204 net-new TAR registrants in 2025 including $50M+ firms (BGR, Akin Gump, Holland & Knight) with zero prior tariff filings. Cross-check TRD recoding as a false-positive source."
+  },
+  {
+   "name": "issue-lobby-press-lead-lag",
+   "contrast_type": "self-over-time",
+   "instrument": "issue-quarter-volume-press-panel",
+   "baseline": "Stable 2022-2024 co-movement (TAR: ~440 activities/yr, ~10.6 press/month; expected cross-correlation near zero at all lags).",
+   "description": "Monthly press vs quarterly lobbying series per issue with lagged correlation — the lead-lag-timing lead's screen. Scouts disagree on direction for TAR 2025 (one says lobby led by a quarter; growth ratios suggest press grew faster) — this screen adjudicates. Stats live in a case analysis/ script (statsmodels), not SQL."
+  },
+  {
+   "name": "quiet-issue-quadrant",
+   "contrast_type": "population-structure",
+   "instrument": "issue-quarter-volume-press-panel",
+   "baseline": "Corpus baseline lobby-per-press ratio anchored on BUD ≈ 3.3 activities per press mention (~$77k weighted income per mention); outliers ≥2σ flagged.",
+   "description": "Ranks all 79 codes by divergence between lobbying intensity and congressional press attention. Verified: CPT ~4.4x ratio / $242k-per-mention raw (quiet), FIN $297k (quiet), FIR 0.32 / $5k (loud), IMM 0.27 (loud). Use filing-weighted income only — raw sums overcount 2.17x."
+  },
+  {
+   "name": "issue-clearinghouse-monopoly",
+   "contrast_type": "outlier-vs-peers",
+   "instrument": "registrant-issue-panel",
+   "baseline": "Per-issue peer mean activity count per registrant (issues with ≥10 registrants, ≥500 activities); flag z > 5.",
+   "description": "Single firms dominating an issue code's activity volume. Verified: Strategic Marketing Innovations DEF z=23.8 (86x mean), Cornerstone BUD z=23.3, Capitol Tax Partners TAX z=18, Ballard TAR z=13.9. Volume ≠ influence — pair with client rosters before claiming capture."
+  },
+  {
+   "name": "senate-duplicate-filings",
+   "contrast_type": "source-vs-source",
+   "instrument": "senate-duplicate-filings",
+   "baseline": "Exactly one original quarterly filing per registrant-client-period per chamber; House count = Senate count = 1 for matched engagements.",
+   "description": "Ranks the 970 verified duplicate groups by inflated dollars and the 437 affected registrants by group count (≥3 groups = pattern, not accident). dt_posted deltas distinguish same-minute clerical fixes from weeks-apart re-filings. Every row carries two verifiable lda.senate.gov URLs."
+  },
+  {
+   "name": "house-only-client-gap",
+   "contrast_type": "source-vs-source",
+   "instrument": "cross-chamber-engagement-bridge",
+   "baseline": "A registrant filing in both chambers should show each client in both for the same period; observed asymmetry is 3,255 house-only vs ~50 senate-only client-periods (2022-2025).",
+   "description": "High-income clients present in House quarterlies with no Senate counterpart for the same registrant-year (threshold ≥$100k/yr), flagged for foreign-country clients (Hesai, Beijing Xiaomi verified examples). Must exclude no-activity Senate filings and name-variant false matches before naming anyone."
+  },
+  {
+   "name": "true-income-mismatch",
+   "contrast_type": "source-vs-source",
+   "instrument": "cross-chamber-engagement-bridge",
+   "baseline": "Identical income reported to both chambers for the same engagement-period; verified base rate of true mismatch is 0.005% (7 of ~56,882 matched pairs after MAX-dedup), all Senate-higher.",
+   "description": "Canonical-income deltas for engagement-periods with exactly one original filing per chamber. Small-N but cheap and decisive once the bridge exists; the consistent Senate-higher direction and 10x ratios (K&L Gates/Church Alliance, Brownstein/Talos) suggest decimal errors — check for reconciling amendments per case."
+  },
+  {
+   "name": "senate-initial-undercodes",
+   "contrast_type": "source-vs-source",
+   "instrument": "cross-chamber-code-amendment-delta",
+   "baseline": "The House LD2 code set for the same engagement-period represents full scope; Senate initial quarterly should match it (~3.2% of Senate quarterlies get same-period amendments).",
+   "description": "Engagements where the initial Senate filing listed fewer codes than the simultaneous House filing and a later amendment converged to the House set (house_caught_the_error). Verified prototype: 2359 Strategies/Federal Street (BUD-only initial vs 5-code House, fixed in 7 minutes). The story requires day/week-scale lags — rank by hours_to_amendment descending."
+  },
+  {
+   "name": "cross-chamber-gov-asymmetry",
+   "contrast_type": "data-vs-law",
+   "instrument": "registrant-issue-panel",
+   "baseline": "Same registrant-quarter should show similar GOV-code rates in both chambers (both chamber baselines ≈ 1.78-1.79%); expected gap 0pp.",
+   "description": "Registrants coding the catch-all GOV heavily in one chamber while using specific codes in the other for the same quarter (≥5 activities per side, 2022-2025 only). Verified: Efrus 92.9% Senate vs 59.1% House; Aurora 100% vs 82.8%. Caveat: Senate aggregates across clients differently — drill to client-matched pairs before claiming contradiction."
+  },
+  {
+   "name": "gov-description-miscoding",
+   "contrast_type": "data-vs-law",
+   "instrument": "registrant-issue-panel",
+   "baseline": "GOV is for government-operations topics not covered by the other 78 codes; keyword-inferable specific topics in GOV descriptions deviate — verified base rate 30.8% of all GOV rows (4,381 of 14,238).",
+   "description": "GOV-coded Senate activities whose description text keyword-maps to DEF/TAX/HCR/TRD/FOR etc., ranked by filing income. Verified named examples: BGR/Raytheon ('appropriations, defense, corporate tax reform, trade…' coded GOV), Hogan Lovells/Tencent (NDAA + app regulation), Ballard/Greater Caspian. Probabilistic signal, not a bright-line violation — frame accordingly."
+  },
+  {
+   "name": "serial-late-filers",
+   "contrast_type": "data-vs-law",
+   "instrument": "registrant-compliance-scorecard",
+   "baseline": "Quarterly LD-2 due ~45 days after period end; population median late rate ≈ 0% (4,163 of 5,374 registrants with ≥4 quarterlies have zero lates).",
+   "description": "Registrants (≥20 quarterlies) ranked by late-filing rate. Verified: Key Advocates 100% late (62 filings), Genesis Group 97%, Capital Ventures 85%; 34 firms above 75%. Confirm exact statutory deadlines before publishing days-late figures."
+  },
+  {
+   "name": "retroactive-income-revision",
+   "contrast_type": "data-vs-law",
+   "instrument": "registrant-compliance-scorecard",
+   "baseline": "Amendments normally land within months of the original; filing ≥2 years late is anomalous (652 cases corpus-wide), and income-reducing retroactive amendments are the highest-risk subset.",
+   "description": "Amendments filed 2+ years after the reporting period joined to their original Q filing to show the income change. Verified: ISEMAN & Associates bulk-amended all of 2022-2024 in a single May 2025 session, mostly nulling income; Primacy 78 retroactive amendments, Kimbell 62. Every row cites both filing_uuids."
+  },
+  {
+   "name": "ld203-missing-or-all-zero",
+   "contrast_type": "absence",
+   "instrument": "registrant-compliance-scorecard",
+   "baseline": "Every registered lobbyist firm must file LD-203 twice yearly regardless of activity; and among $5M+ income firms the median peer reports at least some contributions (97.7% of registrants file some LD-203s).",
+   "description": "Two tiers: (a) actively-lobbying registrant-years with zero or one of two required LD-203s (58 zero, 996 partial — top: S. Vaca & Associates, $280k income 2025, no LD-203); (b) $5M+ firms with 100% no-contribution certifications across all 8 periods (7 verified: LSN Partners $10M, Carbonleaf $8.9M, etc.). Check in-house vs for-hire and related-entity filing splits (Cozen O'Connor pattern) before naming."
+  },
+  {
+   "name": "conviction-quarterly-gaps",
+   "contrast_type": "data-vs-law",
+   "instrument": "convicted-lobbyist-register",
+   "baseline": "Every quarterly report filed after a lobbyist's conviction date must carry the conviction disclosure; expected gap = 0. Post-conviction filter mandatory (Burkman/Wohl 2022 gaps predate conviction).",
+   "description": "Convicted lobbyists ranked by count of post-conviction quarterlies lacking the disclosure, with verifiable URLs. Verified: Duncan Hunter 6/6 senate quarterlies missing (2023-2024, VALOON LLC/Trex), 9/10 House; one senate filing WITH disclosure proves awareness. Hanson 3/7."
+  },
+  {
+   "name": "rr-only-disclosers",
+   "contrast_type": "data-vs-law",
+   "instrument": "lobbyist-revolving-door-profile",
+   "baseline": "A covered position disclosed on the lobbyist's own LD-1 registration should reappear on subsequent quarterlies; sector RR disclosure rate is 62.1% vs 25-27% on quarterlies.",
+   "description": "478 verified lobbyists who disclosed a covered position at registration then never on ≥4 quarterlies. Named extremes: Kate Hull (Senate HELP Staff Director, 898 quarterlies, 0 disclosures), Carl Kime (905, 0). Firm clusters: FGS Global 12, Fierce 7. Legal standard ('See prior filing' validity) needs external LDA guidance before publication."
+  },
+  {
+   "name": "revolving-door-surge-by-issue",
+   "contrast_type": "self-over-time",
+   "instrument": "lobbyist-revolving-door-profile",
+   "baseline": "Each issue code's own 2022 revolving-door share; population-wide share is stable at ~28-30%/year, so issue-level deltas are not a compliance-improvement artifact at the corpus level.",
+   "description": "Issue codes ranked by growth in ex-government share of active lobbyists 2022→2025/26. Verified: Defense 41.9%→54.2%, Intelligence 52.8%→65.0% against a flat population baseline. 2026 Q1 partial-year flag applies."
+  },
+  {
+   "name": "on-domain-contribution-targeting",
+   "contrast_type": "population-structure",
+   "instrument": "lobbyist-revolving-door-profile",
+   "baseline": "Population share of all lobbyist contributions flowing to a committee's members (verified: Finance 16.6%, Appropriations 15.6%); revolvers should match it absent targeting.",
+   "description": "For each prior-domain class, the share of revolvers' LD-203 dollars going to members of their former committee vs the population baseline. Verified: Finance revolvers 30.9% (1.9x), Appropriations 29.9% (1.9x). Control for firm fixed effects in the analysis layer before claiming individual targeting."
+  },
+  {
+   "name": "ghost-engagements",
+   "contrast_type": "absence",
+   "instrument": "registrant-client-engagement-lifecycle",
+   "baseline": "An engagement with reported income must end with a termination filing (or visible no-activity wind-down); silent disappearance is the anomaly.",
+   "description": "Engagements active with income in 2022-2023 that vanish from all filings without termination — 24 verified at >$10k (top: Rosenthal/Delaware North $349k), 17 at >$50k; plus 16 zombie registrations (LD-1, zero quarterlies, no termination). Small N; verify each against the public record, and note LDA ambiguity on whether termination vs no-activity filing suffices."
+  },
+  {
+   "name": "client-spend-spike-ranked",
+   "contrast_type": "self-over-time",
+   "instrument": "client-lobby-profile-panel",
+   "baseline": "Client's own prior-2-year average spend (stable ≥$100k/yr); expected YoY ratio ≈ 1.0; spike threshold ≥3x (45,928 client-years with a prior; 2,000 at ≥3x).",
+   "description": "Spend-spike events with new-issue and firm-expansion annotations plus press-mention context for catalyst hunting. Verified anchors: US Steel +776% (2024, Nippon battle), Brown-Forman +794% (2025, tariffs), Gotion 9.2x (2024). LOC NATION excluded by the stable-prior filter."
+  },
+  {
+   "name": "flash-foreign-clients",
+   "contrast_type": "self-over-time",
+   "instrument": "client-lobby-profile-panel",
+   "baseline": "Domestic clients average 3+ active years; a non-US client with ≤2 active years, peak ≥$500k, gone by 2024 deviates sharply (2026 truncation flag prevents false exits).",
+   "description": "Single-burst foreign lobbying campaigns. Verified: ZTE (CN, $1.27M, 2022 only), Nord Stream 2 AG ($1.21M, 2022 only), Hikvision USA ($1.19M, 2022 only) — each coinciding with sanctions/NDAA moments. Country field caveat: Gotion registers as US; beneficial ownership needs external sourcing."
+  },
+  {
+   "name": "foreign-client-no-fe-disclosure",
+   "contrast_type": "data-vs-law",
+   "instrument": "foreign-entity-disclosure-consistency",
+   "baseline": "Non-US clients are expected to trigger at least one foreign-entity disclosure row somewhere in their filing history under 2 USC 1603(b)(4) — though the legal trigger (20% ownership / foreign payer) means some zero-rows are legitimate.",
+   "description": "Ranks the 1,311 senate non-US clients with zero FE rows by filing volume (EN+ Group, Alibaba, Ant Group, KNDS verified in list), and the 613 House LD-1 non-US registrations with only placeholder FE rows, by registrant. Placeholder filter (name IS NOT NULL) mandatory; every named case needs individual legal verification; FARA cross-check is the external upgrade."
+  }
+ ],
+ "leads": [
+  {
+   "slug": "trump-transition-access-surge",
+   "claim": "A cluster of Republican-aligned firms — Ballard Partners (+140% Q4-2024→Q1-2025, +388% 2022→2025), Miller Strategies (+117%, +480%), Continental Strategy (+1309% QoQ), Mercury, Checkmate — simultaneously surged in income, pivoted into new issue codes (TAR/AER/DEF/MAR verified new for Ballard in 2025), churned/added 150+ clients including foreign and crypto entities, and shifted LD-203 contributions rightward (Ballard R-share 65%→77%), all in the same post-election quarters. Next-closest peer QoQ jump was +47%.",
+   "why_newsworthy": "A three-signal simultaneous break (income, practice area, political spending) timed to the presidential transition, quantified against same-size peers as the control group, with every firm, client, lobbyist, and honoree nameable from public filings. The corpus's quarterly income series makes the access premium measurable for the first time at this resolution.",
+   "caveats": "Post-election lobbying growth is expected — the story is the scale vs peers and the client composition. ~35% income sparsity understates totals. FACTUAL ERROR IN SCOUT REPORT TO FIX: one cell states 'Ballard is founded by Jeff Miller, a former Republican Congressman' — Ballard Partners is Brian Ballard's firm; Miller Strategies is Jeff Miller's; verify all principal identities against covered_position records before drafting. Contribution party split covers only the ~41% of dollars matched to members.",
+   "from_cells": [
+    "outlier-vs-peers × REGISTRANT",
+    "self-over-time × registrant",
+    "outlier-vs-peers × LOBBYIST"
+   ]
+  }
+ ],
+ "thin_cells": [
+  "self-over-time × member — instruments are sound but all three proposed leads rest on press-coverage artifacts or factual confusion (Mike Johnson's 17-release corpus gap presented as signal; Virginia Foxx described as retired/Education chair in ways other cells contradict); re-sweep after the press panel ships with coverage flags",
+  "source-vs-source × issue grain — exhaustive probing honestly concluded the headline signal (cross-chamber issue-code divergence) is near zero once name-matching is done correctly; surviving leads are single clerical-error anecdotes (7-minute amendments); re-sweep only the amendment-lag and null-code-vs-sensitive-Senate-code angles",
+  "absence × registrant — the scout's own notes record mostly dead ends: house-only filers cap at $210k income, issue-code gaps reduce to 3 cases in complete years, and the senate-inactive/house-active signal was a per-client filing-structure artifact; the salvageable pieces (LD-203 gaps, ghost engagements) were merged into the compliance scorecard"
+ ]
+}

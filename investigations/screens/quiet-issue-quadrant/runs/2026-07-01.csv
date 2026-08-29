@@ -1,0 +1,74 @@
+issue_code,issue_name,acts,press,act_per_press,inc_per_press_M,z_act,z_inc
+GAM,Gaming/Gambling/Casino,1751.0,103.0,17.0,0.377,5.08,5.09
+ART,Arts/Entertainment,1149.0,124.0,9.27,0.186,2.35,2.09
+CSP,"Consumer Issues/Safety/Products",7398.0,797.0,9.28,0.174,2.35,1.9
+CPT,Copyright/Patent/Trademark,5779.0,660.0,8.76,0.217,2.17,2.57
+INS,Insurance,4821.0,591.0,8.16,0.167,1.96,1.79
+SPO,Sports/Athletics,1275.0,175.0,7.29,0.198,1.65,2.28
+CPI,"Computer Industry",6969.0,1089.0,6.4,0.15,1.33,1.53
+COM,Communications/Broadcasting/Radio/TV,4532.0,744.0,6.09,0.151,1.23,1.54
+MMM,Medicare/Medicaid,25816.0,4617.0,5.59,0.131,1.05,1.23
+MED,"Medical/Disease Research/Clinical Labs",4507.0,818.0,5.51,0.091,1.02,0.6
+AER,Aerospace,3040.0,608.0,5.0,0.094,0.84,0.64
+TEC,Telecommunications,13136.0,2633.0,4.99,0.139,0.84,1.36
+NAT,"Natural Resources",14452.0,2947.0,4.9,0.08,0.81,0.43
+RES,"Real Estate/Land Use/Conservation",2764.0,597.0,4.63,0.076,0.71,0.37
+BUD,Budget/Appropriations,88593.0,20071.0,4.41,0.064,0.63,0.17
+ANI,Animals,2260.0,606.0,3.73,0.052,0.39,-0.01
+TOB,Tobacco,1757.0,481.0,3.65,0.103,0.36,0.78
+UTI,Utilities,2991.0,922.0,3.24,0.057,0.22,0.07
+CAW,"Clean Air and Water (quality)",6469.0,2095.0,3.09,0.036,0.16,-0.26
+DIS,"Disaster Planning/Emergencies",4374.0,1501.0,2.91,0.034,0.1,-0.3
+URB,"Urban Development/Municipalities",5519.0,1909.0,2.89,0.038,0.09,-0.23
+APP,"Apparel/Clothing Industry/Textiles",432.0,151.0,2.86,0.072,0.08,0.31
+AVI,Aviation/Airlines/Airports,9172.0,3325.0,2.76,0.053,0.05,0.0
+TAR,"Tariff (miscellaneous tariff bills)",1055.0,380.0,2.78,0.038,0.05,-0.22
+WAS,"Waste (hazardous/solid/interstate/nuclear)",688.0,255.0,2.7,0.042,0.03,-0.17
+MAR,Marine/Maritime/Boating/Fisheries,6032.0,2296.0,2.63,0.05,0.0,-0.04
+FOO,"Food Industry (safety, labeling, etc.)",3651.0,1454.0,2.51,0.045,-0.04,-0.12
+IND,"Indian/Native American Affairs",6063.0,2633.0,2.3,0.053,-0.11,0.0
+RRR,Railroads,2178.0,979.0,2.22,0.038,-0.14,-0.23
+AUT,"Automotive Industry",3005.0,1410.0,2.13,0.048,-0.17,-0.07
+CHM,"Chemicals/Chemical Industry",1978.0,997.0,1.98,0.038,-0.23,-0.23
+HCR,"Health Issues",56188.0,28796.0,1.95,0.048,-0.24,-0.07
+DEF,Defense,40712.0,22110.0,1.84,0.04,-0.28,-0.21
+TOU,Travel/Tourism,1615.0,976.0,1.65,0.033,-0.34,-0.31
+ECN,"Economics/Economic Development",6895.0,4402.0,1.57,0.022,-0.37,-0.48
+TRA,Transportation,31263.0,20270.0,1.54,0.022,-0.38,-0.48
+ENG,Energy/Nuclear,27276.0,18512.0,1.47,0.031,-0.41,-0.34
+UNM,Unemployment,221.0,152.0,1.45,0.017,-0.41,-0.56
+BAN,Banking,9721.0,6914.0,1.41,0.034,-0.43,-0.29
+AGR,Agriculture,17446.0,12575.0,1.39,0.025,-0.44,-0.44
+FOR,"Foreign Relations",5093.0,3776.0,1.35,0.035,-0.45,-0.28
+ACC,Accounting,886.0,668.0,1.33,0.035,-0.46,-0.28
+LAW,"Law Enforcement/Crime/Criminal Justice",6525.0,5184.0,1.26,0.018,-0.48,-0.54
+POS,Postal,1332.0,1048.0,1.27,0.024,-0.48,-0.45
+MAN,Manufacturing,7422.0,5937.0,1.25,0.024,-0.49,-0.45
+RET,Retirement,3197.0,2592.0,1.23,0.021,-0.49,-0.5
+TAX,"Taxation/Internal Revenue Code",45286.0,36906.0,1.23,0.027,-0.49,-0.41
+TRU,Trucking/Shipping,1021.0,852.0,1.2,0.02,-0.5,-0.51
+BNK,Bankruptcy,540.0,455.0,1.19,0.027,-0.51,-0.4
+ADV,Advertising,353.0,312.0,1.13,0.019,-0.53,-0.53
+CIV,"Civil Rights/Civil Liberties",1840.0,1652.0,1.11,0.019,-0.53,-0.53
+ROD,Roads/Highway,1851.0,1774.0,1.04,0.011,-0.56,-0.65
+FIN,"Financial Institutions/Investments/Securities",17835.0,20824.0,0.86,0.024,-0.62,-0.45
+PHA,Pharmacy,4417.0,5147.0,0.86,0.023,-0.62,-0.47
+SMB,"Small Business",3980.0,4589.0,0.87,0.013,-0.62,-0.62
+HOM,"Homeland Security",9864.0,11695.0,0.84,0.012,-0.63,-0.64
+TRD,"Trade (domestic/foreign)",20623.0,26611.0,0.77,0.017,-0.65,-0.57
+EDU,Education,15308.0,21963.0,0.7,0.012,-0.68,-0.64
+CDT,"Commodities (big ticket)",478.0,708.0,0.68,0.014,-0.69,-0.6
+INT,Intelligence,1477.0,2439.0,0.61,0.008,-0.71,-0.69
+WEL,Welfare,793.0,1287.0,0.62,0.005,-0.71,-0.75
+VET,Veterans,5901.0,10263.0,0.57,0.009,-0.72,-0.69
+FUE,Fuel/Gas/Oil,2827.0,4956.0,0.57,0.015,-0.73,-0.59
+ENV,Environment/Superfund,18364.0,38675.0,0.47,0.007,-0.76,-0.72
+LBR,"Labor Issues/Antitrust/Workplace",13466.0,29415.0,0.46,0.007,-0.77,-0.71
+MON,"Minting/Money/Gold Standard",102.0,241.0,0.42,0.012,-0.78,-0.64
+ALC,"Alcohol and Drug Abuse",839.0,2437.0,0.34,0.004,-0.81,-0.77
+REL,Religion,157.0,477.0,0.33,0.007,-0.81,-0.72
+HOU,Housing,7985.0,28629.0,0.28,0.005,-0.83,-0.76
+FAM,"Family issues/Abortion/Adoption",894.0,3605.0,0.25,0.003,-0.84,-0.78
+DOC,"District of Columbia",94.0,665.0,0.14,0.003,-0.88,-0.79
+FIR,Firearms/Guns/Ammunition,586.0,4197.0,0.14,0.003,-0.88,-0.78
+IMM,Immigration,5785.0,43387.0,0.13,0.002,-0.88,-0.79

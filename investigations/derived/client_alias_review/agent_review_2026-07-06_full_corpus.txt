@@ -1,0 +1,1839 @@
+# Agent-assisted review of derived_client_alias_index, full-corpus rebuild, 2026-07-06.
+# Covers the 1,826 entities newly surfaced after fixing two bugs in
+# build_derived_client_alias_index.py: (1) income lookup keyed on the wrong
+# senate_clients column (client_id vs id), which undercounted most entities'
+# income and shrank the >=$1M threshold set to 525 instead of the true 2,292;
+# (2) entities were clustered on the raw normalized name instead of a
+# suffix-stripped core key, so "X Corporation" and "X" (same company) could
+# land in separate entities (e.g. Norfolk Southern split $4.71M into two
+# clusters before the fix). This file is the second review pass, covering
+# only the ~1,826 entities not already reviewed in agent_review_2026-07-06.txt
+# (the original 525-entity pass, reused rather than re-run to save tokens).
+# Produced by 20 batched general-purpose Agent tool launches (not raw API
+# calls). Applied via scripts/apply_client_alias_llm_review.py. Format:
+# entity_id|canonical_name|additional_aliases (;-sep or NONE)|generic_flag|reason
+1|1-800 CONTACTS, INC.|1-800 CONTACTS;1800CONTACTS|false|distinctive consumer brand name
+2|21ST CENTURY PRIVACY COALITION|NONE|true|generic advocacy-coalition name
+3|2U, INC.|2U|false|distinctive short brand name
+4|340B HEALTH|340B|false|distinctive numeric-code-based name
+6|5E ADVANCED MATERIALS, INC.|5E Advanced Materials|false|distinctive brand name
+7|7 ELEVEN, INC.|7-ELEVEN;7-11|false|distinctive well-known consumer brand
+8|908 DEVICES, INC.|908 Devices|false|distinctive brand name
+9|A.O. SMITH CORPORATION|AO Smith|false|distinctive brand name
+10|AARP, INC.|AARP|false|distinctive well-known acronym brand
+11|ABBOTT|NONE|true|common surname/place-name collision risk
+12|ABBOTT (FORMERLY KNOWN AS ALERE INC.)|NONE|true|same surname/place-name collision risk as plain Abbott
+13|ABBOTT LABORATORIES|Abbott Labs|false|full name distinctive
+14|ABBVIE, INC.|AbbVie|false|distinctive coined brand name
+15|ABSOLUTE SOFTWARE CORPORATION|NONE|false|distinctive combination
+16|ACA CONNECTS - AMERICA'S COMMUNICATION ASSOCIATION|NONE|true|ACA acronym collides with Affordable Care Act
+17|ACA INTERNATIONAL|NONE|true|ACA acronym collides with Affordable Care Act
+18|ACADEMY OF MANAGED CARE PHARMACY|AMCP|false|distinctive full name/acronym
+19|ACADIA HEALTHCARE COMPANY, INC.|NONE|false|distinctive enough, distinguishable from Acadia Pharma
+20|ACADIA PHARMACEUTICALS, INC.|NONE|false|distinctive
+22|ACCENTURE, LLP|Accenture|false|distinctive well-known brand
+23|ACCENTURE FEDERAL SERVICES LLC|Accenture Federal Services|false|distinctive full name
+24|ACG ADVOCACY ON BEHALF OF RELX INC.|RELX|false|RELX distinctive brand name
+25|ACORN CONSULTING OBO SHELL USA INC.|NONE|true|Shell alone is a common word
+26|ACP TECHNOLOGIES, LLC|NONE|false|distinctive enough
+28|ACTIVEHOURS INC., D/B/A EARNIN|EarnIn|false|distinctive brand name
+30|ACXIOM LLC|Acxiom|false|distinctive coined brand name
+31|ADOBE, INC.|NONE|true|Adobe also a common word/place name element
+32|ADOBE SYSTEMS INCORPORATED|NONE|true|same generic-word risk
+33|ADP LLC|ADP|false|distinctive well-known acronym brand
+34|ADTALEM GLOBAL EDUCATION, INC.|Adtalem|false|distinctive coined brand name
+35|ADULT VACCINE ACCESS COALITION|NONE|true|generic advocacy-coalition name
+36|ADVANCED BIOFUELS ASSOCIATION|NONE|true|generic trade-association name
+38|ADVANCED MEDICAL TECHNOLOGY ASSOCIATION|NONE|true|generic descriptive name despite AdvaMed acronym
+40|ADVANCED MICRO DEVICES (AMD)|AMD|false|distinctive well-known brand/acronym
+42|ADVANCED TECHNOLOGY INTERNATIONAL|NONE|true|generic descriptive name; ATI acronym collides
+43|ADVANCED TECHNOLOGY INTERNATIONAL ON BEHALF OF NATIONAL ARMAMENTS CONSORTIUM|NONE|true|generic descriptive name
+46|ADVENTIST HEALTHCARE|NONE|true|Adventist collides with religious denomination coverage
+48|AECOM|AECOM|false|distinctive coined brand name
+50|AEVEX AEROSPACE, LLC|AEVEX|false|distinctive coined brand name
+51|AFFIRM, INC.|NONE|true|Affirm is a common English verb
+52|AFFORDABLE HOUSING DEVELOPERS COUNCIL|NONE|true|generic advocacy-coalition name
+53|AFFORDABLE HOUSING TAX CREDIT COALITION|NONE|true|generic advocacy-coalition name
+54|AFLAC INCORPORATED|Aflac|false|distinctive well-known brand name
+58|AGUSTAWESTLAND PHILADELPHIA CORPORATION|AgustaWestland|false|distinctive brand name
+59|AICPA|NONE|true|short acronym collision risk
+60|AICPA ASSOCIATION OF INTERNATIONAL CERTIFIED PROFESSIONAL ACCOUNTANTS|NONE|true|same AICPA acronym collision risk
+61|AIDS HEALTHCARE FOUNDATION|AHF|false|distinctive full name
+63|AIR CONDITIONING HEATING & REFRIGERATION INSTITUTE (FKA AIR CONDITIONING AND R)|NONE|true|generic descriptive industry-association name
+64|AIR LIQUIDE USA LLC|Air Liquide|false|distinctive well-known brand name
+65|AIR METHODS CORPORATION|Air Methods|false|distinctive enough combination
+67|AIR SPACE INTELLIGENCE INC.|NONE|true|generic descriptive name
+68|AIRBNB, INC.|Airbnb|false|distinctive well-known coined brand name
+69|AIRBUS AMERICAS, INC.|Airbus|false|distinctive well-known brand name
+70|AIRLINES FOR AMERICA|NONE|true|generic descriptive trade-association name
+71|AIRLINES FOR AMERICA (FORMERLY AIR TRANSPORT ASSOCIATION OF AMERICA INC.)|NONE|true|same generic-name collision risk
+72|AIRPORTS COUNCIL INTERNATIONAL - NORTH AMERICA|NONE|true|generic descriptive trade-association name
+73|AIS HEALTHCARE|NONE|true|AIS short acronym collision risk
+74|AITEO GROUP|Aiteo|false|distinctive coined brand name
+75|AK CHIN INDIAN COMMUNITY|Ak-Chin|false|distinctive tribal name
+76|AKEBIA THERAPEUTICS, INC.|Akebia|false|distinctive coined brand name
+77|ALABAMA-COUSHATTA TRIBE OF TEXAS|NONE|false|distinctive tribal name
+78|ALASKA AIRLINES, INC.|Alaska Airlines|false|distinctive full name
+79|ALASKA RAILROAD CORP|Alaska Railroad|false|distinctive full name
+80|ALBERTSONS COMPANIES, INC.|Albertsons|false|distinctive well-known brand name
+81|ALCOA CORPORATION|Alcoa|false|distinctive coined brand name
+82|ALCON VISION LLC|Alcon|false|distinctive brand name
+83|ALDEN TORCH FINANCIAL, LLC|NONE|false|distinctive enough
+84|ALEXION PHARMACEUTICALS, INC.|Alexion|false|distinctive coined brand name
+85|ALG SENIOR LLC|NONE|true|ALG short acronym collision risk
+86|ALIBABA GROUP HOLDING LIMITED|Alibaba|false|distinctive well-known brand name
+87|ALKERMES, INC.|Alkermes|false|distinctive coined brand name
+89|ALLEGHENY COUNTY AIRPORT AUTHORITY|NONE|false|distinctive full name tied to specific county
+90|ALLEGIS, REDWOOD, MAXIM PUBLIC AFFAIRS, LLC|NONE|true|generic-word compound lobbying-shop name
+91|ALLIANCE FOR A STRONGER FDA|NONE|true|generic advocacy-coalition name
+94|ALLIANCE FOR AMERICAN MANUFACTURING|NONE|true|generic advocacy-coalition name
+95|ALLIANCE FOR AUTOMOTIVE INNOVATION|NONE|true|generic trade-association name
+96|ALLIANCE FOR BIOPHARMACEUTICAL COMPETITIVENESS AND INNOVATION|NONE|true|generic trade-association name
+97|ALLIANCE FOR BIOSECURITY|NONE|true|generic advocacy-coalition name
+98|ALLIANCE FOR CONNECTED CARE|NONE|true|generic advocacy-coalition name
+99|ALLIANCE FOR DRIVER SAFETY & SECURITY (THE TRUCKING ALLIANCE)|NONE|true|generic advocacy-coalition name
+100|ALLIANCE FOR HOME DIALYSIS|NONE|true|generic advocacy-coalition name
+101|ALLIANCE FOR PHYSICAL THERAPY QUALITY AND INNOVATION|NONE|true|generic advocacy-coalition name
+103|ALLIANCE FOR RURAL HOSPITAL ACCESS|NONE|true|generic advocacy-coalition name
+104|ALLIANCE FOR VEHICLE EFFICIENCY|NONE|true|generic advocacy-coalition name
+106|ALLIANCE OF DEDICATED CANCER CENTERS|NONE|true|generic advocacy-coalition name
+108|ALLIANT ENERGY CORPORATION|Alliant Energy|false|distinctive full brand name
+109|ALLIANTGROUP L.P.|Alliantgroup|false|distinctive coined brand name
+110|ALLIED UNIVERSAL (F/K/A ALLIED BARTON SECURITY SERVICES)|NONE|true|Allied is a common word component
+111|ALLISON TRANSMISSION INCORPORATED|Allison Transmission|false|distinctive full brand name
+112|ALLSTATE INSURANCE COMPANY|Allstate|false|distinctive well-known brand name
+113|ALLSUP, INC.|Allsup|false|distinctive brand name
+114|ALLY FINANCIAL, INC.|NONE|true|bare Ally is a common English word
+116|ALTAMED HEALTH SERVICES CORPORATION|NONE|false|distinctive healthcare-org name
+117|ALTICOR, INC.|NONE|false|distinctive coined brand name
+119|ALVOGEN, INC.|NONE|false|distinctive coined pharma brand name
+120|ALZHEIMER'S ASSOCIATION|NONE|false|distinctive disease-specific advocacy name
+121|AM GENERAL CORPORATION|NONE|false|distinctive vehicle manufacturer name
+122|AMAZON|NONE|true|also river/rainforest and common noun
+123|AMAZON CORPORATE, LLC|NONE|false|full legal name distinctive enough
+125|AMAZON.COM, INC.|NONE|false|.com Inc suffix unambiguous
+126|AMAZON.COM SERVICES, INC.|NONE|false|distinctive full form
+127|AMBAC ASSURANCE CORPORATION|NONE|false|Ambac distinctive coined name
+128|AMBULATORY SURGERY CENTER ASSOCIATION|NONE|false|distinctive as full phrase, ASCA known abbreviation
+129|AMEDISYS HOME HEALTH AND HOSPICE CARE|NONE|false|distinctive coined brand name
+130|AMEDISYS, INC.|NONE|false|distinctive coined brand name
+131|AMEREN|NONE|false|distinctive coined utility brand name
+132|AMEREN SERVICES COMPANY|NONE|false|distinctive coined brand name
+133|AMERESCO, INC.|NONE|false|distinctive coined brand name
+134|AMERICA'S ESSENTIAL HOSPITALS|NONE|false|distinctive phrase
+135|AMERICA'S HEALTH INSURANCE PLANS, INC.|AHIP|false|distinctive full name, AHIP known abbreviation
+136|AMERICA'S HEALTH INSURANCE PLANS (AHIP)|NONE|false|already includes AHIP
+137|AMERICA'S HEALTH INSURANCE PLANS OBO COALITION AGAINST SURPRISE MEDICAL BILLING|NONE|true|generic-sounding advocacy phrase in compound name
+138|AMERICAN ACADEMY OF FAMILY PHYSICIANS|NONE|false|distinctive specific full name
+139|AMERICAN ACADEMY OF OPHTHALMOLOGY|NONE|false|distinctive specific full name
+140|AMERICAN ACADEMY OF PEDIATRIC DENTISTRY|NONE|false|distinctive specific full name
+141|AMERICAN ACADEMY OF PHYSICIAN ASSOCIATES|NONE|false|distinctive specific full name
+142|AMERICAN AIRLINES, INC.|NONE|false|distinctive unambiguous full name
+143|AMERICAN AMBULANCE ASSOCIATION|NONE|true|AAA acronym collision risk
+144|AMERICAN ASSOCIATION FOR HOMECARE (AAHOMECARE)|NONE|false|distinctive full name/abbreviation
+145|AMERICAN ASSOCIATION FOR JUSTICE|NONE|true|Justice is a common generic word
+146|AMERICAN ASSOCIATION OF BIOANALYSTS|NONE|false|distinctive narrow specialty name
+147|AMERICAN ASSOCIATION OF COLLEGES OF OSTEOPATHIC MEDICINE|NONE|false|distinctive specific full name
+148|AMERICAN ASSOCIATION OF CROP INSURERS (AACI)|NONE|false|distinctive with abbreviation given
+149|AMERICAN ASSOCIATION OF NURSE ANESTHETISTS|NONE|false|distinctive specific full name
+150|AMERICAN ASSOCIATION OF NURSE PRACTITIONERS|NONE|false|distinctive specific full name
+151|AMERICAN ASSOCIATION OF TEACHING HEALTH CENTERS|NONE|false|distinctive specific full name
+152|AMERICAN ASSOCIATION OF TISSUE BANKS|NONE|false|distinctive specific full name
+154|AMERICAN BENEFITS COUNCIL|NONE|true|Benefits Council is generic descriptive phrase
+155|AMERICAN BENEFITS COUNCIL OBO ALLIANCE TO FIGHT FOR HEALTH CARE|NONE|true|generic-sounding coalition portion
+157|AMERICAN CANCER SOCIETY CANCER ACTION NETWORK, INC.|NONE|false|distinctive full name, ACS CAN known abbreviation
+158|AMERICAN CANCER SOCIETY CANCER ACTION NETWORK (ACSCAN)|NONE|false|distinctive with abbreviation given
+159|AMERICAN CHEMISTRY COUNCIL, INC.|NONE|true|ACC widely overloaded acronym
+160|AMERICAN CIVIL LIBERTIES UNION, INC.|ACLU|false|extremely well-known unambiguous
+162|AMERICAN CLINICAL LABORATORY ASSOCIATION|NONE|false|distinctive specific full name
+163|AMERICAN CLINICAL LABORATORY ASSOCIATION (ACLA)|NONE|false|distinctive with abbreviation given
+164|AMERICAN COLLEGE OF CLINICAL PHARMACY|NONE|false|distinctive specific full name
+165|AMERICAN COLLEGE OF GASTROENTEROLOGY|NONE|false|distinctive specific full name
+166|AMERICAN COLLEGE OF SURGEONS|NONE|false|distinctive specific full name
+167|AMERICAN COUNCIL OF ENGINEERING COMPANIES, INC.|NONE|false|distinctive specific full name
+168|AMERICAN COUNCIL OF LIFE INSURERS|NONE|false|distinctive specific full name
+169|AMERICAN DENTAL ASSOCIATION|NONE|true|ADA collides with Americans with Disabilities Act
+170|AMERICAN DIABETES ASSOCIATION|NONE|true|same ADA collision issue
+172|AMERICAN EXPLORATION & PRODUCTION COUNCIL|NONE|false|distinctive specific full name
+173|AMERICAN EXPRESS COMPANY|AMEX|false|distinctive well-known brand, AMEX known shortened form
+174|AMERICAN FEDERATION FOR AGING RESEARCH|NONE|false|distinctive specific full name
+175|AMERICAN FIDELITY CORPORATION|NONE|false|distinctive full company name
+176|AMERICAN FINANCIAL GROUP, INC.|NONE|false|distinctive full company name
+177|AMERICAN FINANCIAL SERVICES ASSOCIATION|NONE|false|distinctive specific full name
+178|AMERICAN FLOOD COALITION ACTION INC|NONE|false|distinctive specific full name
+179|AMERICAN FOREST & PAPER ASSOCIATION|NONE|false|distinctive specific full name
+180|AMERICAN FUEL & PETROCHEMICAL MANUFACTURERS (AFPM)|NONE|false|distinctive with abbreviation given
+181|AMERICAN FUEL AND PETROCHEMICAL MANUFACTURERS|NONE|false|distinctive specific full name
+182|AMERICAN FUEL AND PETROCHEMICAL MANUFACTURERS (AFPM)|NONE|false|distinctive with abbreviation given
+183|AMERICAN GAMING ASSOCIATION|NONE|false|distinctive specific full name
+184|AMERICAN GAS ASSOCIATION|NONE|false|distinctive specific full name
+185|AMERICAN HEALTH CARE ASSOCIATION|NONE|true|AHCA acronym overload risk
+187|AMERICAN HONDA MOTOR CO., INC.|NONE|false|distinctive unambiguous brand name
+188|AMERICAN HONDA MOTOR CO INC (FORMERLY HONDA NORTH AMERICA)|Honda North America|false|distinctive, former name given
+189|AMERICAN HONEY PRODUCERS ASSOCIATION|NONE|false|distinctive specific full name
+191|AMERICAN HOTEL & LODGING ASSOCIATION|NONE|false|distinctive specific full name
+193|AMERICAN INTERNATIONAL GROUP, INC.|AIG|false|distinctive well-known abbreviation
+195|AMERICAN ISRAEL PUBLIC AFFAIRS COMMITTEE|AIPAC|false|distinctive well-known name/abbreviation
+196|AMERICAN KIDNEY FUND|NONE|false|distinctive specific full name
+199|AMERICAN MARITIME PARTNERSHIP|NONE|false|distinctive specific full name
+200|AMERICAN MEDICAL ASSOCIATION|NONE|true|AMA heavily overloaded acronym
+201|AMERICAN MEDICAL REHABILITATION PROVIDER ASSOCIATION|NONE|false|distinctive specific full name
+203|AMERICAN OSTEOPATHIC ASSOCIATION|NONE|false|distinctive specific full name
+204|AMERICAN PACIFIC|NONE|true|extremely generic-sounding name
+205|AMERICAN PETROLEUM INSTITUTE|NONE|true|API extremely overloaded acronym
+206|AMERICAN PETROLEUM INSTITUTE (API)|NONE|true|same API acronym collision risk
+208|AMERICAN PROPERTY CASUALTY INSURANCE ASSOCIATION|NONE|false|distinctive specific full name
+209|AMERICAN PROPERTY CASUALTY INSURANCE ASSOCIATION FKA PROPERTY CASUALTY INSURERS|NONE|false|distinctive specific full name
+210|AMERICAN PUBLIC POWER ASSOCIATION|NONE|false|distinctive specific full name
+211|AMERICAN PUBLIC TRANSPORTATION ASSOCIATION|NONE|false|distinctive specific full name
+212|AMERICAN PUBLIC TRANSPORTATION ASSOCIATION (APTA)|NONE|false|distinctive with abbreviation given
+213|AMERICAN RESORT DEVELOPMENT ASSOCIATION|NONE|false|distinctive specific full name
+215|AMERICAN RETIREMENT ASSOCIATION|NONE|true|Retirement Association generic combination
+216|AMERICAN RETIREMENT ASSOCIATION (FORMERLY ASPPA)|NONE|true|same generic Retirement Association collision risk
+217|AMERICAN ROLL-ON ROLL-OFF CARRIER GROUP, INC.|NONE|true|shortened ARC alias heavily overloaded
+220|AMERICAN SOCIETY OF COMPOSERS, AUTHORS, AND PUBLISHERS (ASCAP)|ASCAP|false|extremely well-known name/abbreviation
+221|AMERICAN SOCIETY OF MECHANICAL ENGINEERS|NONE|false|distinctive specific full name
+222|AMERICAN SOCIETY OF PLASTIC SURGERY|NONE|false|distinctive specific full name
+223|AMERICAN SOCIETY OF TRANSPLANTATION|NONE|false|distinctive specific full name
+224|AMERICAN TELEVISION ALLIANCE|NONE|false|distinctive specific full name
+225|AMERICAN TOWER CORPORATION|NONE|false|distinctive company name
+226|AMERICAN TRANSACTION PROCESSORS COALITION|NONE|false|distinctive coalition name
+227|AMERICAN TRUCKING ASSOCIATIONS|NONE|true|ATA acronym collides with other orgs
+228|AMERICAN UNITY FUND, INC.|NONE|false|distinctive advocacy name
+229|AMERICAN VETERINARY MEDICAL ASSOCIATION|NONE|false|distinctive well-known acronym
+230|AMERICANS FOR CARBON DIVIDENDS|NONE|true|generic descriptive coalition name
+232|AMERIHEALTH CARITAS|NONE|false|distinctive brand name
+233|AMGEN, INC.|Amgen|false|distinctive pharma brand
+234|AMGEN USA, INC.|Amgen|false|distinctive pharma brand, same company
+235|AMGEN, INC. FKA HORIZON THERAPEUTICS USA, INC.|Amgen;Horizon Therapeutics|false|distinctive; legacy name noted
+236|AMRIZE NORTH AMERICA INC.|Amrize|false|distinctive new brand name
+237|AMSCOT FINANCIAL CORPORATION|Amscot|false|distinctive brand name
+239|ANALOG DEVICES, INC.|NONE|false|distinctive company name
+240|ANDURIL INDUSTRIES, INC.|Anduril|false|distinctive brand name
+241|ANHEUSER-BUSCH COMPANIES, INC.|Anheuser-Busch|false|distinctive brand
+243|ANMED HEALTH SYSTEM|NONE|false|distinctive regional health system name
+244|ANSCHUTZ ENTERTAINMENT GROUP INC.|AEG|false|distinctive well-known abbreviation
+245|ANT GROUP COMPANY LTD,|Ant Group|false|distinctive brand
+248|ANTORA ENERGY, INC.|Antora|false|distinctive brand name
+249|AON SERVICE CORPORATION|Aon|false|distinctive brand name
+250|APEX CLEAN ENERGY, INC.|NONE|true|Apex extremely common business name if stripped
+251|APIJECT SYSTEMS, CORP.|ApiJect|false|distinctive brand name
+252|APOLLO GLOBAL MANAGEMENT. INC.|NONE|true|Apollo alone highly generic
+253|APOTEX CORPORATION|Apotex|false|distinctive pharma brand
+254|APPALACHIAN NATURAL GAS OPERATORS COALITION|NONE|false|distinctive regional coalition name
+257|APPLIED MATERIALS, INC.|NONE|false|distinctive semiconductor company name
+258|APPLIED RESEARCH ASSOCIATES, INC.|NONE|true|generic-sounding name plus ARA acronym collision
+259|APTARGROUP, INC.|Aptar|false|distinctive brand name
+260|APTERA MOTORS, INC.|Aptera|false|distinctive brand name
+261|APTIV, PLC|Aptiv|false|distinctive brand name
+263|ARAMARK SERVICES, INC.|Aramark|false|distinctive brand name
+264|ARCH CAPITAL GROUP (U.S.) INC.|NONE|true|Arch alone generic if suffix-stripped
+265|ARCHER AVIATION INC.|NONE|true|Archer common surname/word
+266|ARCOSA, INC.|Arcosa|false|distinctive brand name
+267|ARCTIC SLOPE REGIONAL CORPORATION|ASRC|false|distinctive regional corporation name
+269|ARDENT HEALTH SERVICES|NONE|false|distinctive brand name
+270|ARES CAPITAL CORPORATION|Ares Capital|false|distinctive
+271|ARES MANAGEMENT, FORMERLY REPORTED AS, ARES MANAGEMENT LLC|Ares Management|false|distinctive brand name
+273|ARGENTEM CREEK PARTNERS LP|Argentem Creek|false|distinctive brand name
+274|ARGENTUM, INC.|NONE|true|Argentum somewhat generic Latin word
+277|ARKEMA INC.|Arkema|false|distinctive brand name
+280|ARMIS|NONE|true|Armis also common Latin/given name root
+282|ASCENDIS PHARMA, INC.|Ascendis|false|distinctive pharma brand
+283|ASCENSION HEALTH ALLIANCE|NONE|true|Ascension common word/place name
+284|ASCENSION HEALTH ALLIANCE D/B/A ASCENSION|NONE|true|same Ascension collision risk
+286|ASML US, LLC|ASML|false|distinctive well-known brand
+287|ASPECT HOLDINGS, LLC|NONE|true|Aspect common English word
+288|ASSOCIATED UNIVERSITIES, INC.|NONE|true|generic-sounding name
+289|ASSOCIATION FOR ACCESSIBLE MEDICINES|NONE|true|generic descriptive advocacy name
+290|ASSOCIATION FOR CLINICAL ONCOLOGY|NONE|true|generic descriptive name
+291|ASSOCIATION FOR COMMUNITY AFFILIATED PLANS|NONE|true|generic descriptive advocacy/coalition name
+292|ASSOCIATION FOR MOLECULAR PATHOLOGY|NONE|true|generic descriptive name; AMP acronym collides
+293|ASSOCIATION OF ACCESSIBLE MEDICINES|NONE|true|generic descriptive advocacy name
+294|ASSOCIATION OF AMERICAN MEDICAL COLLEGES|NONE|false|well-known distinctive acronym
+295|ASSOCIATION OF AMERICAN RAILROADS|NONE|true|generic-sounding descriptive name
+296|ASSOCIATION OF DENTAL SUPPORT ORGANIZATIONS|NONE|true|generic descriptive advocacy/coalition name
+297|ASSOCIATION OF FOOD AND DAIRY RETAILERS, WHOLESALERS AND MANUFACTURERS|NONE|true|generic descriptive coalition name
+298|ASSOCIATION OF NATIONAL ADVERTISERS|NONE|true|generic descriptive name; ANA acronym collides
+299|ASSOCIATION OF ORGAN PROCUREMENT ORGANIZATIONS|NONE|true|generic descriptive coalition name
+300|ASSOCIATION OF PUBLIC AND LAND-GRANT UNIVERSITIES|NONE|true|generic descriptive name
+301|ASSOCIATIONS OF MEXICAN TOMATO GROWERS|NONE|true|generic descriptive coalition name
+302|ASSURANT, INC.|Assurant|false|distinctive brand name
+303|ASSURED GUARANTY, INC.|NONE|true|descriptive/generic insurance phrasing
+304|ASSURED GUARANTY MUNICIPAL CORP.|NONE|true|same collision risk
+305|ASTCT|NONE|true|short acronym ambiguous
+308|ASTRAZENECA|NONE|true|AZ commonly used for Arizona
+309|ASTRAZENECA PHARMACEUTICALS LP|AstraZeneca|false|distinctive pharma brand
+310|ASURION, LLC|Asurion|false|distinctive brand name
+312|AT&T SERVICES, INC. (FKA AT&T)|AT&T|false|distinctive universally recognized brand
+313|ATA ACTION|NONE|true|ATA acronym highly generic/collision-prone
+314|ATHENE HOLDING|Athene|false|distinctive brand name
+315|ATHENE USA|Athene|false|distinctive brand name
+316|ATLANTIC COAST CONFERENCE|NONE|true|ACC acronym highly collision-prone, sports usage dominant
+317|AUSTAL USA|Austal|false|distinctive brand name
+318|AUTOMOTIVE SERVICE ASSOCIATION|NONE|true|generic descriptive name
+319|AUTONOMOUS VEHICLE INDUSTRY ASSOCIATION|NONE|true|generic descriptive name
+320|AUTOS DRIVE AMERICA|NONE|true|generic-sounding coalition name
+322|AVANGRID, INC.|Avangrid|false|distinctive brand name
+323|AVENTIV TECHNOLOGIES LLC AND VARIOUS SUBSIDIARIES|Aventiv|false|distinctive brand name
+325|B&H FOTO & ELECTRONICS CORP|B&H;B&H Photo|false|distinctive well-known retailer brand
+326|B. BRAUN MEDICAL INC.|B. Braun|false|distinctive brand name
+327|B.S.D. CAPITAL, INC., DBA LENDISTRY|Lendistry|false|distinctive DBA brand name
+328|BABCOCK & WILCOX ENTERPRISES, INC.|Babcock & Wilcox|false|distinctive well-known brand name
+329|BABEL STREET, INC.|Babel Street|false|distinctive brand name
+330|BAE SYSTEMS, INC.|BAE Systems|false|distinctive well-known defense contractor brand
+331|BAE SYSTEMS LAND & ARMAMENTS LP|BAE Systems|false|distinctive same company family
+332|BAIN CAPITAL, LLC|Bain Capital|false|distinctive well-known brand name
+333|BAKER HUGHES COMPANY|Baker Hughes|false|distinctive well-known oilfield services brand
+334|BALFOUR BEATTY COMMUNITIES|Balfour Beatty|false|distinctive brand name
+336|BALL CORPORATION|NONE|true|Ball extremely common English word
+337|BALLAD HEALTH|Ballad|false|distinctive regional health system brand
+339|BAM TRADING SERVICES, INC./BINANCE.US|Binance.US;Binance|false|distinctive well-known crypto exchange brand
+342|BANK POLICY INSTITUTE|NONE|true|generic policy-institute name
+343|BARRICK GOLD OF NORTH AMERICA INC.|Barrick Gold;Barrick|false|distinctive mining brand name
+346|BATH & BODY WORKS, INC.|Bath & Body Works|false|distinctive retail brand
+347|BATTELLE MEMORIAL INSTITUTE|Battelle|false|distinctive name
+348|BATTERY MATERIALS AND TECHNOLOGY COALITION|NONE|true|generic descriptive coalition name
+349|BAVARIAN NORDIC INC.|Bavarian Nordic|false|distinctive brand name
+351|BAYCARE HEALTH SYSTEM|BayCare|false|distinctive brand name
+352|BAYER CORPORATION|Bayer|false|distinctive brand name
+354|BAYLOR COLLEGE OF MEDICINE|NONE|false|distinctive named institution
+355|BAYLOR UNIVERSITY|NONE|false|distinctive named institution
+356|BD (BECTON, DICKINSON AND COMPANY)|NONE|true|BD two-letter acronym collides heavily
+357|BECHTEL NATIONAL, INC.|Bechtel|false|distinctive brand name
+358|BECTON, DICKINSON AND COMPANY|NONE|true|BD abbreviation collides broadly
+359|BEER INSTITUTE|NONE|true|generic trade-association name
+360|BEIJING XIAOMI MOBILE SOFTWARE CO., LTD.|Xiaomi|false|distinctive brand name
+361|BEIJING XIAOMI MOBILE SOFTWARE CO., LTD (FKA EDWARD B. MACMAHON, JR., PLC)|Xiaomi|false|distinctive brand name
+362|BELL LEGAL GROUP, LLC|NONE|true|Bell common surname/word
+364|BEONE MEDICINES USA, INC. (FKA BEIGENE USA, INC.)|BeiGene|false|distinctive former brand name
+365|BERING STRAITS NATIVE CORPORATION|Bering Straits|false|distinctive name
+366|BERKSHIRE HATHAWAY ENERGY|BHE|false|distinctive parent brand name
+367|BEST BUY CO., INC.|Best Buy|false|distinctive retail brand
+369|BETTER MEDICARE ALLIANCE|NONE|true|generic advocacy-coalition name
+370|BETTER WORLD FUND|NONE|true|generic-sounding fund name
+371|BINANCE HOLDINGS LIMITED|Binance|false|distinctive brand name
+372|BIO-RAD LABORATORIES|Bio-Rad|false|distinctive brand name
+374|BIOGEN, INC.|Biogen|false|distinctive brand name
+378|BIOTECHNOLOGY INDUSTRY ORGANIZATION|NONE|true|BIO extremely collision-prone
+379|BIOTECHNOLOGY INNOVATION ORGANIZATION|NONE|true|BIO acronym collision-prone
+380|BIOTECHNOLOGY INNOVATION ORGANIZATION (BIO)|NONE|true|BIO acronym collision-prone
+381|BIOTECHNOLOGY INNOVATION ORGANIZATION (FORMERLY BIOTECHNOLOGY INDUSTRY ORG.)|NONE|true|BIO acronym collision-prone
+382|BIPARTISAN COMMISSION ON BIODEFENSE|NONE|true|generic descriptive name
+383|BIPARTISAN POLICY CENTER ACTION, INC.|NONE|true|generic-sounding phrase collision risk
+384|BITCOIN ASSOCIATION FOR BSV|NONE|false|distinctive niche name
+387|BLACKROCK FUNDS SERVICES GROUP LLC (FORMERLY BLACKROCK CAPITAL MANAGEMENT INC.)|BlackRock|false|distinctive brand name
+388|BLACKSTONE ADMINISTRATIVE SERVICES PARTNERSHIP L.P.|Blackstone|false|distinctive brand name
+389|BLACKSTONE ADMINISTRATIVE SERVICES PARTNERSHIPS L.P.|Blackstone|false|distinctive brand name
+391|BLINK CHARGING CO.|NONE|true|Blink common word/collides broadly
+392|BLINK HEALTH LTD (A BERMUDA LIMITED COMPANY)|NONE|true|Blink common word collision risk
+393|BLOCK, INC.|NONE|true|Block extremely common English word
+394|BLOCKCHAIN ASSOCIATION|NONE|true|generic descriptive name
+395|BLOOM ENERGY CORPORATION|Bloom Energy|false|distinctive brand name
+396|BLOOMBERG LP|Bloomberg|false|distinctive brand name
+397|BLOOMBERG PHILANTHROPIES|Bloomberg Philanthropies|false|distinctive brand name
+398|BLUE CROSS AND BLUE SHIELD ASSOCIATION|BCBS;Blue Cross Blue Shield|false|distinctive well-known brand
+399|BLUE CROSS BLUE SHIELD ASSOCIATION|BCBS|false|distinctive well-known brand
+400|BLUE CROSS BLUE SHIELD OF MASSACHUSETTS|BCBS Massachusetts|false|distinctive well-known regional brand
+403|BLUE OWL CAPITAL HOLDINGS LLC|Blue Owl|false|distinctive brand name
+404|BLUE SHIELD OF CALIFORNIA|Blue Shield California|false|distinctive well-known regional brand
+405|BLUEHALO CORPORATION|BlueHalo|false|distinctive brand name
+406|BMW OF NORTH AMERICA, LLC|BMW|false|distinctive globally-known brand
+407|BNSF RAILWAY COMPANY|BNSF|false|distinctive well-known brand acronym
+408|BOEHRINGER INGELHEIM|NONE|false|distinctive brand name
+409|BOEHRINGER INGELHEIM PHARMACEUTICALS, INC.|Boehringer Ingelheim|false|distinctive brand name
+410|BOEHRINGER INGELHEIM USA CORPORATION|Boehringer Ingelheim|false|distinctive brand name
+411|BOEING COMPANY|Boeing|false|distinctive globally-known brand
+412|BOLDYN NETWORKS (FKA SIGNAL POINT SYSTEMS, INC.)|Boldyn Networks;Signal Point Systems|false|distinctive brand name, legitimate former name
+415|BORDER TRADE ALLIANCE|NONE|true|generic descriptive coalition name
+417|BOSSIER PARISH POLICE JURY|NONE|false|distinctive government-body name
+419|BOSTON MEDICAL CENTER|NONE|true|Boston is a major city name
+420|BOSTON SCIENTIFIC CORPORATION|NONE|true|Boston is a major city name
+421|BOYD GAMING CORPORATION|Boyd Gaming|false|distinctive brand name
+422|BP AMERICA, INC.|BP|false|distinctive globally-known brand acronym
+424|BREAKTHROUGH ENERGY, LLC|NONE|true|generic-sounding descriptive name
+425|BREAKTHROUGH T1D (FKA JUVENILE DIABETES RESEARCH FOUNDATION INTERNATIONAL)|JDRF;Juvenile Diabetes Research Foundation|false|well-known legacy brand name
+426|BRIDGESTONE AMERICAS HOLDING INC|Bridgestone|false|distinctive globally-known brand
+427|BRISTOL MYERS SQUIBB COMPANY|Bristol Myers Squibb;BMS|false|distinctive well-known brand
+430|BROADCOM CORPORATION|Broadcom|false|distinctive brand name
+431|BROADRIDGE FINANCIAL SOLUTIONS, INC.|Broadridge|false|distinctive brand name
+432|BROKER ACTION COALITION|NONE|true|generic descriptive coalition name
+434|BURFORD CAPITAL, LLC|Burford Capital|false|distinctive brand name
+435|BURNS & MCDONNELL ENGINEERING COMPANY INC|Burns & McDonnell|false|distinctive brand name
+437|BUSINESS ROUNDTABLE|NONE|true|generic descriptive name built from extremely common words
+438|BWX TECHNOLOGIES, INC.|BWXT|false|distinctive brand name/ticker
+439|BYTEDANCE INC.|ByteDance|false|distinctive brand name
+440|CABOT CORPORATION|NONE|true|Cabot also common place name/surname
+442|CAE USA, INC.|NONE|true|CAE short acronym collides
+443|CAESARS ENTERPRISE SERVICES, LLC|Caesars|false|distinctive well-known brand
+444|CALIFORNIA FOREVER, INC|NONE|true|reads as generic slogan-like phrase
+445|CALIFORNIA INSTITUTE OF TECHNOLOGY|Caltech|false|distinctive well-known institution/abbreviation
+446|CALIFORNIA PUBLIC EMPLOYEES' RETIREMENT SYSTEM|CalPERS|false|distinctive well-known brand/abbreviation
+447|CALIFORNIA RICE COMMISSION|NONE|true|generic descriptive name
+448|CALIFORNIA SCHOOLS VOLUNTARY EMPLOYEE BENEFITS ASSOC. (VEBA)|NONE|true|VEBA also generic technical/legal term
+450|CALISTA CORPORATION|Calista|false|distinctive brand name
+451|CALPINE CORPORATION|Calpine|false|distinctive brand name
+452|CAMBIA HEALTH SOLUTIONS (FORMERLY KNOWN AS THE REGENCE GROUP)|Regence;The Regence Group|false|legitimate former brand name
+453|CAMECO CORPORATION|Cameco|false|distinctive brand name
+455|CAMPAIGN FOR TOBACCO FREE KIDS|NONE|true|generic descriptive advocacy-campaign name
+456|CANADIAN NATIONAL RAILWAY COMPANY|NONE|true|CN bare acronym collides heavily
+457|CAPITAL ONE FINANCIAL CORPORATION|Capital One|false|distinctive well-known brand
+458|CAPITOL DOME ADVOCACY OBO AMERICAN SOCIETY OF COMPOSERS, AUTHORS, AND PUBLISHERS|ASCAP|false|distinctive well-known abbreviation for named beneficiary org
+459|CAPTIAL FUNDING GROUP INC|NONE|true|generic descriptive financial-services name
+461|CARDINAL HEALTH, INC.|NONE|true|Cardinal common word/mascot/surname
+462|CARDINAL HEALTH (F.K.A. THE GLOVER PARK GROUP)|NONE|false|distinctive company name
+463|CARDIOVASCULAR COALITION|NONE|true|generic descriptive coalition name
+464|CAREDX, INC.|CareDx|false|distinctive coined brand name
+465|CAREFIRST BLUECROSS BLUESHIELD|CareFirst|false|distinctive brand name
+466|CARGILL, INCORPORATED|Cargill|false|distinctive company name
+467|CARLYLE INVESTMENT MANAGEMENT L.L.C|Carlyle;The Carlyle Group|false|distinctive brand name
+468|CARNIVAL CORPORATION|NONE|true|Carnival common English word
+469|CARRIER CORPORATION|NONE|true|carrier common English word
+470|CASE WESTERN RESERVE UNIVERSITY|Case Western|false|distinctive named university
+471|CATERPILLAR INC|Caterpillar|false|distinctive, CAT abbreviation risky though
+472|CBC NATIONAL BANK MORTGAGE|NONE|false|distinctive enough combination
+473|CBOE GLOBAL MARKETS, INC.|Cboe|false|distinctive brand/acronym
+474|CCC INTELLIGENT SOLUTIONS INC.|NONE|true|CCC short acronym many common collisions
+475|CELANESE CORPORATION|Celanese|false|distinctive coined brand name
+478|CENCORA, INC. (FORMERLY AMERISOURCEBERGEN CORPORATION)|Cencora;AmerisourceBergen|false|distinctive brand names
+480|CENTER FOR ORGAN RECOVERY & EDUCATION (LOBBYING ON BEHALF OF DONOR ALLIANCE)|NONE|true|CORE acronym collides
+482|CENTERPOINT ENERGY, INC.|CenterPoint|false|distinctive brand name
+483|CENTINEL PUBLIC PARTNERSHIPS, LLC|Centinel|false|distinctive coined name
+484|CENTRAL ARIZONA WATER CONSERVATION DISTRICT (CAWCD)|NONE|true|generic descriptive government-district name
+485|CENTRAL PUGET SOUND REGIONAL TRANSIT|Sound Transit|true|generic descriptive transit-agency name
+486|CENTRAL ROMANA CORPORATION LIMITED|Central Romana|false|distinctive company name
+487|CENTRIENT PHARMACEUTICALS LLC|Centrient|false|distinctive coined brand name
+488|CENTRUS ENERGY CORP.|Centrus|false|distinctive brand name
+489|CENTURY ALUMINUM COMPANY|NONE|true|Century common word
+491|CERBERUS CAPITAL MANAGEMENT, L.P.|Cerberus|false|distinctive mythological-name brand
+492|CERES, INC.|NONE|true|Ceres collides with Roman goddess/place name
+493|CERTIFIED FINANCIAL PLANNER BOARD OF STANDARDS, INC.|CFP Board|false|distinctive well-known acronym/brand
+495|CGI FEDERAL, INC.|NONE|true|CGI collides with computer-generated imagery
+497|CHARLES SCHWAB & CO., INC.|Schwab|false|distinctive brand name
+498|CHARM INDUSTRIAL|NONE|true|Charm common English word
+500|CHARTER BROKERAGE SERVICES|NONE|true|Charter common English word/business term
+502|CHARTER COMMUNICATIONS OPERATING, LLC|NONE|true|Charter common word, Spectrum generic too
+503|CHENIERE ENERGY, INC.|Cheniere|false|distinctive coined brand name
+505|CHEVRON U.S.A., INC.|Chevron|false|distinctive brand name
+506|CHICANOS POR LA CAUSA, INC.|CPLC|false|distinctive name/acronym
+507|CHICKASAW NATION|NONE|false|distinctive tribal nation name
+508|CHILDREN'S HOSPITAL ASSOCIATION F/K/A NAT'L ASSOCIATION OF CHILDREN'S HOSPITALS|NONE|true|generic descriptive name with high collision risk
+509|CHILDREN'S NATIONAL MEDICAL CENTER|NONE|true|generic descriptive name common-word overlap
+510|CHILDREN'S TUMOR FOUNDATION|NONE|false|distinctive specific foundation name
+511|CHILDRENS HEALTH SYSTEM OF TEXAS|NONE|true|generic descriptive name, high collision risk
+512|CHIME FINANCIAL, INC.|NONE|true|Chime common English word
+514|CHOCTAW NATION OF OKLAHOMA|Choctaw Nation|false|distinctive tribal nation name
+517|CHRISTUS HEALTH SYSTEM|NONE|true|Christus collides with religious/Latin word usage
+518|CHRO ASSOCIATION (FKA HR POLICY ASSOCIATION)|NONE|true|CHRO common HR job-title acronym
+520|CHRYSALIS HOLDINGS, INC. (D.B.A. NEWDAY)|NONE|true|Chrysalis common word, NewDay generic phrase
+521|CHSPSC, LLC|NONE|false|opaque alphanumeric name, low collision risk
+522|CHUBB INA HOLDINGS, INC.|Chubb|false|distinctive brand name
+523|CHURCH ALLIANCE|NONE|true|generic descriptive name built from common words
+524|CIBO TECHNOLOGIES|CIBO|false|distinctive coined brand name
+525|CIGAR ASSOCIATION OF AMERICA, INC.|NONE|true|CAA acronym collides with other orgs
+526|CIGAR RIGHTS OF AMERICA|NONE|true|generic descriptive advocacy-name
+527|CIGNA CORPORATION|Cigna|false|distinctive brand name
+528|CIGNA CORPORATION AND SUBSIDIARIES|Cigna|false|distinctive brand name
+529|CINTAS CORPORATION|Cintas|false|distinctive coined brand name
+530|CIRCLE|NONE|true|single common English word, extremely high collision risk
+532|CITADEL ENTERPRISE AMERICAS LLC|NONE|true|Citadel common English word
+533|CITADEL, LLC|NONE|true|Citadel common English word
+534|CITIGROUP WASHINGTON, INC.|Citigroup;Citi|false|distinctive brand names
+535|CITIZENS FOR RESPONSIBLE ENERGY SOLUTIONS|NONE|true|generic descriptive advocacy-coalition name
+536|CITY AND COUNTY OF SAN FRANCISCO|NONE|true|San Francisco extremely high collision risk
+538|CITY OF BIRMINGHAM, ALABAMA|NONE|true|Birmingham generic place name
+539|CITY OF DALLAS|NONE|true|Dallas generic place name
+540|CITY OF INDIANAPOLIS|NONE|true|Indianapolis generic place name
+541|CITY OF KANSAS CITY, MISSOURI|NONE|true|Kansas City generic place name
+542|CITY OF NEW ORLEANS|NONE|true|New Orleans generic place name
+543|CITY OF OAKLAND|NONE|true|Oakland generic place name
+544|CITY OF PHOENIX AZ|NONE|true|Phoenix generic place name
+545|CITY OF SAN ANTONIO|NONE|true|San Antonio generic place name
+546|CITY OF SEATTLE, WA|NONE|true|Seattle generic place name
+547|CITY OF ST. PAUL|NONE|true|St. Paul generic place name
+548|CJ AMERICA, INC.|NONE|true|CJ very short/common initialism
+549|CLARK STREET ASSOCIATES LLC ON BEHALF OF QORVO|Qorvo|false|distinctive brand name (client of interest)
+550|CLARK STREET ASSOCIATES ON BEHALF OF IONQ, INC.|IonQ|false|distinctive brand name (client of interest)
+551|CLEAN AIR TASK FORCE|NONE|true|generic descriptive advocacy-name
+552|CLEAN ENERGY|NONE|true|extremely generic descriptive two-word policy phrase
+553|CLEAN ENERGY BUYERS ASSOCIATION|NONE|true|generic descriptive advocacy-coalition name
+554|CLEAN ENERGY GROUP STRATEGY/MJB&A COALITIONS|NONE|true|generic descriptive coalition name
+555|CLEAN FUELS ALLIANCE AMERICA|NONE|true|generic descriptive advocacy-coalition name
+557|CLEANING COALITION OF AMERICA|NONE|true|generic descriptive coalition name
+558|CLEAR|NONE|true|single common English word, extremely high collision risk
+559|CLEARPATH ACTION FOR CONSERVATIVE CLEAN ENERGY, INC.|NONE|true|generic-leaning descriptive name
+560|CLEARPATH ACTION FUND FOR CONSERVATIVE CLEAN ENERGY, INC.|NONE|true|generic-leaning descriptive name
+561|CLEMSON UNIVERSITY|Clemson|false|distinctive named university
+562|CLEVELAND CLINIC FOUNDATION|Cleveland Clinic|false|distinctive well-known brand name
+563|CLIMATE INNOVATION ACTION|NONE|true|generic descriptive advocacy-name
+564|CLIMATE POWER|NONE|true|generic descriptive two-word advocacy-name
+565|CME GROUP, INC.|NONE|true|CME collides with Continuing Medical Education
+568|COALITION FOR 21ST CENTURY PATENT REFORM|NONE|true|generic descriptive coalition name
+569|COALITION FOR BUSINESS DEVELOPMENT|NONE|true|generic descriptive coalition name
+570|COALITION FOR CANNABIS POLICY, EDUCATION, AND REGULATION|NONE|true|generic descriptive coalition name
+571|COALITION FOR ENERGY ASSISTANCE MODERNIZATION|NONE|true|generic descriptive coalition name
+572|COALITION FOR GSP|NONE|true|generic descriptive coalition name
+573|COALITION FOR SUSTAINABLE MULTIFAMILY HOUSING|NONE|true|generic coalition name built from common policy words
+574|COALITION OF EPSCOR STATES|NONE|true|EPSCoR/states combination somewhat generic
+575|COALITION OF SEMICONDUCTOR EQUIPMENT MANUFACTURERS|NONE|false|distinctive multi-word industry name
+576|COALITION TO STOP FLU|NONE|true|stop flu phrasing could appear in unrelated releases
+577|COBANK|NONE|false|distinctive coined name
+578|COEUR MINING, INC.|NONE|false|Coeur Mining safe full form
+579|COGNIZANT TECHNOLOGY SOLUTIONS|Cognizant|false|distinctive well-known company name
+580|COHERENT, INC|NONE|true|Coherent common English adjective
+581|COHERUS BIOSCIENCES, INC.|Coherus|false|distinctive coined biotech name
+582|COHNREZNICK LLP|CohnReznick|false|distinctive coined firm name
+583|COIN CENTER|NONE|true|generic-sounding phrase
+585|COLONIAL PIPELINE COMPANY|Colonial Pipeline|false|distinctive named entity
+586|COLORADO STATE UNIVERSITY FOUNDATION|NONE|true|university name likely referenced generically
+587|COLUMBIA UNIVERSITY|NONE|true|major university name, extremely common in unrelated press
+589|COMMERCIAL METALS COMPANY|NONE|false|distinctive full name
+590|COMMERCIAL REAL ESTATE FINANCE COUNCIL|CREFC|false|distinctive named coalition, CREFC well-known
+591|COMMITTEE FOR EDUCATION FUNDING|NONE|true|generic-sounding name built from common policy words
+592|COMMONSPIRIT HEALTH|CommonSpirit|false|distinctive coined name
+593|COMMONWEALTH FUSION SYSTEMS LLC|Commonwealth Fusion|false|distinctive name
+594|COMMUNITY FOUNDATION AWARENESS INITIATIVE (INFORMAL COALITION)|NONE|true|generic descriptive coalition name
+596|COMMUNITY ONCOLOGY ALLIANCE|NONE|true|somewhat generic descriptive name
+597|COMPETE AMERICA|NONE|true|generic-sounding coalition name
+599|COMPRESSED GAS ASSOCIATION|NONE|false|distinctive full trade-association name
+601|CONFEDERATED TRIBES OF THE COLVILLE RESERVATION|Colville Tribes|false|distinctive named tribal entity
+603|CONNECTED COMMERCE COUNCIL|NONE|true|generic-sounding descriptive name
+605|CONSEJO COORDINADOR EMPRESARIAL|NONE|true|generic-ish descriptive Spanish name; CCE acronym collides
+606|CONSENSYS SOFTWARE INC.|ConsenSys|false|distinctive coined tech company name
+607|CONSERVATION INTERNATIONAL FOUNDATION|NONE|true|generic root word combined with common descriptor
+609|CONSORTIUM MANAGEMENT GROUP, INC.|NONE|true|highly generic descriptive name
+612|CONSUMER ACCESS TO REPAIR (CAR) COALITION|NONE|true|CAR acronym collides with automobile references
+613|CONSUMER BANKERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+614|CONSUMER BRANDS ASSOCIATION|NONE|true|generic descriptive name
+615|CONSUMER DATA INDUSTRY ASSOCIATION|NONE|true|generic descriptive name
+616|CONSUMER HEALTHCARE PRODUCTS ASSOCIATION|NONE|true|generic descriptive name
+617|CONSUMER TECHNOLOGY ASSOCIATION|NONE|true|generic descriptive name; CTA collides with Chicago Transit Authority
+618|CONTINENTAL CASUALTY COMPANY|CNA|false|well-known distinctive brand/ticker
+619|CONTINENTAL TIRE THE AMERICAS, LLC|Continental Tire|false|distinctive brand name
+620|CONTINUING MEDICAL EDUCATION COALITION|NONE|true|generic descriptive coalition name
+621|CONTRA COSTA WATER DISTRICT|NONE|false|distinctive place-based utility name
+622|COOK INLET REGION INCORPORATED (CIRI)|CIRI|false|distinctive named entity with established acronym
+623|COPPER DEVELOPMENT ASSOCIATION|NONE|true|generic descriptive trade-association name
+625|CORECIVIC, INC.|CoreCivic|false|distinctive coined company name
+627|COREWEAVE, INC.|CoreWeave|false|distinctive coined company name
+629|CORN REFINERS ASSOCIATION|NONE|false|distinctive full trade-association name
+631|CORRECTIONAL VENDORS ASSOCIATION|NONE|true|generic descriptive name
+632|CORTEVA AGRISCIENCE LLC|Corteva|false|distinctive coined company name
+633|CORTEVA AGRISCIENCE LLC (FKA CORTEVA AGRISCIENCE)|Corteva|false|distinctive coined company name
+634|COSTAR GROUP, INC.|CoStar|false|distinctive coined company name
+636|COUNCIL FOR INVESTOR RIGHTS AND CORPORATE ACCOUNTABILITY, INC.|NONE|true|generic descriptive coalition name
+637|COUNCIL OF FEDERAL HOME LOAN BANKS|NONE|false|distinctive full name referencing specific institution structure
+638|COUNCIL ON FOUNDATIONS INC.|NONE|true|generic descriptive name
+639|COUNCIL ON RADIONUCLIDES AND RADIOPHARMACEUTICALS|NONE|false|distinctive specialized name
+641|COVESTRO, LLC|Covestro|false|distinctive coined company name
+642|COW CREEK BAND OF UMPQUA TRIBE OF INDIANS|Cow Creek Band|false|distinctive named tribal entity
+643|COWEN GROUP|NONE|true|Cowen fairly common surname
+644|COWLITZ INDIAN TRIBE|Cowlitz|false|distinctive named tribal entity
+645|COX ENTERPRISES, INC.|NONE|true|Cox common surname
+646|CREA|NONE|true|extremely short acronym, collides with other meanings
+647|CREDIT UNION NATIONAL ASSOCIATION. INC. DBA AMERICA'S CREDIT UNIONS|CUNA;America's Credit Unions|false|distinctive well-known trade association
+648|CREDIT UNION NATIONAL ASSOCIATION, INC. DBA AMERICAS CREDIT UNIONS|CUNA;Americas Credit Unions|false|distinctive well-known trade association
+649|CRESCO LABS, INC|Cresco|false|distinctive coined company name
+652|CROP INSURANCE AND REINSURANCE BUREAU|NONE|true|generic descriptive name
+655|CROWLEY MARITIME CORPORATION|Crowley Maritime|false|distinctive company name
+656|CRUISE LINES INTERNATIONAL ASSOCIATION, INC.|CLIA|false|distinctive named trade-association acronym
+657|CRUISE LLC|NONE|true|Cruise common English word, also collides with GM autonomous-vehicle brand
+659|CRYSTALLEX|NONE|false|distinctive coined company name
+660|CSL BEHRING LLC|CSL Behring|false|distinctive company name
+661|CSX CORPORATION|CSX|false|distinctive well-known railroad brand/ticker
+662|CTC GLOBAL CORPORATION|NONE|true|CTC common acronym with many meanings
+663|CTIA|NONE|true|short acronym, collides with other meanings
+667|CULTURAL CARE AU PAIR|Cultural Care|false|distinctive brand name
+668|CUMMINS, INC.|Cummins|false|distinctive well-known engine manufacturer brand
+669|CURALEAF, INC.|Curaleaf|false|distinctive coined cannabis company name
+670|CVS HEALTH INC|CVS|false|distinctive well-known brand
+671|CVS HEALTH (AND SUBSIDIARIES)|CVS|false|distinctive well-known brand
+672|CVS PREVIOUSLY AETNA|CVS;Aetna|false|distinctive well-known brands
+673|D-WAVE GOVERNMENT INC.|D-Wave|false|distinctive coined quantum-computing company name
+674|DAIICHI SANKYO, INC.|Daiichi Sankyo|false|distinctive Japanese pharmaceutical company name
+675|DAIKIN U.S. CORPORATION|Daikin|false|distinctive well-known HVAC brand
+676|DAILYPAY, INC.|DailyPay|false|distinctive coined company name
+677|DAIMLER TRUCKS NORTH AMERICA|Daimler|false|distinctive well-known automotive brand
+678|DAIRY FARMERS OF CANADA|NONE|true|generic descriptive name built from common policy words
+680|DANONE NORTH AMERICA PUBLIC BENEFIT CORPORATION|Danone|false|distinctive well-known consumer brand
+681|DAPPER LABS INC.|Dapper Labs|false|distinctive coined company name
+682|DAR AL HANDASAH CONSULTANTS SHAIR & PARTNERS HOLDINGS LTD|Dar Al Handasah|false|distinctive company name
+683|DARDEN RESTAURANTS, INC.|Darden|false|distinctive well-known restaurant holding company brand
+684|DARLING INGREDIENTS INC.|NONE|true|Darling common English word/term of endearment
+689|DELAWARE NORTH COMPANIES, INCORPORATED|NONE|true|Delaware common place name (the state)
+691|DELL INC.|Dell|false|distinctive well-known computer brand
+692|DELL TECHNOLOGIES, INC.|Dell|false|distinctive well-known computer brand
+693|DELOITTE LLP|Deloitte|false|distinctive well-known professional-services brand
+694|DELOS LIVING, LLC|NONE|true|Delos common mythological/place name reference
+695|DELTA|NONE|true|common English word / matches many unrelated uses
+697|DELTA AIRLINES, INC.|Delta Air Lines|false|distinctive well-known brand name
+698|DENKA PERFORMANCE ELASTOMER LLC|Denka|false|distinctive coined name
+699|DEPOSITORY TRUST & CLEARING CORPORATION|DTCC|false|distinctive well-known acronym in finance
+700|DEVON ENERGY CORPORATION|Devon Energy|false|distinctive brand name
+701|DEXCOM, INC.|Dexcom|false|distinctive coined brand name
+702|DIAGEO NORTH AMERICA, INC.|Diageo|false|distinctive coined brand name
+703|DIAMOND PET FOODS INC.|NONE|true|Diamond common word/name
+704|DIGESTIVE HEALTH PHYSICIANS ASSOCIATION, INC.|NONE|true|generic descriptive advocacy-group name
+705|DINE BRANDS GLOBAL INC.|NONE|false|distinctive coined brand name
+706|DIRECT SUPPLY, INC.|NONE|true|Direct Supply is generic descriptive phrase
+708|DISCORD INC|Discord|false|distinctive well-known brand name
+709|DISCOVER FINANCIAL SERVICES, INC.|NONE|true|Discover common English word
+710|DISCOVERY COMMUNICATIONS, LLC|NONE|true|Discovery common English word
+711|DISH NETWORK CORPORATION|NONE|true|DISH common English word
+712|DJI TECHNOLOGY INCORPORATED|DJI|false|distinctive acronym for drone maker
+713|DOCUMENT STORAGE SYSTEMS, INC.|NONE|true|generic descriptive name
+714|DOCUSIGN|DocuSign|false|distinctive coined brand name
+715|DOMINION RESOURCES INC|NONE|true|Dominion alone generic, also Dominion Voting Systems
+716|DOMINO'S NATIONAL ADVERTISING FUND INC|Domino's|false|distinctive well-known brand name
+717|DOORDASH, INC.|DoorDash|false|distinctive coined brand name
+718|DOOSAN BOBCAT NORTH AMERICA, INC.|NONE|true|Bobcat alone common animal name
+719|DOUGLAS DEVELOPMENT CORPORATION|NONE|true|Douglas common surname/place name
+721|DRAFTKINGS INC.|DraftKings|false|distinctive coined brand name
+722|DREXEL UNIVERSITY|NONE|false|distinctive named university
+723|DROPBOX, INC.|Dropbox|false|distinctive coined brand name
+724|DRUMMOND COMPANY INC.|NONE|true|Drummond common surname
+725|DSM-FIRMENICH|NONE|false|distinctive coined name
+726|DTEK INTERNATIONAL LIMITED|DTEK|false|distinctive acronym/brand for Ukrainian energy company
+727|DUCTILE IRON PIPE RESEARCH ASSOCIATION|NONE|true|generic descriptive industry-association name
+728|DUKE ENERGY CORPORATION|NONE|true|Duke alone generic (Duke University, common surname/title)
+729|DUKE ENERGY BUSINESS SERVICES LLC|NONE|true|same Duke ambiguity
+730|DUPONT SPECIALTY PRODUCTS(PREVIOUSLY REPORTED AS E.I. DU PONT DE NEMOURS AND CO)|DuPont|false|distinctive well-known brand name
+731|DYNAVAX TECHNOLOGIES|Dynavax|false|distinctive coined brand name
+732|EAGLEPICHER TECHNOLOGIES LLC|EaglePicher|false|distinctive coined brand name
+733|EARLY WARNING SERVICES, LLC|NONE|true|generic descriptive name, high false-positive risk
+734|EASTERN BAND OF CHEROKEE INDIANS|NONE|false|distinctive specific tribal nation name
+736|EATING DISORDERS COALITION|NONE|true|generic descriptive advocacy-group name
+737|EATON CORPORATION|NONE|true|Eaton common surname/place name
+738|EBAY, INC.|eBay|false|distinctive coined brand name
+739|ECMC GROUP|ECMC|false|distinctive acronym
+740|ECOLAB, INC.|Ecolab|false|distinctive coined brand name
+741|ECONOMIC INNOVATION GROUP|NONE|true|generic descriptive think-tank name
+742|EDGECONNEX, INC.|EdgeConneX|false|distinctive coined brand name
+743|EDISON CHOUEST OFFSHORE|Chouest|false|distinctive combined name
+744|EDISON ELECTRIC INSTITUTE|NONE|true|Edison common surname, other Edison utilities exist
+745|EDISON INTERNATIONAL|NONE|true|same Edison ambiguity
+747|EDWARDS LIFESCIENCES, LLC|NONE|true|Edwards common surname
+748|EFA EDUCATION, LLC|NONE|true|generic acronym+descriptive name
+750|EISAI, INC.|Eisai|false|distinctive coined brand name
+751|ELANCO ANIMAL HEALTH INCORPORATED|Elanco|false|distinctive coined brand name
+753|ELBIT SYSTEMS OF AMERICA, LLC|Elbit|false|distinctive coined brand name
+754|ELECTION SYSTEMS & SOFTWARE, LLC|ES&S|false|distinctive acronym in election-tech context
+755|ELECTRIC DRIVE TRANSPORTATION ASSOCIATION|NONE|true|generic descriptive trade-association name
+757|ELECTRONIC PAYMENTS COALITION ("EPC")|NONE|true|generic descriptive coalition name; EPC collides
+758|ELECTRONIC PAYMENTS COALITION (EPC)|NONE|true|generic descriptive coalition name; EPC collides
+760|ELEVANCE HEALTH, INC (F.K.A. ANTHEM, INC. & WELLPOINT, INC.)|NONE|true|Anthem legacy name collides with common word
+762|ELI LILLY AND COMPANY, FORMERLY REPORTED AS, LILLY USA, LLC|Eli Lilly|false|distinctive full form; Lilly alone risky
+763|EMBASSY OF THE KINGDOM OF BAHRAIN TO THE UNITED STATES|NONE|true|contains common country/place name
+764|EMBASSY OF THE REPUBLIC OF AZERBAIJAN|NONE|true|contains common country/place name
+765|EMBRAER AIRCRAFT HOLDING, INC.|Embraer|false|distinctive coined brand name
+766|EMD SERONO, INC.|EMD Serono;Serono|false|distinctive coined brand names
+767|EMERGENT BIOSOLUTIONS INC.|Emergent BioSolutions|false|distinctive brand name
+768|EMPIRE STATE DEVELOPMENT CORPORATION|NONE|true|contains common phrase Empire State
+769|EMPLOYEE-OWNED CONTRACTORS ROUNDTABLE|NONE|true|generic descriptive coalition name
+770|EMPLOYEE-OWNED S CORPORATIONS OF AMERICA|NONE|true|generic descriptive coalition name
+771|EMPLOYERS COUNCIL ON FLEXIBLE COMPENSATION|NONE|true|generic descriptive coalition name
+772|ENBRIDGE (U.S.) INC. (FORMERLY SPECTRA ENERGY)|Enbridge;Spectra Energy|false|distinctive brand names
+773|ENCOMPASS HEALTH CORPORATION|NONE|true|Encompass common English word
+774|ENDEAVORS|NONE|true|Endeavors common English word
+775|ENDO USA, INC., A MALLINCKRODT-ENDO COMPANY|NONE|true|Endo short generic-sounding fragment
+777|ENERGIZER HOLDINGS, INC.|Energizer|false|distinctive well-known brand name
+778|ENERGY FORWARD|NONE|true|fully generic descriptive phrase
+779|ENERGY FUELS RESOURCES INC.|NONE|true|generic descriptive name
+780|ENERGY INFRASTRUCTURE COUNCIL|NONE|true|generic descriptive trade-association name
+781|ENERGY INFRASTRUCTURE COUNCIL FKA MASTER LIMITED PARTNERSHIP ASSOCIATION|NONE|true|generic descriptive trade-association name
+782|ENERGY MARKETERS OF AMERICA|NONE|true|generic descriptive trade-association name
+783|ENERGY TRANSFER PARTNERS, L.P.|NONE|true|generic-leaning descriptive name
+784|ENOVA INTERNATIONAL, INC.|Enova|false|distinctive coined brand name
+785|ENTEGRIS, INC.|Entegris|false|distinctive coined brand name
+787|ENTERGY SERVICES, LLC|Entergy|false|distinctive coined brand name
+789|ENTERPRISE PRODUCTS OPERATING, LLC|NONE|true|Enterprise common English word
+790|ENTERTAINMENT SOFTWARE ASSOCIATION|NONE|true|generic descriptive trade-association name; ESA collides
+791|ENVIRONMENTAL DEFENSE ACTION FUND, INC|NONE|true|generic descriptive advocacy-name
+792|ENVISION HEALTHCARE (FORMERLY KNOWN AS EMCARE INC.)|EmCare|true|Envision common English word; EmCare more distinctive
+793|EOG RESOURCES|EOG|false|distinctive acronym for well-known energy company
+794|EOS ENERGY ENTERPRISES LLC (FKA EOS ENERGY STORAGE LLC)|NONE|true|Eos common mythological/brand-name term
+795|EPIC GAMES, INC.|NONE|true|Epic common English word
+796|EPIC SYSTEMS CORPORATION|NONE|true|Epic common English word, collides with Epic Games
+797|EPIRUS, INC.|NONE|true|Epirus historical Greek/Albanian region name
+798|EQT CORPORATION|NONE|true|EQT short acronym could collide
+800|EQUINIX, INC.|NONE|false|distinctive brand name, data center company
+801|EQUINOR US OPERATIONS LLC|NONE|false|distinctive brand name
+802|EQUINOR WIND US LLC|NONE|false|distinctive brand name
+803|EQUITRANS MIDSTREAM CORPORATION|NONE|false|distinctive brand name
+805|EQUITY MARKETS ASSOCIATION|NONE|true|generic advocacy-coalition name
+806|ERGON, INC.|NONE|true|Ergon common Greek-derived word/root
+807|ERICSSON INC.|Ericsson|false|distinctive brand name
+808|ERNST & YOUNG LLP|EY|false|distinctive brand name/well-known abbreviation
+809|ESQUEL ENTERPRISES LIMITED|NONE|false|distinctive brand name
+810|ESS INC.|NONE|true|ESS short generic-looking acronym
+811|ESSILORLUXOTTICA (FKA ESSILOR OF AMERICA, INC.)|Essilor;Luxottica|false|distinctive brand names
+812|ESTEE LAUDER COMPANIES|NONE|false|distinctive brand name
+814|EVERYTOWN FOR GUN SAFETY ACTION FUND|Everytown|false|distinctive brand name
+815|EVONIK CORPORATION|NONE|false|distinctive brand name
+816|EXACT SCIENCES CORPORATION|NONE|false|distinctive brand name
+817|EXELA PHARMA SCIENCES, LLC|NONE|false|distinctive brand name
+818|EXELIXIS, INC.|NONE|false|distinctive brand name
+819|EXELON BUSINESS SERVICES COMPANY, LLC|Exelon|false|distinctive brand name
+821|EXPANSION FUNDING PARTNERS, LLC|NONE|true|generic descriptive financial-services name
+822|EXPEDIA, INC.|NONE|false|distinctive brand name
+823|EXPERIAN NORTH AMERICA|Experian|false|distinctive brand name
+824|EXXON MOBIL CORPORATION|ExxonMobil;Exxon|false|distinctive brand name
+825|EXXONMOBIL CORPORATION|ExxonMobil;Exxon|false|distinctive brand name
+826|FAIR ISAAC CORPORATION (DBA FICO)|FICO|false|distinctive brand name, FICO well-known DBA
+827|FAIRVIEW HEALTH SERVICES|NONE|true|Fairview common place name
+828|FANDUEL, INC.|NONE|false|distinctive brand name
+829|FAY LAW GROUP|NONE|true|Fay common surname, generic law-firm construction
+830|FBI AGENTS ASSOCIATION|NONE|true|FBI alone would collide constantly
+831|FCA US LLC|NONE|true|FCA short acronym collides
+832|FEDERAL EXPRESS CORPORATION|FedEx|false|distinctive brand name
+833|FEDERAL HOME LOAN BANK OF ATLANTA|NONE|true|generic institutional phrase shared across regional banks
+834|FEDERAL HOME LOAN BANK OF NEW YORK|NONE|true|same generic institutional phrase issue
+835|FEDERAL HOME LOAN BANK OF SAN FRANCISCO|NONE|true|same generic institutional phrase issue
+837|FEDERATION OF EXCHANGE ACCOMODATORS, INC.|NONE|false|distinctive/unusual enough compound name
+838|FEDEX CORPORATION|Federal Express|false|distinctive brand name
+840|FENIX INTERNATIONAL, LTD.|NONE|true|Fenix common word/brand root
+841|FERRERO U.S.A., INC.|Ferrero|false|distinctive brand name
+843|FERVO ENERGY COMPANY|Fervo|false|distinctive brand name
+846|FINANCIAL DATA AND TECHNOLOGY ASSOCIATION, FORMERLY FIN'L DATA & TECH'Y ASS'N NA|NONE|true|generic descriptive coalition name
+847|FINANCIAL OVERSIGHT & MANAGEMENT BOARD OF PUERTO RICO|NONE|true|generic descriptive institutional name
+848|FINANCIAL OVERSIGHT AND MANAGEMENT BOARD FOR PUERTO RICO|NONE|true|generic descriptive institutional name
+849|FINANCIAL SERVICES FORUM|NONE|true|generic descriptive coalition/advocacy name
+850|FINCANTIERI MARINE GROUP LLC|Fincantieri|false|distinctive brand name
+851|FINDHELP|NONE|false|distinctive brand name
+852|FINSECA|NONE|false|distinctive brand name/coined acronym
+853|FIRST QUANTUM MINERALS LTD.|First Quantum|false|distinctive brand name
+854|FIRST SOLAR, INC.|NONE|false|well-known distinctive company name despite generic-sounding words
+855|FISERV, INC.|NONE|false|distinctive brand name
+858|FIVE POINT OPERATING COMPANY|NONE|true|generic descriptive name (Five Point common place-name pattern)
+863|FLEXTRONICS INTERNATIONAL USA, INC.|NONE|false|distinctive coined brand name (Flex shorthand too generic, not added)
+864|FLORIDA ATLANTIC UNIVERSITY|NONE|true|university name containing common place words
+865|FLORIDA CITRUS MUTUAL|NONE|true|contains common place name Florida
+866|FLORIDA SUGAR CANE LEAGUE|NONE|true|contains common place name Florida
+867|FLUOR CORPORATION|NONE|false|distinctive brand name
+868|FLYER DEFENSE, LLC|NONE|true|generic descriptive name
+869|FMC CORPORATION|NONE|true|FMC short acronym collides
+870|FMR LLC|NONE|true|FMR generic-looking acronym, low recognition
+871|FOOD AND AGRICULTURE CLIMATE ALLIANCE|NONE|true|generic descriptive coalition name
+872|FOOD FIX CAMPAIGN ACTION, INC.|NONE|true|generic descriptive advocacy name
+873|FORD MOTOR COMPANY, INC.|NONE|false|distinctive brand name
+874|FORESCOUT TECHNOLOGIES, INC.|NONE|false|distinctive brand name
+875|FOREST COUNTY POTAWATOMI COMMUNITY|NONE|false|distinctive tribal nation name
+879|FORTINET, INC.|NONE|false|distinctive brand name
+881|FOUNDATION CONSUMER HEALTHCARE LLC|NONE|true|generic descriptive name
+882|FOUNDATION MEDICINE|NONE|true|generic descriptive name
+884|FRANCISCAN MISSIONARIES OF OUR LADY HEALTH SYSTEM, INC.|NONE|false|distinctive/unusual enough full name
+886|FRED HUTCHINSON CANCER CENTER (FORMERLY KNOWN AS SEATTLE CANCER CARE ALLIANCE)|Fred Hutch;Seattle Cancer Care Alliance|false|distinctive brand name and well-known former name
+887|FREEDOM MORTGAGE CORPORATION|NONE|true|contains common generic words Freedom and Mortgage
+888|FREEPOINT COMMODITIES LLC|NONE|false|distinctive brand name
+889|FREEPORT-MCMORAN, INC.|NONE|false|distinctive brand name
+890|FRESENIUS MEDICAL CARE|NONE|false|distinctive brand name
+891|FRESENIUS MEDICAL CARE NORTH AMERICA|NONE|false|distinctive brand name
+892|FRONT LINE HOSPITAL ALLIANCE|NONE|true|generic descriptive coalition/advocacy name
+893|FUELCELL ENERGY, INC.|NONE|false|distinctive brand name
+894|FUELS AMERICA|NONE|true|generic descriptive coalition name
+896|FUTURE OF LIFE INSTITUTE|NONE|true|generic-sounding descriptive institute name
+898|FUTURES INDUSTRY ASSOCIATION|NONE|true|generic descriptive coalition name
+900|FWD.US|NONE|true|FWD common abbreviation, high collision risk
+901|GAINWELL TECHNOLOGIES (FKA HEALTH MANAGEMENT SYSTEMS)|NONE|true|legacy name generic and collides
+902|GARMIN INTERNATIONAL, INC.|Garmin|false|distinctive brand name
+903|GATE GOURMET INC.|NONE|true|Gate Gourmet combines two common words
+904|GBX ASSOCIATES LLC|NONE|true|GBX short acronym unclear recognition
+905|GBX GROUP LLC|NONE|true|GBX short acronym unclear recognition
+907|GE HEALTHCARE|NONE|false|distinctive brand name
+908|GECKO ROBOTICS, INC.|NONE|false|distinctive brand name
+912|GENENTECH USA, INC.|Genentech|false|distinctive brand name
+914|GENERAL ATOMICS - AERONAUTICAL SYSTEMS, INC.|NONE|false|distinctive full phrase despite common word General
+915|GENERAL ATOMICS, ELECTROMAGNETIC SYSTEMS, INC.|NONE|false|distinctive full phrase General Atomics
+916|GENERAL AVIATION MANUFACTURERS ASSOCIATION|NONE|true|generic descriptive coalition name
+918|GENERAL DYNAMICS CORPORATION|NONE|false|distinctive brand name despite General being common
+919|GENERAL ELECTRIC COMPANY|NONE|false|distinctive full phrase (bare GE not added, collision risk)
+921|GENERAL MILLS, INC.|NONE|false|distinctive brand name
+922|GENERAL MOTORS COMPANY|GM|false|distinctive well-known brand
+923|GENTIVA (FORMERLY REPORTED AS HUMANA & KINDRED AT HOME)|Kindred at Home;Humana|false|dual former-brand names given
+924|GEORGETOWN UNIVERSITY|NONE|true|university named with common place name
+925|GEOTHERMAL EXCHANGE ORGANIZATION|NONE|false|distinctive niche org name
+927|GEVO, INC.|GEVO|false|distinctive coined name
+928|GHARDA CHEMICALS INTERNATIONAL, INC.|Gharda Chemicals|false|distinctive name
+930|GILA RIVER INDIAN COMMUNITY|NONE|false|distinctive tribal name
+933|GLAXOSMITHKLINE, INC.|GSK|false|distinctive brand name
+934|GLENCORE LTD.|Glencore|false|distinctive name
+935|GLOBAL BUSINESS ALLIANCE|NONE|true|generic descriptive coalition name
+937|GLOBAL MEDICAL RESPONSE, INC.|NONE|true|generic-sounding descriptive phrase; GMR acronym collision
+939|GLOBALFOUNDRIES U.S. INC.|GlobalFoundries|false|distinctive coined name
+940|GMTO CORPORATION|NONE|false|obscure acronym, low confidence, no alias added
+942|GOLDMAN SACHS GROUP INC|Goldman Sachs|false|distinctive
+943|GOOGLE CLIENT SERVICES L.L.C.|NONE|true|Google alone would flood with unrelated mentions
+944|GOOGLE PUBLIC SECTOR (FKA GOOGLE CLOUD)|NONE|true|Google Cloud mentions mostly generic
+945|GOTENNA|goTenna|false|distinctive coined brand name
+947|GOVERNMENT OF PUERTO RICO|NONE|true|Puerto Rico extremely common place-name reference
+948|GOVERNMENT OF THE U.S. VIRGIN ISLANDS|NONE|true|Virgin Islands common place-name reference
+949|GOVERNMENT OF U.S. VIRGIN ISLANDS|NONE|true|same place-name collision risk
+950|GOVERNOR'S DEFENSE INITIATIVE, GEORGIA DEPT. OF ECONOMIC DEVELOPMENT|NONE|true|contains Georgia and generic phrasing
+951|GRAIL, INC.|NONE|true|grail also common English word
+952|GRAND TRUNK CORPORATION|NONE|true|Grand Trunk historic generic railroad name
+953|GRANITE TELECOMMUNICATIONS, LLC|NONE|true|Granite alone common word/place name
+955|GREAT BASIN TRANSMISSION, LLC|NONE|true|Great Basin well-known geographic/place name
+956|GREAT LAKES DREDGE & DOCK COMPANY, LLC|NONE|true|Great Lakes extremely common geographic term
+957|GREATER NEW YORK HOSPITAL ASSN|Greater New York Hospital Association|false|distinctive full org name
+958|GREATER NEW YORK HOSPITAL ASSOCIATION|Greater New York Hospital Assn|false|distinctive full org name
+959|GREATER ORLANDO AVIATION AUTHORITY|NONE|false|distinctive full org name
+963|GRUP IMMOBILIARI CIERCO|NONE|false|distinctive foreign name, low collision risk
+964|GUARDANT HEALTH, INC.|Guardant|false|distinctive coined name
+965|GUARDIAN LIFE INSURANCE COMPANY|NONE|true|Guardian alone very common word/name
+966|GUARDIAN LIFE INSURANCE COMPANY OF AMERICA|NONE|true|same Guardian collision consideration
+967|GUIDEHOUSE LLP|Guidehouse|false|distinctive coined name
+969|GUSTO|NONE|true|Gusto common English word
+970|H&R BLOCK, INC.|H&R Block|false|distinctive brand name
+971|H&R BLOCK MANAGEMENT, LLC|H&R Block|false|distinctive brand name
+972|H-E-B|NONE|false|distinctive regional grocery brand
+973|H-E-B GROCERY COMPANY, LP|H-E-B|false|distinctive regional grocery brand
+975|HACKENSACK MERIDIAN HEALTH|NONE|false|distinctive full name
+976|HALLMARK CARDS, INC.|NONE|true|Hallmark common English word
+977|HAMPTON ROADS MILITARY AND FEDERAL FACILITIES ALLIANCE|NONE|true|Hampton Roads well-known place name plus generic coalition name
+980|HARD ROCK JAPAN K.K.|NONE|true|Hard Rock common generic term/brand family
+981|HARMONY BIOSCIENCES, LLC|NONE|true|Harmony common English word
+982|HARRIS COUNTY|NONE|true|Harris extremely common surname
+983|HASBRO INC|Hasbro|false|distinctive coined brand name
+984|HAWKEYE 360 INC.|NONE|true|Hawkeye common word/nickname
+985|HAWTHORN FOUNDATION|NONE|true|Hawthorn common place name and plant name
+986|HC HOLDINGS S.A.|NONE|true|generic-sounding acronym+word combination
+987|HCA|NONE|true|HCA acronym collision risk
+988|HCA HEALTHCARE, INC.|NONE|true|HCA acronym collision risk if used alone
+990|HDR, INC.|NONE|true|HDR collides with photography term
+991|HEALTH CARE SERVICE CORPORATION|NONE|true|generic descriptive name
+992|HEALTH CAROUSEL, LLC|NONE|false|distinctive coined name
+994|HEALTHCARE DISTRIBUTION ALLIANCE|NONE|true|generic descriptive coalition name; HDA collision
+995|HEALTHCARE DISTRIBUTION ALLIANCE (HEALTHCARE DISTRIBUTION MANAGMENT ASSN.)|NONE|true|same generic descriptive risk
+996|HEALTHCARE LEADERSHIP COUNCIL|NONE|true|generic descriptive coalition name
+997|HEARST CORPORATION|Hearst|false|distinctive media company name
+998|HEARTFLOW, INC.|HeartFlow|false|distinctive coined name
+999|HEIRLOOM CARBON TECHNOLOGIES, INC.|NONE|true|Heirloom common English word
+1000|HELLEN SYSTEMS, LLC|NONE|false|distinctive name
+1001|HENRY SCHEIN|NONE|false|distinctive full company name, low collision risk
+1002|HERMEUS CORPORATION|Hermeus|false|distinctive coined name
+1003|HESS CORPORATION|NONE|false|well-known distinctive energy company name
+1004|HEWLETT PACKARD ENTERPRISE COMPANY|HPE|false|distinctive company/acronym
+1005|HEXION, INC.|Hexion|false|distinctive coined name
+1006|HIGH TECH INVENTORS ALLIANCE|NONE|true|generic descriptive coalition name
+1007|HIGHLY INNOVATIVE FUELS|NONE|true|generic descriptive name
+1008|HIKVISION USA, INC.|Hikvision|false|distinctive coined brand name
+1009|HILCORP ENERGY COMPANY|Hilcorp|false|distinctive coined name
+1010|HILLTOP HOLDINGS INC.|NONE|true|Hilltop common English word/place descriptor
+1011|HILLWOOD DEVELOPMENT COMPANY, LLC|NONE|true|Hillwood plausible common place name component
+1012|HILTON WORLDWIDE|Hilton|false|distinctive well-known hotel brand name
+1013|HISTORIC TAX CREDIT COALITION|NONE|true|generic descriptive coalition name
+1014|HNTB CORPORATION|HNTB|false|distinctive acronym
+1015|HOLISTIC INDUSTRIES INC.|NONE|true|Holistic common English word
+1016|HOLOGIC, INC.|Hologic|false|distinctive coined name
+1019|HONOLULU AUTH. FOR RAPID TRNS. (PREVIOUSLY KNOWN AS INFRACONSULT, LLC.)|NONE|true|Honolulu common place name
+1020|HORIZON THERAPEUTICS USA, INC.|NONE|true|Horizon very common English word
+1021|HOSPICE ACTION NETWORK|NONE|true|generic descriptive coalition name
+1022|HOTWIRE COMMUNICATIONS, LTD.|NONE|true|Hotwire collides with travel booking brand
+1023|HOUSING POLICY COUNCIL|NONE|true|generic descriptive coalition name
+1024|HP, INC.|HP|false|distinctive well-known tech brand acronym
+1026|HUAWEI TECHNOLOGIES USA, INC.|Huawei|false|distinctive coined brand name
+1027|HUDSON RIVER TRADING LLC|NONE|true|Hudson River well-known geographic place name
+1028|HUDSON TECHNOLOGIES|NONE|true|Hudson common surname/place name
+1030|HUMANITY FORWARD|NONE|true|generic-sounding advocacy name
+1031|HUNT COMPANIES, INC.|NONE|true|Hunt common surname and word
+1032|HUNT DEVELOPMENT GROUP LLC|NONE|true|Hunt common surname/word
+1033|HUNTINGTON INGALLS INCORPORATED|Huntington Ingalls|false|distinctive combined name
+1034|HUNTINGTON INGALLS INDUSTRIES INCORPORATED|Huntington Ingalls;HII|false|distinctive combined name and acronym
+1035|HUNTINGTON INGALLS INDUSTRIES, INC. (FKA HUNTINGTON INGALLS INCORPORATED)|Huntington Ingalls;HII|false|distinctive combined name and acronym
+1036|HUNTSMAN CORPORATION|NONE|false|distinctive chemical company name
+1037|HYSTER-YALE MATERIALS HANDLING, INC.|Hyster-Yale|false|distinctive brand name
+1038|HYUNDAI MOTOR COMPANY, LTD.|Hyundai|false|distinctive brand name
+1039|HYUNDAI STEEL COMPANY|Hyundai Steel|false|distinctive brand name
+1040|IAC, LTD.|NONE|true|IAC very short acronym colliding with many meanings
+1041|IAI NORTH AMERICA|NONE|true|IAI short acronym could collide
+1042|IBM CORPORATION|IBM;International Business Machines|false|distinctive, well-known company
+1043|ICEYE US, INC.|ICEYE|false|distinctive coined brand name
+1044|ICKES & ENRIGHT GROUP (NORTHWELL HEALTH FKA NORTH SHORE-LIJ)|Northwell Health;North Shore-LIJ|false|distinctive named entities
+1045|ICON TECHNOLOGY, INC.|NONE|true|Icon common English word
+1047|IDEMIA IDENTITY & SECURITY USA LLC|IDEMIA|false|distinctive coined brand name
+1048|IEX GROUP, INC.|NONE|true|short acronym could collide
+1049|IHEARTMEDIA, INC.|iHeartMedia|false|distinctive brand name
+1050|ILLINOIS CORN GROWERS ASSOCIATION|NONE|false|distinctive state+commodity association name
+1053|INCYTE CORPORATION|Incyte|false|distinctive coined pharma name
+1054|INDEPENDENCE BLUE CROSS, LLC|Independence Blue Cross|false|distinctive named entity
+1055|INDEPENDENT COMMUNITY BANKERS OF AMERICA|ICBA|false|distinctive trade association name and acronym
+1056|INDEPENDENT PILOTS ASSOCIATION|NONE|true|generic descriptive name
+1057|INDEPENDENT RESTAURANT COALITION|NONE|true|generic descriptive coalition name
+1058|INDEPENDENT SECTOR|NONE|true|generic English phrase, extremely high false-positive risk
+1060|INDIVIOR, INC.|Indivior|false|distinctive coined pharma name
+1061|INDUSTRIAL ENERGY CONSUMERS OF AMERICA|NONE|true|generic descriptive coalition name
+1063|INFECTIOUS DISEASE SOCIETY OF AMERICA|NONE|true|generic descriptive medical-society name
+1064|INFIN, A FINANCIAL SERVICES ALLIANCE|NONE|true|generic-sounding coined name plus explicit generic descriptor
+1065|INFORMATION TECHNOLOGY INDUSTRY COUNCIL|NONE|true|generic descriptive name
+1066|INFORMATION TECHNOLOGY INDUSTRY COUNCIL (ITI)|NONE|true|generic descriptive name
+1068|INFUSION PROVIDERS ALLIANCE|NONE|true|generic descriptive coalition name
+1069|INGEVITY CORPORATION|Ingevity|false|distinctive coined chemical company name
+1070|INNOCENCE PROJECT|NONE|true|generic phrase used broadly beyond this specific org
+1073|INNOVATION ALLIANCE|NONE|true|generic descriptive coalition name
+1074|INNOVATIVE DEFENSE TECHNOLOGIES|NONE|true|generic descriptive name
+1075|INSIGHTEC, INC.|Insightec|false|distinctive coined medtech brand name
+1076|INSTITUTE FOR GENE THERAPIES|NONE|true|generic descriptive name
+1077|INSTITUTE OF INTERNATIONAL BANKERS|NONE|true|generic descriptive name
+1078|INSTITUTIONAL SHAREHOLDER SERVICES|NONE|true|generic descriptive name; ISS collides with International Space Station
+1080|INTEL CORPORATION|Intel|false|distinctive well-known brand name
+1082|INTERDIGITAL, INC.|InterDigital|false|distinctive coined brand name
+1083|INTERNATIONAL COUNCIL OF SHOPPING CENTERS|NONE|true|generic descriptive name
+1084|INTERNATIONAL FRANCHISE ASSOCIATION|NONE|true|generic descriptive name
+1085|INTERNATIONAL FRANCHISE ASSOCIATION (IFA)|NONE|true|generic descriptive name
+1087|INTERNATIONAL INFORMATION SYSTEM SECURITY CERTIFICATION CONSORTIUM|NONE|true|generic descriptive name
+1089|INTERNATIONAL LONGSHORE AND WAREHOUSE UNION|ILWU|false|distinctive well-known union name and acronym
+1090|INTERNATIONAL MARINE CONTRACTORS ASSOCIATION|NONE|true|generic descriptive name
+1091|INTERNATIONAL PAPER COMPANY|NONE|true|somewhat generic-sounding name
+1092|INTERNET WORKS|NONE|true|generic phrase extremely high false-positive risk
+1094|INTREPID POTASH INC.|Intrepid Potash|false|distinctive company name
+1098|INVENTUS POWER|NONE|false|distinctive coined brand name
+1099|INVESCO HOLDING COMPANY (US), INC.|Invesco|false|distinctive well-known brand name
+1100|INVEST IN EDUCATION COALITION, INC.|NONE|true|generic descriptive coalition name
+1101|INVESTMENT COMPANY INSTITUTE|NONE|true|generic descriptive name
+1102|INVITAE INC.|Invitae|false|distinctive coined biotech brand name
+1103|IONQ, INC.|IonQ|false|distinctive coined brand name
+1104|IP RENEWABLE ENERGY HOLDINGS LLC|NONE|true|generic descriptive name, IP also ambiguous
+1105|IPSEN BIOPHARMACEUTICALS, INC.|Ipsen|false|distinctive coined pharma brand name
+1106|IQVIA|NONE|false|distinctive coined brand name
+1108|IRIDIUM SATELLITE, LLC|Iridium|false|distinctive well-known satellite brand name
+1109|IRON MOUNTAIN INFORMATION MANAGEMENT, LLC|NONE|true|Iron Mountain also common place name
+1110|ISLAND MOUNTAIN DEVELOPMENT GROUP (IMDG)|NONE|true|generic descriptive name built from common place/geographic words
+1111|ITC HOLDINGS CORPORATION|NONE|true|ITC short acronym collides with International Trade Commission
+1112|ITC MODERNIZATION ALLIANCE|NONE|true|generic descriptive coalition name; ITC collides
+1113|ITG BRANDS|ITG Brands|false|distinctive coined brand name
+1115|IVANTI|NONE|false|distinctive coined brand name
+1116|JACOBS ENGINEERING GROUP INC.|NONE|true|Jacobs common surname
+1117|JAMES H. SIMONS|NONE|true|personal name, common surname pattern
+1118|JAZZ PHARMACEUTICALS, INC.|NONE|true|Jazz common word/music genre
+1119|JBS USA|JBS|false|distinctive well-known meatpacking brand
+1120|JBS USA FOOD COMPANY|JBS|false|distinctive well-known meatpacking brand
+1121|JEA|NONE|true|short acronym collides with other meanings
+1123|JINKOSOLAR (U.S.) INC.|JinkoSolar|false|distinctive coined brand name
+1124|JM FAMILY ENTERPRISES, INC|JM Family|false|distinctive company name
+1125|JMA WIRELESS|NONE|true|JMA short acronym common collision risk
+1126|JOBSOHIO|JobsOhio|false|distinctive coined brand name
+1128|JOBY AVIATION|Joby|false|distinctive coined brand name
+1129|JOHN NAU III|NONE|true|personal name, common name pattern
+1132|JOHNSON CONTROLS, INC.|NONE|true|Johnson extremely common surname
+1136|JP MORGAN CHASE HOLDINGS, LLC|JPMorgan Chase;JPMorgan|false|distinctive globally well-known bank brand
+1139|JUSTICE ACTION NETWORK|NONE|true|generic descriptive coalition name
+1140|JUUL LABS, INC.|JUUL|false|distinctive well-known vaping brand name
+1141|KAISER FOUNDATION HEALTH PLANS|NONE|true|Kaiser fairly common surname/historical name
+1143|KBR, INC. F/K/A SGT, INC.|KBR;Kellogg Brown & Root|false|distinctive well-known defense contractor brand and acronym
+1144|KEEP US POSTED|NONE|true|generic phrase, extremely common everyday English idiom
+1145|KEIDANREN|NONE|false|distinctive proper noun (Japan Business Federation)
+1148|KIA CORPORATION (FORMERLY KNOWN AS KIA MOTORS CORPORATION)|Kia;Kia Motors|false|distinctive well-known auto brand
+1149|KIDNEY CARE PARTNERS|NONE|true|generic descriptive coalition name
+1150|KIDNEY TRANSPLANT COLLABORATIVE|NONE|true|generic descriptive coalition name
+1152|KINDER MORGAN, INC.|Kinder Morgan|false|distinctive well-known energy company brand
+1153|KINDRED HEALTHCARE D/B/A SCIONHEALTH|ScionHealth|false|distinctive brand names
+1154|KING COUNTY|NONE|true|King County common place name, extremely high false-positive risk
+1155|KINROSS GOLD U.S.A., INC.|Kinross Gold;Kinross|false|distinctive well-known mining company brand
+1156|KIOXIA AMERICA, INC.|Kioxia|false|distinctive coined brand name
+1159|KLARNA INC.|Klarna|false|distinctive coined fintech brand name
+1160|KOCH GOVERNMENT AFFAIRS, LLC|Koch|false|distinctive well-known corporate family brand name
+1161|KOCH GOVERNMENT AFFAIRS, LLC (FKA KOCH COMPANIES PUBLIC SECTOR, LLC)|Koch Companies Public Sector;KOCHPAC|false|distinctive brand name
+1162|KOCH GOVERNMENT AFFAIRS, LLC FKA KOCH COMPANIES PUBLIC SECTOR, LLC|Koch Companies Public Sector|false|distinctive brand name
+1164|KOHLBERG KRAVIS ROBERTS & COMPANY|KKR|false|distinctive well-known abbreviation
+1165|KOHLER CO.|Kohler|false|distinctive brand name
+1166|KONGSBERG DEFENCE & AEROSPACE|Kongsberg|false|distinctive brand name
+1167|KOPIN CORPORATION|Kopin|false|distinctive brand name
+1169|KPMG LLP|KPMG|false|distinctive well-known abbreviation
+1170|KRAFT HEINZ COMPANY|Kraft Heinz;Kraft|false|distinctive brand name
+1171|KRATOS DEFENSE & SECURITY SOLUTIONS|Kratos|false|distinctive brand name
+1172|KROLL BOND RATING AGENCY, INC.|KBRA|false|distinctive brand name/abbreviation
+1175|KURDISTAN REGIONAL GOVERNMENT|KRG|false|distinctive specific government entity name
+1176|KUWAIT & GULF LINK HOLDING|NONE|false|distinctive holding company name
+1178|L3 HARRIS TECHNOLOGIES, INC.|L3Harris|false|distinctive brand name
+1179|L3HARRIS TECHNOLOGIES, INC.|L3 Harris|false|distinctive brand name
+1180|LA 2028 -LOS ANGELES ORGANIZING COMMITTEE FOR OLYMPIC AND PARALYMPIC GAMES 2028|LA28;LA 2028|false|distinctive specific event-organizing entity
+1181|LABORATORY CORPORATION OF AMERICA HOLDINGS|LabCorp|false|distinctive well-known brand name
+1182|LAKE CARRIERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+1183|LAKEMOOR VENTURES, LLC|NONE|false|distinctive-enough name
+1184|LAND O'LAKES, INC.|Land O Lakes|false|distinctive well-known consumer brand
+1185|LAND TRUST ALLIANCE|NONE|true|generic descriptive name
+1186|LANDRY'S|NONE|true|common surname/possessive
+1187|LARGE PUBLIC POWER COUNCIL|NONE|true|generic descriptive coalition name
+1188|LARGE UROLOGY GROUP PRACTICE ASSOCIATION|NONE|true|generic descriptive name
+1189|LARGE UROLOGY GROUP PRACTICE ASSOCIATION (LUGPA)|NONE|true|generic descriptive name
+1190|LAS VEGAS SANDS CORPORATION|Sands;Las Vegas Sands|false|distinctive well-known brand name
+1192|LEADING BUILDERS OF AMERICA|NONE|true|generic descriptive trade-association name
+1194|LEBANESE AMERICAN UNIVERSITY|LAU|false|distinctive specific named university
+1195|LEGO SYSTEMS, INC.|LEGO|false|distinctive well-known consumer brand
+1197|LENNOX INTERNATIONAL INC.|NONE|true|Lennox also place name/surname
+1199|LEONARDO DRS, INC.|NONE|true|DRS alone short acronym many meanings
+1200|LETTERONE HOLDINGS S.A.|NONE|true|L1 collides broadly
+1201|LEVI STRAUSS & COMPANY|Levi's;Levi Strauss|false|distinctive well-known consumer brand
+1202|LG CHEM, LTD.|LG Chem|false|distinctive brand name
+1203|LG ELECTRONICS U.S.A., INC.|NONE|true|LG alone very short ambiguous acronym
+1204|LHC GROUP, INC.|LHC Group|false|distinctive brand name
+1205|LIBERTY MARITIME CORPORATION|Liberty Maritime|false|distinctive enough combination
+1206|LIBERTY MEDIA CORPORATION|Liberty Media|false|distinctive enough combination
+1207|LIBERTY MUTUAL GROUP INC.|Liberty Mutual|false|distinctive well-known brand
+1208|LIBERTY MUTUAL INSURANCE COMPANY|Liberty Mutual|false|distinctive well-known brand
+1209|LIBERTY PARTNERS GROUP O/B/O APTQI-HSCHEIN-PDS-SANTAFE-SOUND-RCCS-AFHC-WELLVANA|NONE|true|complex multi-party name, base generic
+1210|LIFEPOINT HEALTH|NONE|false|distinctive brand name
+1211|LIFESCIENCE LOGISTICS, LLC|NONE|false|distinctive-enough compound name
+1212|LIGADO NETWORKS, LLC|Ligado|false|distinctive brand name
+1213|LINCARE|NONE|false|distinctive brand name
+1214|LINKEDIN CORPORATION|LinkedIn|false|distinctive well-known consumer brand
+1216|LIVANOVA USA INC|LivaNova|false|distinctive brand name
+1218|LIVERAMP HOLDINGS INC.|LiveRamp|false|distinctive brand name
+1219|LIVERAMP, INC.|LiveRamp|false|distinctive brand name
+1220|LKQ CORPORATION|LKQ|false|distinctive brand name/acronym
+1223|LOAN SYNDICATIONS AND TRADING ASSOCIATION|NONE|true|generic descriptive trade-association name
+1225|LOCKTON MANAGEMENT, LLC|Lockton|false|distinctive brand name
+1227|LOMA LINDA UNIVERSITY MEDICAL CENTER|NONE|true|Loma Linda also a city name in California
+1228|LONGEVITY HEALTH PLAN|NONE|true|generic descriptive name
+1229|LONGI SOLAR TECHNOLOGY (US) INC.|LONGi|false|distinctive brand name
+1230|LOS ANGELES COUNTY METROPOLITAN TRANSPORTATION AUTHORITY|NONE|true|Metro alone extremely generic
+1233|LOWE'S COMPANIES, INC.,|Lowe's|false|distinctive well-known consumer brand
+1234|LPA ENVIRONMENTAL FUND, LLC|NONE|false|distinctive-enough compound name
+1235|LPL FINANCIAL LLC|LPL|false|distinctive brand name/acronym in financial context
+1236|LS POWER|NONE|true|LS Power short acronym-like name
+1237|LUMMI NATION|Lummi|false|distinctive specific tribal nation name
+1238|LURIE CHILDREN'S HOSPITAL OF CHICAGO|Lurie Children's|false|distinctive well-known hospital brand
+1239|LUTRON ELECTRONICS CO., INC.|Lutron|false|distinctive brand name
+1240|LVMH MOET HENNESSY LOUIS VUITTON INC.|LVMH;Moet Hennessy;Louis Vuitton|false|distinctive well-known luxury conglomerate brand
+1241|LYFT, INC.|Lyft|false|distinctive well-known consumer brand
+1242|LYTEN, INC.|Lyten|false|distinctive brand name
+1244|MAGPUL INDUSTRIES CORPORATION, INC.|Magpul|false|distinctive brand name
+1246|MAINSPRING ENERGY, INC.|NONE|true|Mainspring common English word
+1247|MAJOR LEAGUE BASEBALL|NONE|true|generic-sounding official name frequently mentioned incidentally
+1249|MAMMOTH ENERGY SERVICES INC|Mammoth Energy|false|distinctive enough combination
+1251|MANAGEMENT & TRAINING CORPORATION|NONE|true|generic descriptive name
+1252|MANAGEMENT AND TRAINING CORPORATION|NONE|true|generic descriptive name
+1253|MANAGEMENT HEALTH SYSTEMS, LLC (D/B/A MEDPRO)|NONE|true|Management Health Systems generic; MedPro common term
+1254|MANAGEYOURID|NONE|false|distinctive coined single-word name
+1255|MANUFACTURED HOUSING INSTITUTE|NONE|true|generic descriptive trade-association name
+1256|MAPLEBEAR INC. D/B/A INSTACART|Instacart|false|distinctive well-known consumer brand
+1257|MARATHON PETROLEUM CORPORATION|NONE|true|Marathon alone common English word/event name
+1258|MARATHON TARGETS, INC.|NONE|true|contains generic words Marathon and Targets
+1259|MARC COALITION|NONE|true|MARC short acronym colliding with MARC train service
+1261|MARRIOTT INTERNATIONAL, INC.|Marriott|false|distinctive well-known consumer brand
+1262|MARS, INCORPORATED|NONE|true|Mars collides heavily with the planet
+1263|MARSH MCLENNAN|Marsh & McLennan;MMC|false|distinctive well-known brand name
+1264|MARTIN BAKER AIRCRAFT CO., LTD.|Martin-Baker|false|distinctive brand name
+1265|MARTIN'S POINT HEALTH CARE|Martin's Point|false|distinctive-enough regional healthcare brand
+1266|MARUBENI OIL & GAS (USA) INC.|Marubeni|false|distinctive brand name
+1267|MASS GENERAL BRIGHAM|MGB|false|distinctive well-known hospital system brand
+1268|MASS GENERAL BRIGHAM (FORMERLY KNOWN AS PARTNERS HEALTHCARE)|MGB;Partners HealthCare|false|distinctive well-known hospital system brand
+1269|MASSACHUSETTS MUTUAL LIFE INSURANCE COMPANY|MassMutual|false|distinctive well-known brand
+1270|MASSDEVELOPMENT|MassDevelopment|false|distinctive coined name
+1271|MASTERCARD, INC.|Mastercard|false|distinctive well-known consumer brand
+1272|MASTERCARD INTERNATIONAL INCORPORATED|Mastercard|false|distinctive well-known consumer brand
+1273|MASTERCARD WORLDWIDE|Mastercard|false|distinctive well-known consumer brand
+1274|MASTRONARDI PRODUCE-USA, INC.|Mastronardi|false|distinctive brand name
+1275|MATCH GROUP, LLC|NONE|true|Match common English word
+1276|MATERION BRUSH INC.|NONE|false|distinctive coined name
+1277|MATRIX DESIGN GROUP ON BEHALF OF THE VIRGINIA SEC. OF VETERANS & DEFENSE AFFAIRS|NONE|true|Matrix common word/generic term
+1278|MATRIX MEDICAL NETWORK|NONE|true|Matrix common word
+1279|MATSON NAVIGATION COMPANY, INC.|Matson|false|distinctive company name
+1280|MAXAR TECHNOLOGIES HOLDINGS, INC.|Maxar|false|distinctive coined name
+1281|MAXIMUS, INC.|NONE|true|also common Latin/English word
+1282|MAYO CLINIC|NONE|true|Mayo collides with condiment/common surname
+1283|MCCAIN FOODS USA, INC.|NONE|true|McCain collides with Senator John McCain
+1284|MCDONALD'S CORPORATION|McDonald's|false|distinctive globally recognized brand
+1285|MCGRAW-HILL EDUCATION|McGraw-Hill|false|distinctive company name
+1286|MCKESSON CORPATION AND ITS AFFILIATE US ONCOLOGY (FORMERLY US ONCOLOGY)|McKesson|false|distinctive names
+1290|MCWANE, INC.|McWane|false|distinctive surname-based company name
+1291|MDVIP|NONE|false|distinctive coined brand name
+1292|MEDIATEK USA INC.|MediaTek|false|distinctive coined brand name
+1293|MEDICA|NONE|true|Medica generic-sounding medical term/root
+1295|MEDICAL DEVICE MANUFACTURERS ASSOCIATION|NONE|true|fully generic descriptive trade-association name
+1296|MEDISYS HEALTH NETWORK|NONE|false|distinctive coined name
+1297|MEDLINE INDUSTRIES, LP|Medline|false|distinctive coined brand name
+1298|MEDLINE INDUSTRIES, L.P. (FORMERLY MEDLINE INDUSTRIES, INC.)|Medline|false|distinctive coined brand name
+1299|MEDTRONIC, INC.|Medtronic|false|distinctive coined brand name
+1300|MERCK & COMPANY, INC.|Merck|false|distinctive company/surname-derived name
+1301|MERLIN LABS|NONE|true|Merlin collides with legendary wizard name/other uses
+1302|META PLATFORMS INC (FORMERLY FACEBOOK INC & VARIOUS SUBSIDIARIES)|NONE|true|Meta also common English prefix/word
+1303|META PLATFORMS, INC. (FORMERLY FACEBOOK, INC. AND VARIOUS SUBSIDIARIES)|NONE|true|same as above, duplicate entry
+1305|METROPOLITAN TRANSIT AUTHORITY OF HARRIS COUNTY|NONE|true|generic descriptive government-agency name
+1306|METROPOLITAN TRANSPORTATION COMMISSION|NONE|true|fully generic descriptive government-agency name
+1307|METROPOLITAN WATER DISTRICT OF SOUTHERN CALIFORNIA|NONE|true|generic descriptive government-agency name
+1308|MGIC|NONE|false|distinctive acronym
+1309|MGM PUBLIC POLICY, LLC|NONE|true|MGM alone would collide with MGM Resorts/Studios
+1310|MGM RESORTS|NONE|false|distinctive brand name
+1311|MGM RESORTS INTERNATIONAL|MGM|false|distinctive brand name
+1313|MIAMI-DADE COUNTY, FLORIDA|NONE|true|common place name/government jurisdiction
+1318|MILLE LACS BAND OF OJIBWE INDIANS|Mille Lacs Band|false|distinctive tribal name
+1319|MINN-DAK FARMERS COOPERATIVE|Minn-Dak|false|distinctive coined name
+1320|MISSISSIPPI BAND OF CHOCTAW INDIANS|NONE|true|Mississippi common state/place name
+1321|MITSUBISHI HEAVY INDUSTRIES AMERICA, INC.|Mitsubishi Heavy Industries;MHI|false|distinctive brand name
+1322|MITSUBISHI POWER AMERICAS, INC.|Mitsubishi Power|false|distinctive brand name
+1323|MMM HEALTHCARE|NONE|true|MMM short generic-sounding acronym/interjection
+1324|MODERN TECHNOLOGY SOLUTIONS, INC.|NONE|true|fully generic descriptive name
+1325|MODERNA US, INC.|Moderna|false|distinctive well-known brand name
+1326|MODERNATX, INC.|Moderna|false|distinctive well-known brand name
+1327|MOLINA HEALTHCARE, INC.|Molina|false|distinctive surname-based brand name
+1328|MOLSON COORS BEVERAGE COMPANY USA LLC|Molson Coors;Coors|false|distinctive well-known brand name
+1329|MOLSON COORS BEVERAGE COMPANY USA LLC (FORMERLY KNOWN AS MILLERCOORS LLC)|Molson Coors;Coors;MillerCoors;Miller|false|distinctive well-known brand names
+1330|MONDELEZ INTERNATIONAL, INC.|Mondelez|false|distinctive coined brand name
+1331|MONEYGRAM INTERNATIONAL INC.|MoneyGram|false|distinctive well-known brand name
+1332|MONOLITH MATERIALS, INC.|NONE|true|Monolith common English word
+1333|MONTEFIORE MEDICAL CENTER|Montefiore|false|distinctive proper-name-based brand
+1335|MOOG, INC.|NONE|true|Moog collides with Moog synthesizer brand
+1336|MORGAN STANLEY & CO. LLC|Morgan Stanley|false|distinctive well-known brand name
+1337|MORGAN STANLEY DEAN WITTER & COMPANY|Morgan Stanley|false|distinctive well-known brand name
+1338|MORONGO BAND OF MISSION INDIANS|Morongo|false|distinctive tribal name
+1339|MORTGAGE BANKERS ASSOCIATION|NONE|true|generic descriptive trade-association name; MBA collides
+1340|MORTGAGE RESEARCH CENTER, LLC|NONE|true|generic descriptive name
+1341|MOTION PICTURE ASSOCIATION|NONE|true|generic descriptive name; MPA collides
+1342|MOTION PICTURE ASSOCIATION OF AMERICA, INC.|NONE|true|generic descriptive name
+1344|MOVING HEALTH HOME|NONE|true|fully generic descriptive coalition/advocacy name
+1345|MP MATERIALS|NONE|true|MP short generic-sounding acronym/initialism
+1346|MR. JAY ALIX|NONE|true|individual person's name, common-enough pattern
+1348|MUELLER WATER PRODUCTS, INC.|NONE|true|Mueller common surname
+1350|MUNICIPAL CASTINGS ASSOCIATION FORMERLY MUNICIPAL CASTINGS FAIR TRADE COUNCIL|NONE|true|fully generic descriptive trade-association name
+1352|MUSCOGEE CREEK NATION|Muscogee Nation;Muscogee (Creek) Nation|false|distinctive tribal name
+1353|MYRIAD GENETICS, INC.|NONE|true|Myriad common English word
+1354|NACCO INDUSTRIES, INC.|NACCO|false|distinctive acronym/brand name
+1355|NAMM: NATIONAL ASSOCIATION OF MUSIC MERCHANTS|NAMM|false|distinctive acronym, well-known trade show
+1356|NAREIT|NONE|false|distinctive acronym
+1357|NASDAQ, INC.|Nasdaq|false|distinctive well-known brand name
+1358|NASDAQ OMX GROUP (FORMERLY "THE NASDAQ STOCK MARKET")|Nasdaq;NASDAQ OMX|false|distinctive well-known brand name
+1360|NATAT (NATIONAL ASSN OF TOWNS AND TOWNSHIPS|NONE|true|generic descriptive name; NATAT parent risk high
+1361|NATIONAL AIR TRAFFIC CONTROLLERS ASSOCIATION|NATCA|false|distinctive acronym well known in aviation/labor context
+1363|NATIONAL ALLIANCE FOR PUBLIC CHARTER SCHOOLS|NONE|true|fully generic descriptive advocacy-coalition name
+1364|NATIONAL ALLIANCE OF FOREST OWNERS|NONE|true|fully generic descriptive trade-association name
+1365|NATIONAL APARTMENT ASSOCIATION|NONE|true|generic descriptive trade-association name; NAA collides
+1366|NATIONAL ASSN OF BROADCASTERS|NONE|true|generic descriptive trade-association name; NAB collides
+1369|NATIONAL ASSOCIATION OF CHILDREN'S HOSPITALS|NONE|true|fully generic descriptive trade-association name
+1372|NATIONAL ASSOCIATION OF CONVENIENCE STORES|NONE|true|fully generic descriptive trade-association name
+1373|NATIONAL ASSOCIATION OF DENTAL PLANS|NONE|true|fully generic descriptive trade-association name
+1374|NATIONAL ASSOCIATION OF FREESTANDING EMERGENCY CENTERS (NAFEC)|NONE|true|fully generic descriptive trade-association name
+1375|NATIONAL ASSOCIATION OF INSURANCE AND FINANCIAL ADVISORS|NONE|true|fully generic descriptive trade-association name
+1376|NATIONAL ASSOCIATION OF LETTER CARRIERS|NONE|true|generic descriptive trade-union name
+1377|NATIONAL ASSOCIATION OF MUTUAL INSURANCE COMPANIES|NONE|true|fully generic descriptive trade-association name
+1378|NATIONAL ASSOCIATION OF PROTON THERAPY|NONE|true|fully generic descriptive trade-association name
+1379|NATIONAL ASSOCIATION OF REAL ESTATE INVESTMENT TRUSTS, INC.|NONE|true|fully generic descriptive trade-association name
+1380|NATIONAL ASSOCIATION OF REALTORS|NONE|true|fully generic descriptive trade-association name
+1381|NATIONAL ASSOCIATION OF RURAL HEALTH CLINICS|NONE|true|fully generic descriptive trade-association name
+1382|NATIONAL ASSOCIATION OF SPECIALTY PHARMACY|NONE|true|fully generic descriptive trade-association name
+1383|NATIONAL ASSOCIATION OF WATER COMPANIES|NONE|true|fully generic descriptive trade-association name
+1384|NATIONAL ASSOCIATION OF WATERFRONT EMPLOYERS|NONE|true|fully generic descriptive trade-association name
+1385|NATIONAL AUDUBON SOCIETY|Audubon|false|distinctive well-known brand name
+1386|NATIONAL AUTOMOBILE DEALERS ASSOCIATION|NONE|true|fully generic descriptive trade-association name; NADA collision
+1387|NATIONAL BORDER PATROL COUNCIL|NONE|true|generic descriptive name
+1388|NATIONAL BRAIN TUMOR SOCIETY, INC.|NONE|false|distinctive specific nonprofit name
+1389|NATIONAL BUSINESS AVIATION ASSOCIATION INC|NBAA|false|distinctive acronym, well-known aviation trade group
+1390|NATIONAL CABLE & TELECOMMUNICATIONS ASSOCIATION|NCTA|false|distinctive trade group, well-known acronym
+1391|NATIONAL CABLE AND TELECOMMUNICATIONS ASSOCIATION|NCTA|false|distinctive trade group, well-known acronym
+1392|NATIONAL CABLE TELECOMMUNICATIONS ASSOCIATION|NCTA|false|distinctive trade group, well-known acronym
+1393|NATIONAL CANNABIS ROUNDTABLE|NONE|false|distinctive coalition name
+1394|NATIONAL CENTER FOR MANUFACTURING SCIENCES|NCMS|false|distinctive org name
+1395|NATIONAL CHILDREN'S ALLIANCE|NONE|true|generic-sounding advocacy name
+1396|NATIONAL COALITION FOR ACCESS TO AUTISM SERVICES (NCAAS)|NCAAS|false|distinctive coalition name/acronym
+1397|NATIONAL COLLEGIATE ATHLETIC ASSOCIATION|NCAA|false|extremely well-known distinctive acronym
+1398|NATIONAL COMMUNITY ACTION AGENCY|NONE|true|generic term used by many local/regional CAAs
+1399|NATIONAL CONFECTIONERS ASSOCIATION|NONE|false|distinctive trade group name
+1400|NATIONAL CORN GROWERS ASSOCIATION|NCGA|false|distinctive trade group name
+1401|NATIONAL COUNCIL FOR MENTAL WELLBEING FKA NATIONAL COUNCIL FOR BEHAVIORAL HEALTH|National Council for Behavioral Health|false|distinctive org, legacy name given
+1402|NATIONAL COUNCIL ON CIVIL ADVOCACY|NONE|true|generic-sounding advocacy name
+1403|NATIONAL EDUCATION ASSOCIATION|NONE|true|NEA collides with National Endowment for the Arts
+1405|NATIONAL EMPLOYMENT OPPORTUNITIES NETWORK|NONE|true|generic descriptive name
+1406|NATIONAL FIRE PROTECTION ASSOCIATION|NFPA|false|distinctive well-known standards body acronym
+1407|NATIONAL FOOTBALL LEAGUE|NFL|false|extremely well-known distinctive acronym
+1409|NATIONAL GROCERS ASSOCIATION|NONE|true|NGA acronym collides with National Governors Association
+1410|NATIONAL GUARD ASSOCIATION OF THE UNITED STATES, INC.|NONE|true|National Guard extremely common term
+1411|NATIONAL HEAD START ASSOCIATION|NONE|true|Head Start very common program name
+1412|NATIONAL HOME INFUSION ASSOCIATION|NHIA|false|distinctive trade group name
+1413|NATIONAL INSTALLMENT LENDERS ASSOCIATION|NONE|false|distinctive trade group name
+1415|NATIONAL MINING ASSOCIATION|NMA|false|distinctive trade group
+1416|NATIONAL PAWNBROKERS ASSOCIATION|NONE|false|distinctive trade group name
+1417|NATIONAL PORK PRODUCERS COUNCIL|NPPC|false|distinctive trade group name
+1418|NATIONAL PUBLIC FINANCE GUARANTEE CORPORATION|NPFGC|false|distinctive corporate name
+1419|NATIONAL PUBLIC RADIO|NPR|false|extremely well-known distinctive acronym/brand
+1420|NATIONAL RENTAL HOME COUNCIL|NONE|false|distinctive trade group name
+1421|NATIONAL RESTAURANT ASSOCIATION|NONE|true|restaurant association generic enough
+1422|NATIONAL RETAIL FEDERATION|NRF|false|distinctive well-known trade group
+1424|NATIONAL SCHOOL TRANSPORTATION ASSOCIATION|NONE|true|school transportation generic common phrase
+1425|NATIONAL SHOOTING SPORTS FOUNDATION, INC.|NSSF|false|distinctive trade group name
+1426|NATIONAL SORGHUM PRODUCERS|NONE|false|distinctive commodity group name
+1427|NATIONAL SPECTRUM CONSORTIUM, INC.|NONE|true|spectrum common in health/autism/telecom contexts
+1428|NATIONAL THOROUGHBRED RACING ASSOCIATION|NTRA|false|distinctive trade group name
+1429|NATIONAL VENTURE CAPITAL ASSOCIATION|NVCA|false|distinctive trade group name
+1430|NATIONAL WATER RESOURCES ASSOCIATION|NONE|true|water resources very generic policy phrase
+1431|NATURAL GAS SUPPLY ASSN|Natural Gas Supply Association|false|distinctive trade group name
+1432|NATURAL PRODUCTS ASSOCIATION|NONE|true|natural products generic descriptive phrase
+1433|NAVAJO NATION|NONE|true|Navajo Nation referenced constantly for unrelated reasons
+1434|NAVIGATOR CO2 VENTURES LLC|Navigator CO2|false|distinctive company name
+1436|NCTA - THE INTERNET AND TELEVISION ASSOCIATION|NCTA|false|distinctive trade group, well-known acronym
+1437|NCTA-THE INTERNET & TELEVISION ASSOCIATION|NCTA|false|distinctive trade group, well-known acronym
+1439|NEC CORPORATION OF AMERICA|NEC|false|distinctive well-known electronics/telecom brand
+1443|NETCHOICE|NONE|false|distinctive coined brand name
+1445|NEUROCRINE BIOSCIENCES, INC.|Neurocrine|false|distinctive biotech company name
+1446|NEVADA SYSTEM OF HIGHER EDUCATION|NONE|true|generic-sounding state university-system name
+1448|NEW INDY CATAWBA LLC|New Indy Catawba;New Indy|false|distinctive company name
+1449|NEW MARKETS TAX CREDIT COALITION|NONE|true|New Markets Tax Credit common federal program name
+1450|NEW VENTURE FUND|NONE|true|generic descriptive name
+1451|NEW YORK LIFE|NONE|false|distinctive well-known insurance brand
+1452|NEW YORK LIFE INSURANCE COMPANY|New York Life|false|distinctive well-known insurance brand
+1453|NEWMONT MINING CORPORATION|Newmont|false|distinctive well-known mining company brand
+1456|NEWS MEDIA ALLIANCE|NONE|true|generic-sounding advocacy/trade name
+1457|NEWS/MEDIA ALLIANCE|NONE|true|generic-sounding advocacy/trade name
+1461|NEXTERA ENERGY RESOURCES LLC|NextEra;NextEra Energy|false|distinctive well-known energy company brand
+1462|NEXTNAV INC.|NextNav|false|distinctive company brand name
+1463|NIKE, INC.|Nike|false|extremely well-known distinctive consumer brand
+1465|NIRON MAGNETICS|Niron|false|distinctive company name
+1466|NISOURCE INC.|NiSource|false|distinctive well-known utility holding company brand
+1467|NISSAN NORTH AMERICA, INC.|Nissan|false|extremely well-known distinctive consumer brand
+1468|NITRON GROUP LLC|NONE|false|distinctive-enough company name
+1469|NMDP|National Marrow Donor Program;Be The Match|false|distinctive acronym
+1470|NOKIA OF AMERICA CORPORATION|Nokia|false|extremely well-known distinctive brand
+1471|NOMI HEALTH, INC.|Nomi Health;Nomi|false|distinctive company brand name
+1472|NOMURA HOLDING AMERICA, INC.|Nomura|false|distinctive well-known financial brand
+1473|NONPROFIT KIDNEY CARE ALLIANCE|NONE|true|generic-sounding advocacy name
+1474|NORC AT THE UNIVERSITY OF CHICAGO|NONE|true|University of Chicago collision risk
+1475|NORD STREAM 2 AG|Nord Stream 2;Nord Stream|false|distinctive well-known pipeline project name
+1477|NORTH AMERICAN INTERPIPE, INC.|NONE|false|distinctive-enough company name
+1478|NORTH CAROLINA MILITARY AFFAIRS COMMISSION|NONE|true|generic-sounding state commission name
+1479|NORTH STAR SCIENTIFIC CORPORATION|NONE|true|North Star common generic name/metaphor
+1480|NORTHEAST ILLINOIS REGIONAL COMMUTER RAILROAD CORPORATION|Metra|false|distinctive; universally known by brand name
+1481|NORTHEASTERN UNIVERSITY|NONE|true|Northeastern could refer to region generically
+1482|NORTHERN CALIFORNIA POWER AGENCY|NCPA|false|distinctive-enough agency name
+1483|NORTHROP GRUMMAN CORPORATION|Northrop Grumman;Northrop|false|distinctive well-known defense contractor brand
+1484|NORTHROP GRUMMAN SYSTEMS CORPORATION|Northrop Grumman;Northrop|false|distinctive well-known defense contractor brand
+1485|NORTHWELL HEALTH INC (FKA NSLIJ HEALTH SYSTEM)|Northwell Health;Northwell;North Shore-LIJ|false|distinctive brand, legacy name given
+1488|NOVA SOUTHEASTERN UNIVERSITY|NSU|false|distinctive university name
+1489|NOVARTIS CORPORATION|Novartis|false|distinctive well-known pharma brand
+1490|NOVAVAX, INC.|Novavax|false|distinctive well-known biotech/vaccine brand
+1492|NOVOCURE INC.|NovoCure|false|distinctive company brand name
+1493|NOVOZYMES NORTH AMERICA, INC.|Novozymes|false|distinctive well-known biotech company brand
+1494|NRG ENERGY, INC.|NRG;NRG Energy|false|distinctive well-known energy company brand
+1495|NUCLEAR ENERGY INSTITUTE, INC.|NEI|false|distinctive trade group name
+1496|NUCOR CORPORATION|Nucor|false|distinctive well-known steel company brand
+1497|NUMBERS USA|NumbersUSA|false|distinctive well-known immigration advocacy brand
+1498|NUTRIEN US LLC|Nutrien|false|distinctive well-known agribusiness brand
+1499|NUTRIEN US LLC (FORMERLY KNOWN AS AGRIUM U.S. INC.) (A NUTRIEN LTD SUBSIDIARY)|Nutrien;Agrium|false|distinctive brand, legacy name given
+1501|OAK STREET HEALTH D/B/A CVS HEALTH|Oak Street Health|true|CVS Health extremely common/generic referring to parent broadly
+1502|OAK VIEW GROUP, LLC|NONE|false|distinctive company name
+1503|OCCIDENTAL PETROLEUM CORPORATION|Oxy|false|distinctive brand name, well-known abbreviation
+1504|OCEAN AERO, INC.|NONE|false|distinctive company name
+1505|OCEAN CONSERVANCY, INC.|NONE|false|distinctive enough
+1506|OCEAN SPRAY CRANBERRIES, INC.|Ocean Spray|false|distinctive well-known brand name
+1507|OCHSNER CLINIC FOUNDATION DBA OCHSNER HEALTH|Ochsner Health;Ochsner|false|distinctive healthcare system name
+1508|OCHSNER HEALTH SYSTEM|Ochsner Health;Ochsner|false|distinctive healthcare system name
+1509|OCUGEN, INC.|NONE|false|distinctive company name
+1510|ODAWI LAW PLLC ON BEHALF OF PRAIRIE BAND POTAWATOMI NATION|Prairie Band Potawatomi Nation|false|distinctive tribal nation name
+1511|OFFICE OF THE GOVERNOR, STATE OF COLORADO|NONE|true|generic government-office name, used by every state
+1512|OGE ENERGY CORP|OGE Energy;OG&E|false|distinctive utility name/brand
+1513|OHIO CHRISTIAN UNIVERSITY|NONE|false|specific university name, reasonably distinctive
+1515|OMEROS CORPORATION|Omeros|false|distinctive company name
+1516|OMIDYAR NETWORK SERVICES, LLC.|Omidyar Network|false|distinctive named entity
+1517|OMNITRAX, INC.|OmniTRAX|false|distinctive company name
+1518|ONCOR ELECTRIC DELIVERY|Oncor|false|distinctive utility brand name
+1519|ONE WORLD TECHNOLOGIES, INC.|NONE|true|generic-sounding name One World
+1520|ONEIDA INDIAN NATION|NONE|false|distinctive well-known tribal nation name
+1521|ONEMAIN FINANCIAL GROUP, LLC|OneMain;OneMain Financial|false|distinctive brand name
+1522|ONLINE LENDERS ALLIANCE|NONE|true|generic trade-association name
+1527|OPPORTUNITY FINANCIAL, INC.|NONE|false|distinctive company; OppFi flagged with caution, not added
+1528|OPTIMUM COMMUNICATIONS (FORMERLY REPORTING AS ALTICE USA, INC.)|Optimum;Altice USA;Altice|false|distinctive brand names
+1529|OPTIONS CLEARING CORPORATION (OCC)|NONE|true|OCC collides with Office of the Comptroller of the Currency
+1532|ORACLE AMERICAN INC.|Oracle|false|distinctive, extremely well-known tech company name
+1533|ORANGE COUNTY TRANSPORTATION AUTHORITY|NONE|true|Orange County common place name
+1534|ORANO USA LLC|Orano|false|distinctive company name
+1535|ORCHARD THERAPEUTICS NORTH AMERICA|Orchard Therapeutics|false|distinctive company name
+1536|ORGANON, LLC|Organon|false|distinctive pharma company name
+1538|ORSTED NORTH AMERICA, INC.|Orsted;Ørsted|false|distinctive energy company name
+1539|OSHKOSH CORPORATION|NONE|true|Oshkosh also well-known Wisconsin city name/consumer brand
+1543|OUTSOURCING FACILITIES ASSOCIATION|NONE|true|generic trade-association name
+1544|OVERSEAS SHIPHOLDING GROUP, INC.|OSG|false|distinctive company name/initials
+1545|OWENS & MINOR, INC.|Owens & Minor|false|distinctive company name
+1547|PACIFIC GAS AND ELECTRIC COMPANY|PG&E|false|distinctive extremely well-known utility brand
+1548|PACIRA PHARMACEUTICALS INC.|Pacira|false|distinctive company name
+1549|PACKAGE COALITION LLC|NONE|true|generic-sounding coalition name
+1553|PANTHEON DATA (FKA THE KENIFIC GROUP)|NONE|true|Pantheon common word/place name
+1554|PARA LA NATURALEZA, INC.|NONE|false|distinctive Spanish-language org name
+1556|PARALLAX ADVANCED RESEARCH|NONE|true|Parallax common technical/scientific term
+1558|PARKER HANNIFIN CORPORATION|Parker Hannifin|false|distinctive company name
+1559|PARRY LABS, LLC|Parry Labs|false|distinctive company name
+1561|PARTNER THERAPEUTICS, INC.|NONE|false|distinctive company name
+1562|PARTNERSHIP FOR CONSERVATION|NONE|true|generic advocacy-coalition name
+1563|PARTNERSHIP FOR JOB CREATION|NONE|true|generic advocacy-coalition name
+1564|PARTNERSHIP FOR PART D ACCESS|NONE|true|generic-sounding coalition name
+1565|PARTNERSHIP FOR QUALITY HOME HEALTHCARE|NONE|true|generic advocacy-coalition name
+1567|PASCUA YAQUI TRIBE|NONE|false|distinctive well-known tribal name
+1568|PATHWARD, NATIONAL ASSOCIATION (FKA PATHWARD (FORMERLY METABANK, N.A.))|Pathward;MetaBank|false|distinctive company names
+1571|PATRIOT RAIL COMPANY (FKA PIONEER LINES (FKA PIONEER RAILCORP))|NONE|true|Patriot common word with high collision risk
+1575|PBF HOLDING COMPANY LLC|PBF Energy|false|distinctive company name/initials
+1577|PECHANGA BAND OF LUISENO MISSION INDIANS|Pechanga|false|distinctive well-known tribal name
+1578|PEDIATRIX MEDICAL GROUP, INC.|Pediatrix|false|distinctive company name
+1579|PELOTON INTERACTIVE, INC.|Peloton|false|distinctive well-known consumer brand
+1581|PERATON CORPORATION|Peraton|false|distinctive company name
+1582|PERDOCEO EDUCATION CORPORATION|Perdoceo|false|distinctive company name
+1583|PERFORMANCE DRONE WORKS, LLC|PDW|false|distinctive company name
+1584|PERIMETER SOLUTIONS|NONE|true|generic security/services-sounding name
+1585|PERNOD RICARD USA., LLC|Pernod Ricard|false|distinctive well-known beverage company name
+1586|PERPETUA RESOURCES, CORP.|Perpetua Resources;Perpetua|false|distinctive company name
+1588|PERSONAL CARE PRODUCTS COUNCIL|NONE|true|generic trade-association name
+1589|PERSPECTUM LTD|Perspectum|false|distinctive company name
+1591|PET RESIN ASSOCIATION|NONE|true|generic trade-association name
+1592|PFIZER, INC.|Pfizer|false|distinctive, extremely well-known company name
+1593|PFS INVESTMENTS, INC.|NONE|true|generic-sounding acronym+generic-word name
+1596|PHARMACEUTICAL CARE MANAGEMENT ASSOCIATION (PCMA)|PCMA|false|distinctive, well-established acronym
+1597|PHARMACEUTICAL INDUSTRY LABOR MANAGEMENT ASSOCIATION|NONE|true|generic trade-association name
+1598|PHARMACEUTICAL INDUSTRY LABOR-MANAGEMENT ASSOCIATION|NONE|true|generic trade-association name
+1599|PHARMACEUTICAL PRINTED LITERATURE ASSOCIATION|NONE|true|generic trade-association name
+1600|PHARMACEUTICAL RESEARCH & MANUFACTURERS OF AMERICA INC|PhRMA|false|distinctive, extremely well-known acronym
+1602|PHARMACEUTICAL RESEARCH AND MANUFACTURERS OF AMERICA (PHRMA)|PhRMA|false|distinctive, extremely well-known acronym
+1603|PHI AIR MEDICAL|NONE|true|PHI very short, highly ambiguous acronym
+1604|PHILIPS NORTH AMERICA LLC (FORMERLY REPORTING AS PHILIPS HEALTHCARE/HOLDING)|Philips;Philips Healthcare|false|distinctive well-known brand name
+1605|PHILLIPS 66 COMPANY|Phillips 66;P66|false|distinctive well-known energy company brand
+1606|PHLOW CORPORATION|Phlow|false|distinctive company name
+1608|PHRMA INC.|PhRMA|false|distinctive, well-known acronym
+1609|PHYSICIANS ADVOCACY INSTITUTE|NONE|true|generic-sounding advocacy-institute name
+1610|PIEDMONT HEALTHCARE INC.|NONE|true|Piedmont common regional/geographic term
+1612|PILOT TRAVEL CENTERS LLC (F/K/A PILOT FLYING J)|Pilot Flying J;Flying J|true|Pilot alone very common word, high collision risk
+1614|PINTEREST, INC.|Pinterest|false|distinctive well-known consumer brand
+1615|PITNEY BOWES|NONE|false|distinctive well-known company name
+1616|PIVOT BIO, INC.|Pivot Bio|false|distinctive company name
+1620|PLANNED PARENTHOOD FEDERATION OF AMERICA, INC|Planned Parenthood|false|distinctive extremely well-known org name
+1621|PLUG POWER, INC.|Plug Power|false|distinctive company name
+1622|PMI GLOBAL SERVICES INC.|NONE|true|PMI highly ambiguous acronym
+1624|PMI US CORPORATE SERVICES INC. (FKA PMI GLOBAL SERVICES INC.)|NONE|true|PMI highly ambiguous acronym
+1625|POARCH BAND OF CREEK INDIANS|Poarch Creek;Poarch Band|false|distinctive well-known tribal name
+1626|PODIMETRICS|NONE|false|distinctive company name
+1628|POINT BLANK ENTERPRISES, INC.|NONE|true|Point Blank common English phrase
+1630|POLARIS INDUSTRIES, INC.|NONE|true|Polaris common word, collides with other Polaris-named entities
+1631|POLICY AND TAXATION GROUP|NONE|true|generic-sounding advocacy-group name
+1633|POPULUS FINANCIAL GROUP|NONE|false|reasonably distinctive combined name
+1634|PORT OF CORPUS CHRISTI AUTHORITY|Port of Corpus Christi|false|distinctive specific place-based authority name
+1635|PORT OF HOUSTON AUTHORITY OF HARRIS COUNTY, TEXAS|Port of Houston|false|distinctive full name
+1636|PORT OF LONG BEACH|NONE|true|Long Beach common place name
+1637|POSCO|NONE|false|distinctive company name/acronym
+1638|POSCO AMERICA CORP|POSCO America|false|distinctive
+1639|PPG INDUSTRIES, INC.|PPG|false|distinctive acronym in industry context
+1640|PRA GROUP, INC.|NONE|false|distinctive enough as PRA Group
+1641|PRAGER DREIFUSS AG (ON BEHALF OF MARE FINANCE INVESTMENT HOLDINGS)|NONE|false|distinctive, unlikely to appear in press
+1642|PRATT INDUSTRIES (USA), INC.|Pratt Industries|false|distinctive
+1643|PRIMERICA, INC.|Primerica|false|distinctive
+1644|PRINCIPAL FINANCIAL GROUP|NONE|true|Principal common English word/title
+1645|PRIVACY FOR AMERICA|NONE|true|generic descriptive coalition name
+1646|PRIVATE INVESTOR COALITION|NONE|true|generic descriptive coalition name
+1647|PROCTER & GAMBLE COMPANY|P&G|false|distinctive, well-known abbreviation
+1648|PROFESSIONAL BACKGROUND SCREENERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+1649|PROJECT FOR PRIVACY AND SURVEILLANCE ACCOUNTABILITY, INC.|NONE|true|generic descriptive advocacy name
+1650|PROLACTA BIOSCIENCE, INC.|Prolacta|false|distinctive
+1651|PROMERICA FINANCIAL CORPORATION|Promerica|false|distinctive
+1652|PROTECT THE 1ST, INC.|NONE|true|short generic-sounding slogan name
+1653|PROTECTING ACCESS TO PAIN RELIEF COALITION|NONE|true|generic descriptive coalition name
+1654|PROTECTIVE LIFE CORPORATION|NONE|true|Protective alone common English word
+1655|PROVIDENCE ST. JOSEPH HEALTH|NONE|true|Providence also major US city
+1656|PROVINCE OF SASKATCHEWAN|Saskatchewan|false|distinctive place name, low false-positive in US congressional press
+1657|PRUDENTIAL FINANCIAL, INC.|Prudential|false|distinctive brand
+1659|PSIQUANTUM CORP.|PsiQuantum|false|distinctive
+1660|PTC THERAPEUTICS, INC.|NONE|true|PTC common acronym used by many organizations
+1661|PTTGC AMERICA LLC|PTTGC|false|distinctive acronym
+1662|PUBLIC ACCESS TO SUNSCREENS (PASS) COALITION|NONE|true|generic descriptive coalition name
+1663|PUBLIC POWER COUNCIL|NONE|true|generic descriptive name
+1664|PUBLIC SERVICE ENTERPRISE GROUP, INC|PSEG|false|distinctive well-known utility abbreviation
+1665|PUBLIX SUPER MARKETS, INC.|Publix|false|distinctive brand name
+1668|PUERTO RICO STATEHOOD COUNCIL|NONE|true|generic-ish descriptive name
+1670|PUGET SOUND ENERGY|NONE|true|Puget Sound common place name/region
+1671|PURDUE PHARMA L.P.|NONE|true|Purdue alone collides with Purdue University
+1672|PURDUE UNIVERSITY|NONE|true|Purdue common university name referenced constantly
+1673|PWC US GROUP LLP|PwC|false|distinctive, well-known abbreviation
+1674|PYXUS INTERNATIONAL, INC.|Pyxus|false|distinctive
+1675|Q LINK WIRELESS, LLC|Q Link|false|distinctive brand name
+1676|QORVO|NONE|false|distinctive company name
+1677|QUALCOMM INCORPORATED|Qualcomm|false|distinctive
+1678|QUALTRICS LLC|Qualtrics|false|distinctive
+1679|QUANTA SERVICES, INC.|NONE|true|Quanta somewhat generic-sounding word/prefix
+1680|QUANTINUUM LTD.|Quantinuum|false|distinctive
+1681|QUANTUM COMPUTING, INC.|NONE|true|Quantum computing common technology term/topic phrase
+1684|QUEST DIAGNOSTICS INCORPORATED|Quest Diagnostics|false|distinctive full brand
+1685|RADIA, INC.|NONE|true|Radia short, could collide, low confidence
+1689|RAI SERVICES COMPANY (FKA- RAISC)|Reynolds American|false|distinctive; legacy name well known
+1690|RAI SERVICES COMPANY (FORMERLY KNOWN AS REYNOLDS AMERICAN)|Reynolds American;RAI|false|distinctive legacy brand name well documented
+1691|RAIL SECURITY ALLIANCE|NONE|true|generic descriptive coalition name
+1692|RAILWAY SUPPLY INSTITUTE, INC.|NONE|true|generic descriptive trade-association name
+1693|RAJANT CORPORATION|Rajant|false|distinctive
+1694|RARE DISEASE COMPANY COALITION|NONE|true|generic descriptive coalition name
+1695|RAYTHEON TECHNOLOGIES CORPORATION|Raytheon;RTX|false|distinctive, well-known brand and current rebrand name
+1696|REAL ESTATE ROUNDTABLE|NONE|true|generic descriptive name
+1697|RECKITT BENCKISER LLC|Reckitt|false|distinctive
+1698|RECORDING INDUSTRY ASSOCIATION OF AMERICA INC|RIAA|false|distinctive, well-known abbreviation
+1699|RECREATION VEHICLE INDUSTRY ASSOCIATION, INC.|NONE|true|generic descriptive trade name
+1700|RECURRENT ENERGY, LLC|NONE|true|Recurrent and Energy both common words
+1701|RED BULL NORTH AMERICA, INC.|Red Bull|false|extremely distinctive global brand
+1702|REDWOOD HOLDINGS, LLC FKA REDWOOD CAPITAL INVESTMENTS|NONE|true|Redwood common word/place name
+1703|REFORM ACTION FUND|NONE|true|reform extremely common political word
+1704|REFORM GOVERNMENT SURVEILLANCE|NONE|true|generic descriptive coalition name
+1705|REGENERON PHARMACEUTICALS, INC.|Regeneron|false|distinctive
+1706|REGIONAL AIRLINE ASSOCIATION|NONE|true|generic descriptive trade-association name
+1707|REGIONS FINANCIAL CORPORATION|NONE|true|Regions alone common English word
+1708|REINSURANCE ASSOCIATION OF AMERICA|NONE|true|generic descriptive trade-association name
+1709|REINSURANCE GROUP OF AMERICA, INCORPORATED|RGA|false|distinctive well-known abbreviation
+1710|RELATIVITY SPACE, INC.|NONE|true|Relativity common physics term
+1711|RELIANCE INDUSTRIES LIMITED|NONE|true|Reliance common English word/many companies use it
+1713|REMITLY, INC.|Remitly|false|distinctive
+1714|RENAL HEALTHCARE ASSOCIATION|NONE|true|generic descriptive trade-association name
+1715|RENEWABLE ENERGY AGGREGATORS, INC.|NONE|true|generic descriptive name
+1716|RENEWABLE FUELS ASSOCIATION|NONE|true|generic descriptive trade-association name
+1717|RENT-A-CENTER, INC.|Rent-A-Center|false|distinctive brand name
+1718|REPSOL S.A.|Repsol|false|distinctive
+1719|REPUBLIC OF INDIA|NONE|false|distinctive place name (country); high false-positive rate expected
+1720|REPUBLIC SERVICES, INC.|NONE|true|Republic alone common word with very high collision risk
+1721|RESEARCH!AMERICA|NONE|true|Research America fairly generic-sounding name
+1723|RESMED CORP.|ResMed|false|distinctive
+1724|RETAIL INDUSTRY LEADERS ASSOCIATION (RILA)|NONE|true|generic descriptive trade-association name
+1726|REVENUE BASED FINANCE COALITION|NONE|true|generic descriptive coalition name
+1727|REVOLUTION CORPORATE SERVICES, INC.|NONE|true|Revolution common word with high collision risk
+1728|REWORLD (F/K/A COVANTA ENERGY CORPORATION)|Covanta;Covanta Energy|false|distinctive brand names
+1730|RICOH USA, INC.|Ricoh|false|distinctive
+1731|RIL USA, INC.|NONE|true|RIL short acronym with collision risk
+1732|RIO TINTO SERVICES, INC.|Rio Tinto|false|distinctive well-known mining brand
+1733|RIOT GAMES, INC.|Riot Games|false|distinctive
+1734|RIPPLE LABS, INC.|NONE|true|Ripple alone common English word
+1735|RITE AID CORPORATION|Rite Aid|false|distinctive brand name
+1736|RIVERSIDE COUNTY TRANSPORTATION COMMISSION|NONE|true|Riverside County common place name
+1737|ROBERT BOSCH LLC|Bosch|false|distinctive
+1738|ROBINHOOD|NONE|true|collides with folklore/cultural figure
+1739|ROBINHOOD MARKETS, INC.|NONE|true|same collision risk
+1740|ROBLOX CORPORATION|Roblox|false|distinctive gaming company brand
+1741|ROCHE DIAGNOSTICS CORPORATION, INC.|Roche|false|distinctive pharma brand
+1742|ROCK CENTRAL LLC|NONE|true|generic-sounding real-estate/finance name
+1743|ROCKET LAB USA, INC.|Rocket Lab|false|distinctive aerospace brand
+1744|ROKU, INC.|Roku|false|distinctive consumer electronics brand
+1745|ROPER ST. FRANCIS HEALTHCARE|NONE|false|distinctive named hospital system
+1746|ROYAL CARIBBEAN CRUISES LTD.|Royal Caribbean|false|distinctive cruise brand
+1747|RPLCC|NONE|true|bare acronym, no known expansion
+1749|RSM|NONE|true|short acronym collision risk
+1750|RTI INTERNATIONAL|NONE|true|RTI common acronym used across many contexts
+1751|RTX CORPORATION|NONE|true|RTX collides with NVIDIA GeForce RTX
+1752|RTX CORPORATION (FKA RAYTHEON TECHNOLOGIES CORPORATION AND AFFILIATES)|Raytheon|true|RTX collision risk with GPU tech, Raytheon alias safe
+1753|RTX CORPORATION AND AFFILIATES|Raytheon|true|same RTX/GPU collision risk
+1754|RTX CORPORATION AND AFFILIATES (FKA RAYTHEON TECHNOLOGIES CORP. AND AFFILIATES)|Raytheon|true|same RTX/GPU collision risk
+1755|RWC-340B|NONE|true|acronym+340B combo, low general recognizability
+1756|RYAN, INC.|NONE|true|Ryan extremely common personal name
+1757|S CORPORATION ASSOCIATION|NONE|true|S Corporation generic tax-entity-type term
+1758|S&P GLOBAL INC.|S&P;S&P Global|false|distinctive well-known brand
+1759|S&P GLOBAL INC (FORMERLY MCGRAW HILL FINANCIAL)|S&P;S&P Global;McGraw Hill|false|distinctive brand, legacy name documented
+1760|SAAB, INC.|NONE|true|Saab collides with defunct Swedish automaker brand
+1761|SABINE-NECHES NAVIGATION DISTRICT|NONE|false|distinctive geographic/agency name
+1762|SACRAMENTO MUNICIPAL UTILITY DISTRICT|SMUD|false|distinctive utility, well-known abbreviation
+1763|SAFARI CLUB INTERNATIONAL|NONE|false|distinctive organization name
+1764|SAFE PORT TERMINALS, LLC|NONE|false|distinctive company name
+1766|SAGINAW CHIPPEWA INDIAN TRIBE OF MICHIGAN|NONE|false|distinctive tribal name
+1767|SAILDRONE INC.|Saildrone|false|distinctive company brand
+1768|SALESFORCE.COM, INC.|Salesforce|false|distinctive well-known brand
+1769|SALLIE MAE BANK|Sallie Mae|false|distinctive well-known brand
+1770|SALT RIVER PIMA MARICOPA INDIAN COMMUNITY|NONE|false|distinctive tribal name
+1771|SALTCHUK RESOURCES, INC.|Saltchuk|false|distinctive company name
+1772|SAMSUNG ELECTRONICS AMERICA, INC.|Samsung|false|distinctive well-known brand
+1773|SAMSUNG ELECTRONICS CO., LTD.|Samsung|false|distinctive well-known brand
+1776|SAN DIEGO COUNTY|NONE|true|county government name, generic geographic term
+1777|SAN DIEGO COUNTY WATER AUTHORITY|NONE|false|distinctive agency name, lower collision risk
+1778|SAN LUIS & DELTA-MENDOTA WATER AUTHORITY|NONE|false|distinctive agency name
+1779|SAN MANUEL BAND OF MISSION INDIANS|NONE|false|distinctive tribal name
+1780|SANFORD HEALTH|NONE|true|Sanford common surname/place name
+1781|SANMINA CORPORATION|Sanmina|false|distinctive electronics manufacturer brand
+1782|SANOFI, U.S.|Sanofi|false|distinctive well-known pharma brand
+1783|SANOFI U.S. SERVICES, INC.|Sanofi|false|distinctive well-known pharma brand
+1784|SANOFI US SERVICES INC (FORMERLY KNOWN AS GENZYME CORPORATION)|Sanofi;Genzyme|false|distinctive brand, legacy name documented
+1785|SANTA CLARA VALLEY TRANSPORTATION AUTHORITY|VTA|false|distinctive agency, well-known abbreviation
+1786|SANTA YNEZ BAND OF CHUMASH INDIANS|NONE|false|distinctive tribal name
+1788|SAREPTA THERAPEUTICS, INC.|Sarepta|false|distinctive biotech brand
+1789|SARONIC TECHNOLOGIES, INC.|Saronic|false|distinctive company brand
+1792|SAS INSTITUTE, INC.|NONE|true|SAS collides with Scandinavian Airlines, military usage
+1793|SASOL CHEMICALS USA LLC (THROUGH HARRIS DEVILLE AND ASSOCIATES)|Sasol|false|distinctive chemicals company brand
+1794|SAZERAC COMPANY, INC.|Sazerac|false|distinctive spirits brand
+1795|SB GROUP US DBA SOFTBANK GROUP US, INC.|SoftBank|false|distinctive well-known brand
+1796|SCALE|NONE|true|bare generic English word, massive false-positive risk
+1797|SCALE AI, INC.|Scale AI|false|distinctive AI company brand
+1798|SCAN HEALTH PLAN|NONE|true|SCAN common English word/acronym
+1799|SCHNEIDER NATIONAL INC.|Schneider National;Schneider|false|distinctive trucking brand
+1800|SCHOTT NORTH AMERICA INC AND AFFILIATE (FORMERLY SCHOTT NORTH AMERICA INC)|Schott|false|distinctive glass/optics company brand
+1803|SCOTTS MIRACLE-GRO COMPANY|Scotts Miracle-Gro;Miracle-Gro;Scotts|false|distinctive well-known consumer brand
+1804|SCP-HEALTH|SCP Health|false|distinctive healthcare staffing brand
+1806|SEALASKA CORPORATION|Sealaska|false|distinctive Alaska Native corporation brand
+1807|SEASONAL EMPLOYMENT ALLIANCE|NONE|true|generic descriptive coalition name
+1809|SEATTLE CHILDREN'S HOSPITAL RESEARCH AND FOUNDATION|Seattle Children's|false|distinctive well-known hospital brand
+1810|SECRETARY OF STATE, STATE OF DELAWARE|NONE|true|generic government office title, collides nationally
+1811|SECURITIES INDUSTRY AND FINANCIAL MARKETS ASSOCIATION (SIFMA)|SIFMA|false|well-known distinctive abbreviation
+1812|SEIA|NONE|true|bare acronym, moderate collision risk
+1813|SELECT MEDICAL CORPORATION|Select Medical|false|distinctive healthcare brand
+1814|SELF-INSURANCE INSTITUTE OF AMERICA, INC.|SIIA|false|distinctive full name and abbreviation
+1815|SEMICONDUCTOR INDUSTRY ASSOCIATION|NONE|true|generic descriptive industry association phrasing
+1816|SEMINOLE HARD ROCK DIGITAL, LLC|Hard Rock Digital|false|distinctive brand
+1817|SEMINOLE TRIBE OF FLORIDA|NONE|false|distinctive tribal name
+1818|SEMPRA ENERGY|Sempra|false|distinctive utility brand
+1819|SENATE OF PUERTO RICO|NONE|true|Senate generic government-body term
+1820|SENIOR CARE PHARMACY COALITION|NONE|true|generic descriptive coalition name
+1821|SENTINEL MIDSTREAM, LLC|Sentinel Midstream|false|distinctive energy company name
+1822|SENTINELONE, INC.|SentinelOne|false|distinctive cybersecurity brand
+1823|SEQIRUS|NONE|false|distinctive vaccine company brand
+1824|SERVICE EMPLOYEES INTERNATIONAL UNION|SEIU|false|distinctive well-known union abbreviation
+1825|SERVICENOW, INC.|ServiceNow|false|distinctive software brand
+1826|SES AMERICOM, INC.|NONE|true|SES bare acronym collides with many meanings
+1827|SES S.A. FORMERLY KNOWN AS INTELSAT US LLC|Intelsat|true|same SES collision risk; Intelsat alias safe
+1829|SHAKOPEE MDEWAKANTON DAKOTA (SIOUX) COMMUNITY|NONE|false|distinctive tribal name
+1830|SHARE OUR STRENGTH, INC.|Share Our Strength|false|distinctive nonprofit brand name
+1831|SHARKNINJA OPERATING LLC|SharkNinja|false|distinctive consumer brand
+1833|SHELL OIL COMPANY|Shell|false|distinctive well-known oil brand
+1834|SHELL USA, INC.|Shell|false|distinctive well-known oil brand
+1835|SHIELD AI, INC.|Shield AI|false|distinctive defense-tech brand
+1836|SHIFT5, INC.|Shift5|false|distinctive cybersecurity brand
+1837|SHINE MEDICAL TECHNOLOGIES|NONE|true|Shine common English word
+1838|SHINGLE SPRINGS RANCHERIA|NONE|false|distinctive tribal/place name
+1839|SHIPBUILDERS COUNCIL OF AMERICA|NONE|false|distinctive trade association name
+1840|SHIPPERS COALITION|NONE|true|generic descriptive coalition name
+1841|SHOPIFY INC.|Shopify|false|distinctive e-commerce brand
+1842|SHORELIGHT EDUCATION|Shorelight|false|distinctive education company brand
+1844|SIEMENS CORPORATION|Siemens|false|distinctive well-known industrial brand
+1845|SIEMENS ENERGY, INC.|Siemens Energy|false|distinctive well-known industrial brand
+1846|SIEMENS HEALTHINEERS|NONE|false|distinctive medical-technology brand name
+1847|SIEMENS HEALTHINEERS (FKA VARIAN MEDICAL SYSTEMS, INC.)|Varian;Varian Medical Systems|false|distinctive brand names
+1849|SIERRA NEVADA CORPORATION|NONE|true|Sierra Nevada collides with mountain range and beer brand
+1850|SIERRA PACIFIC INDUSTRIES|NONE|false|distinctive company name, full name specific enough
+1851|SIERRA SPACE CORPORATION|NONE|false|distinctive company name in space sector
+1852|SIGA TECHNOLOGIES, INC.|SIGA|false|distinctive coined name
+1853|SILA NANOTECHNOLOGIES INC.|SILA|false|distinctive coined name
+1854|SILICON VALLEY TAX DIRECTORS GROUP|NONE|true|Silicon Valley likely to collide with regional references
+1855|SILVERLINING|NONE|true|common English phrase/idiom
+1856|SINCLAIR BROADCAST GROUP, INC.|Sinclair|false|distinctive company name
+1857|SITES PROJECT AUTHORITY|NONE|true|Sites common English word
+1858|SIX CONTINENTS HOTELS, INC. D/B/A IHG HOTELS & RESORTS|IHG;IHG Hotels & Resorts;InterContinental Hotels Group|false|IHG well-known distinctive brand
+1861|SK HYNIX AMERICA, INC.|SK Hynix;Hynix|false|distinctive semiconductor company name
+1862|SKINCURE ONCOLOGY, LLC|NONE|false|distinctive coined name
+1863|SKYDIO, INC.|Skydio|false|distinctive coined brand name
+1864|SKYDWELLER AERO, INC.|Skydweller|false|distinctive coined name
+1865|SKYWATER TECHNOLOGY FOUNDRY|SkyWater|false|distinctive coined company name
+1866|SL GREEN REALTY CORP.|SL Green|false|distinctive company name
+1868|SMALL PUBLIC COMPANY COALITION|NONE|true|generic descriptive coalition name
+1870|SMITH & NEPHEW, INC.|NONE|true|Smith extremely common surname
+1871|SMITHFIELD FOODS, INC.|NONE|true|Smithfield also common place name
+1872|SNAC INTERNATIONAL|NONE|true|SNAC plausible acronym collision, phonetically close to snack
+1873|SNAP INC.|NONE|true|Snap common English word
+1874|SNP ALLIANCE INC|NONE|true|SNP common medical/genetics and political acronym
+1875|SOCIAL FINANCE, INC.|SoFi|false|SoFi well-known distinctive brand name
+1876|SOCIETY FOR HUMAN RESOURCE MANAGEMENT|SHRM|false|distinctive well-known acronym in HR field
+1877|SOCIETY OF NUCLEAR MEDICINE AND MOLECULAR IMAGING|SNMMI|false|distinctive acronym and specific full name
+1879|SOLAR ENERGY INDUSTRIES ASSOCIATION|SEIA|false|well-known distinctive acronym
+1881|SOLUGEN, INC.|Solugen|false|distinctive coined name
+1883|SONOMA COUNTY WATER AGENCY|NONE|true|references county/place name
+1884|SONY PICTURES ENTERTAINMENT|NONE|true|Sony alone too broad
+1885|SORENSON HOLDINGS LLC|NONE|true|Sorenson fairly common surname
+1886|SOUNDEXCHANGE|NONE|false|distinctive coined organization name
+1887|SOUTH COAST AIR QUALITY MANAGEMENT DISTRICT|SCAQMD|false|distinctive acronym and specific regional agency name
+1888|SOUTH FLORIDA ADMIRALTY TRIAL LAWYERS ASSOCIATION|NONE|false|specific enough descriptive name
+1889|SOUTHEASTERN CONFERENCE|NONE|true|SEC collides massively with Securities and Exchange Commission
+1890|SOUTHERN CALIFORNIA REGIONAL RAIL AUTHORITY|Metrolink|false|Metrolink well-known operating brand name
+1891|SOUTHERN COMPANY|NONE|true|Southern common generic word/region reference
+1893|SOUTHERN GLAZER'S WINE AND SPIRITS, LLC|Southern Glazer's|false|distinctive company name
+1894|SOUTHERN UTE INDIAN TRIBE|NONE|false|specific tribal name
+1895|SOUTHWEST AIRLINES CO.|NONE|true|Southwest alone common generic regional term
+1897|SPACE DYNAMICS LABORATORY (SDL)|NONE|true|SDL common acronym with collision risk
+1898|SPACE EXPLORATION TECHNOLOGIES CORPORATION|SpaceX|false|SpaceX universally known brand name
+1899|SPACEX|NONE|false|distinctive well-known brand name
+1900|SPARK THERAPEUTICS, INC.|NONE|true|Spark common English word
+1901|SPARTANBURG REGIONAL HEALTHCARE SYSTEM|NONE|false|specific place-based name, low collision risk
+1902|SPECIALTY EQUIPMENT MARKET ASSOCIATION|SEMA|false|well-known distinctive acronym
+1903|SPIRIT AEROSYSTEMS, INC.|NONE|true|Spirit collides with common word and Spirit Airlines
+1906|SRC INC.|NONE|true|SRC very common acronym
+1909|STANDARD INDUSTRIES, INC.|NONE|true|Standard common generic English word
+1910|STANLEY BLACK & DECKER, INC.|NONE|true|Stanley common personal name/surname
+1911|STARBUCKS CORPORATION|Starbucks|false|distinctive well-known brand name
+1912|STARKEY HEARING TECHNOLOGIES|Starkey|false|distinctive brand name
+1913|STARKIST CO|StarKist|false|distinctive well-known brand name
+1914|START EARLY|NONE|true|generic English phrase
+1915|STARZ ENTERTAINMENT, LLC|Starz|false|distinctive well-known brand name
+1916|STATE FARM INSURANCE COMPANIES|State Farm|false|distinctive well-known brand name
+1917|STATE FUND CONGRESSIONAL ACTION GROUP (SFCAG)|NONE|true|generic descriptive coalition name
+1918|STATE OF CALIFORNIA|NONE|true|California extremely common place reference
+1919|STATE OF INDIANA|NONE|true|Indiana common place/university reference
+1921|STATE OF NEVADA|NONE|true|Nevada common place reference
+1922|STATE STREET BANK AND TRUST COMPANY|NONE|true|State Street also common generic street name
+1923|STEPHENSON STELLAR CORPORATION|NONE|false|distinctive coined company name
+1924|STERIS CORPORATION|Steris|false|distinctive coined brand name
+1925|STRATA CLEAN ENERGY, LLC|NONE|true|Strata fairly generic English word
+1926|STRATASYS, INC.|Stratasys|false|distinctive coined brand name
+1927|STRATEGIC EDUCATION, INC.|NONE|true|generic descriptive name
+1928|STRATOLAUNCH, LLC|Stratolaunch|false|distinctive coined brand name
+1929|STRIDE, INC.|NONE|true|Stride common English word
+1931|STRIVETOGETHER, INC.|NONE|false|distinctive coined single-word organization name
+1932|STRUCTURED FINANCE ASSOCIATION|NONE|true|generic descriptive industry-association name
+1933|STRYKER CORPORATION|Stryker|false|distinctive well-known brand name
+1934|STUBHUB INC.|StubHub|false|distinctive well-known brand name
+1935|SUMMIT RIDGE ENERGY, LLC|NONE|true|Summit Ridge fairly generic geographic-sounding name
+1937|SUN PHARMACEUTICAL INDUSTRIES, INC.|NONE|true|Sun common English word
+1938|SUNRUN, INC.|Sunrun|false|distinctive coined brand name
+1939|SURESCRIPTS|NONE|false|distinctive coined organization name
+1942|SWIFT, INC.|NONE|true|Swift common English word and surname
+1944|SWISS REINSURANCE COMPANY LTD|Swiss Re|false|Swiss Re well-known distinctive abbreviation
+1945|SWITCH, INC.|NONE|true|Switch common English word
+1946|SYCUAN BAND OF THE KUMEYAAY NATION|Sycuan|false|distinctive tribal name
+1947|SYNCHRONY FINANCIAL|Synchrony|false|distinctive coined brand name
+1948|SYNOPSYS, INC.|Synopsys|false|distinctive coined brand name
+1950|T-MOBILE|NONE|false|distinctive well-known brand name
+1951|T-MOBILE US, INC.|T-Mobile|false|distinctive well-known brand name
+1953|TAKEDA PHARMACEUTICALS AMERICA, INC.|Takeda|false|distinctive well-known pharmaceutical brand name
+1954|TALLGRASS ENERGY PARTNERS, LP|Tallgrass|false|distinctive company name
+1955|TALON NICKEL (USA) LLC|NONE|true|Talon common English word
+1956|TALOS ENERGY|NONE|true|Talos collides with mythology/other unrelated uses
+1957|TARGA RESOURCES CORPORATION|Targa|false|distinctive coined brand name
+1959|TARGET HOSPITALITY CORPORATION|NONE|true|Target common English word, collides with Target Corp
+1960|TARRANT REGIONAL WATER DISTRICT|NONE|false|specific place-based regional agency name
+1961|TATA CONSULTANCY SERVICES|TCS|false|distinctive well-known company name
+1962|TAX REFORM COALITION|NONE|true|generic descriptive coalition name
+1964|TAXPAYERS AGAINST FRAUD|NONE|true|generic descriptive advocacy name
+1965|TC ENERGY CORPORATION|TC Energy|false|distinctive brand name
+1967|TE CONNECTIVITY, INC.|TE Connectivity|false|distinctive brand name
+1968|TEAMHEALTH|NONE|false|distinctive coined brand name
+1969|TECHNET|NONE|true|TechNet collides with generic tech networking references
+1970|TECHNOLOGY CEO COUNCIL|NONE|true|generic descriptive coalition name
+1973|TECO ENERGY INC.|TECO|false|distinctive brand name
+1974|TELADOC HEALTH, INC.|Teladoc|false|distinctive coined brand name
+1975|TELEVISAUNIVISION, INC.|Televisa-Univision;Univision|false|distinctive well-known media brand names
+1976|TENABLE, INC.|NONE|true|Tenable also common English word
+1977|TENASKA, INC.|NONE|false|distinctive coined brand name
+1978|TENCENT AMERICA, LLC|Tencent|false|distinctive well-known company name
+1979|TENET BUSINESS SERVICES CORPORATION|NONE|false|distinctive enough fuller phrase
+1980|TENET HEALTHCARE CORPORATION|NONE|false|distinctive brand name
+1981|TENNESSEE RURAL HEALTH IMPROVEMENT ASSOCIATION|NONE|false|specific enough named association
+1982|TERRAPOWER, LLC|TerraPower|false|distinctive coined brand name
+1985|TEXAS ASSOCIATION FOR HOME CARE & HOSPICE|NONE|false|specific enough named state association
+1986|TEXAS ESSENTIAL HEALTHCARE PARTNERSHIPS|NONE|false|specific enough named entity
+1987|TEXAS HEALTH RESOURCES|NONE|true|generic descriptive name combining state+common healthcare words
+1988|TEXAS STATE UNIVERSITY SYSTEM|NONE|true|generic name, Texas State common place-name-based reference
+1989|TEXTRON, INC.|Textron|false|distinctive coined brand name
+1990|THAI UNION GROUP PCL|Thai Union|false|distinctive brand name
+1991|THALES DEFENSE & SECURITY, INC.|Thales|false|distinctive well-known defense company name
+1993|THE ADVERTISING COALITION|NONE|true|generic descriptive coalition name
+1996|THE AMERICAN COUNCIL OF LIFE INSURERS|NONE|true|full name generic descriptive industry association phrasing
+1997|THE AMERICAN INSTITUTE OF ARCHITECTS|NONE|true|AIA acronym collides
+1999|THE ANSCHUTZ CORPORATION|Anschutz|false|distinctive surname-based brand
+2001|THE BIG TEN CONFERENCE, INC.|NONE|true|Big Ten very commonly used generic sports term
+2002|THE BIOSIMILARS FORUM|NONE|true|generic descriptive industry-forum name
+2003|THE BLACKSTONE GROUP, INC.|Blackstone|false|distinctive well-known company name
+2005|THE BROADWAY LEAGUE INC.|NONE|true|Broadway common place name/generic term
+2007|THE CAMPAIGN FOR SUSTAINABLE RX PRICING|NONE|true|generic descriptive campaign name
+2008|THE CARLYLE GROUP|Carlyle|false|distinctive well-known company name
+2009|THE CENTER FOR A FREE ECONOMY|NONE|true|generic descriptive think-tank name
+2010|THE CHEMOURS COMPANY|Chemours|false|distinctive coined brand name
+2011|THE CHEROKEE NATION|NONE|true|Cherokee also common place name/vehicle model/surname
+2012|THE CHILDREN'S HOSPITAL OF PHILADELPHIA|CHOP|false|distinctive well-known institution name/abbreviation
+2014|THE COCA COLA COMPANY|Coca-Cola;Coke|false|distinctive globally famous brand name
+2015|THE COCA-COLA COMPANY|Coca-Cola;Coke|false|distinctive globally famous brand name
+2016|THE DEPOSITORY TRUST & CLEARING CORPORATION|DTCC|false|distinctive well-known institution and acronym
+2017|THE DOW CHEMICAL COMPANY|Dow|false|distinctive well-known brand name
+2018|THE EARLY CARE AND EDUCATION CONSORTIUM|NONE|true|generic descriptive consortium name
+2019|THE GAP, INC.|NONE|true|Gap common English word, very high false-positive risk
+2020|THE GEO GROUP, INC.|NONE|true|GEO short common word/prefix
+2021|THE GOLDMAN SACHS GROUP, INC.|Goldman Sachs;Goldman|false|distinctive well-known company name
+2022|THE GREENBRIER COMPANIES|Greenbrier|false|distinctive brand name
+2023|THE GUARDIAN LIFE INSURANCE COMPANY OF AMERICA|NONE|true|bare Guardian collision risk
+2024|THE HARTFORD FINANCIAL SERVICES GROUP, INC.|NONE|true|Hartford also common place name
+2025|THE HOME DEPOT, INC.|Home Depot|false|distinctive well-known brand name
+2026|THE ICKES AND ENRIGHT GROUP (ON BEHALF OF GREATER NEW YORK HOSPITAL ASSOCIATION)|Greater New York Hospital Association|false|distinctive named lobbying firm+client
+2027|THE INDEPENDENCE FUND|NONE|true|generic descriptive name built from common word independence
+2028|THE INTERSTATE NATURAL GAS ASSOCIATION OF AMERICA|INGAA|false|distinctive specific association name and acronym
+2029|THE JEWISH FEDERATIONS OF NORTH AMERICA|NONE|false|specific enough named federation umbrella organization
+2031|THE JUDGE ROTENBERG CENTER|NONE|false|distinctive named institution
+2034|THE MEDICAL DEVICE COMPETITIVENESS COALITION|NONE|true|generic descriptive coalition name
+2035|THE METALS COMPANY|NONE|true|generic descriptive name built from common word metals
+2036|THE MOHEGAN TRIBE|Mohegan|false|distinctive named tribal nation
+2037|THE MOSAIC COMPANY|NONE|true|Mosaic common English word
+2038|THE NATURE CONSERVANCY|NONE|true|generic descriptive name built from common words
+2039|THE NORTHWESTERN MUTUAL LIFE INSURANCE COMPANY|NONE|true|Northwestern also common place-name/university reference
+2040|THE ORTHOFORUM|OrthoForum|false|distinctive coined name
+2041|THE PEW CHARITABLE TRUSTS|NONE|true|Pew alone is a common English word
+2042|THE PHILANTHROPY ROUNDTABLE|NONE|true|generic descriptive name built from common words
+2043|THE PNC FINANCIAL SERVICES GROUP, INC.|PNC|false|distinctive well-known bank name/acronym
+2044|THE PROCTER & GAMBLE COMPANY|Procter & Gamble;P&G|false|distinctive well-known brand name
+2045|THE R&D COALITION|NONE|true|generic descriptive coalition name
+2047|THE REGENTS OF THE UNIVERSITY OF COLORADO|NONE|true|University of Colorado common institutional/place-based name
+2048|THE SHERWIN-WILLIAMS COMPANY|Sherwin-Williams|false|distinctive well-known brand name
+2049|THE TRAVELERS COMPANIES, INC. AND SUBSIDIARIES|NONE|true|Travelers common English word
+2050|THE TRUSTEES OF PURDUE UNIVERSITY|Purdue;Purdue University|false|distinctive named university
+2052|THE UNIVERSITY OF CHICAGO MEDICAL CENTER|UChicago Medicine|false|distinctive named institution
+2055|THE VINYL INSTITUTE, INC.|NONE|true|Vinyl common word
+2056|THE VUCCI LAW GROUP, P.A.|NONE|false|distinctive named law firm
+2059|THERMO FISHER SCIENTIFIC INC|Thermo Fisher|false|distinctive well-known brand name
+2061|THOMAS JEFFERSON UNIVERSITY|NONE|true|Thomas Jefferson common historical figure name
+2062|THOMSON REUTERS|NONE|false|distinctive well-known company name
+2063|THRIVENT FINANCIAL FOR LUTHERANS|Thrivent|false|distinctive coined brand name
+2064|TIAA|NONE|false|distinctive well-known acronym/brand
+2065|TIBER CREEK GROUP (ON BEHALF OF VERTEX PHARMACEUTICALS)|NONE|true|Vertex common English word, collision risk
+2066|TIBER CREEK HEALTH STRATEGIES, INC. (ON BEHALF OF ELI LILLY AND COMPANY)|Eli Lilly;Lilly|false|distinctive well-known brand name
+2067|TIBER CREEK HEALTH STRATEGIES, INC. (ON BEHALF OF GENENTECH, INC.)|Genentech|false|distinctive well-known brand name
+2068|TIBER CREEK HEALTH STRATEGIES, INC. (ON BEHALF OF NOVARTIS)|Novartis|false|distinctive well-known brand name
+2069|TIDAL BASIN|NONE|true|Tidal Basin well-known DC place name
+2072|TL MANAGEMENT|NONE|true|generic short initials+common word
+2073|TOBACCO-FREE KIDS ACTION FUND|Campaign for Tobacco-Free Kids|false|distinctive well-known advocacy campaign name
+2074|TOHONO O'ODHAM NATION|Tohono O'Odham|false|distinctive named tribal nation
+2075|TOM JAMES COMPANY|NONE|true|generic personal name combination
+2076|TONIX PHARMACEUTICALS, INC.|Tonix|false|distinctive coined brand name
+2077|TORCH TECHNOLOGIES, INC.|NONE|true|Torch common English word
+2078|TOTAL MILITARY MANAGEMENT|NONE|true|generic descriptive name
+2079|TOYOTA|NONE|true|common English word/global brand also used generically
+2080|TOYOTA MOTOR NORTH AMERICA, INC.|NONE|false|distinctive full corporate name
+2082|TRANE TECHNOLOGIES COMPANY LLC|Trane|false|distinctive brand name
+2083|TRANSCANADA PIPELINES USA LTD|TransCanada;TC Energy|false|distinctive
+2084|TRANSDIGM GROUP INCORPORATED|TransDigm|false|distinctive company name
+2085|TRANSITAMERICA SERVICES|NONE|false|distinctive enough
+2087|TRANSPORTATION INSTITUTE|NONE|true|generic descriptive name
+2089|TRAVERE THERAPEUTICS, INC.|Travere|false|distinctive pharma brand name
+2090|TRELLIX|NONE|false|distinctive coined brand name
+2091|TRGROUP (ALSO DOING BUSINESS AS ACT - ALLIANCE FOR COMPETITIVE TAXATION)|Alliance for Competitive Taxation|true|ACT short acronym collides heavily
+2092|TRI-COUNTY METROPOLITAN TRANSPORTATION DISTRICT OF OREGON (TRIMET)|TriMet|false|distinctive well-known transit brand name
+2095|TRIDEUM CORPORATION|Trideum|false|distinctive coined name
+2096|TRIMBLE INC.|Trimble|false|distinctive brand name
+2097|TRIMBLE NAVIGATION LIMITED|Trimble|false|distinctive brand name
+2098|TRINE UNIVERSITY|NONE|true|university names risk collision with unrelated coverage
+2099|TRINET GROUP, INC.|TriNet|false|distinctive brand name
+2100|TRINET USA, INC.|TriNet|false|distinctive brand name
+2101|TRIPLE-S MANAGEMENT CORPORATION|Triple-S|false|distinctive brand name
+2103|TROUT UNLIMITED|NONE|true|common English words combined
+2105|TRUCKLOAD CARRIERS ASSOCIATION|NONE|true|generic descriptive trade-association name; TCA collides
+2106|TRULIEVE|NONE|false|distinctive coined brand name
+2107|TSMC ARIZONA|TSMC|false|distinctive well-known semiconductor company abbreviation
+2108|TUFTS UNIVERSITY|Tufts|false|distinctive university name
+2109|TULANE UNIVERSITY|Tulane|false|distinctive university name
+2110|TUNICA BILOXI TRIBE OF LOUISIANA|NONE|false|distinctive tribal name
+2112|TWENTY-NINE PALMS BAND OF MISSION INDIANS|NONE|true|Twenty-Nine Palms also a place name
+2113|TWILIO, INC.|Twilio|false|distinctive coined brand name
+2114|TWIN METALS MINNESOTA LLC|Twin Metals|false|distinctive mining project name
+2115|TWIN RIVERS PAPER COMPANY|NONE|true|Twin Rivers fairly generic geographic-sounding name
+2116|TWO SIGMA INVESTMENTS, LP|Two Sigma|false|distinctive well-known hedge fund brand name
+2117|TYSON FOODS INC|NONE|true|Tyson also common surname
+2118|TYSON SHARED SERVICES, INC.|NONE|true|same Tyson surname collision risk
+2119|U.S. SUGAR CORPORATION|U.S. Sugar|false|distinctive enough as named company
+2122|U.S. CHAMBER OF COMMERCE INSTITUTE FOR LEGAL REFORM|NONE|true|generic descriptive coalition name
+2123|U.S. HEMP ROUNDTABLE|NONE|true|generic descriptive advocacy name
+2124|U.S. IMMIGRATION FUND, LLC|NONE|true|generic descriptive name
+2125|U.S. RENAL CARE|NONE|true|generic descriptive name
+2126|US STRATEGIC METALS, LLC|NONE|true|generic descriptive name
+2127|U.S. TRAVEL ASSOCIATION|NONE|true|generic descriptive trade-association name
+2128|U.S. WOMEN'S HEALTH ALLIANCE|NONE|true|generic descriptive advocacy name
+2129|UAB HEALTH SYSTEM|NONE|true|UAB acronym collides with University of Alabama at Birmingham
+2130|UBER TECHNOLOGIES. INC.|Uber|false|distinctive well-known brand name
+2131|UCB, INC.|NONE|true|UCB short acronym collides
+2132|ULTRA FKA ULTRA ELECTRONICS - FLIGHTLINE SYSTEMS|NONE|true|Ultra alone common generic word
+2133|UNION PACIFIC CORPORATION|Union Pacific|false|distinctive well-known railroad brand name
+2134|UNITED AIRLINES, INC.|United Airlines|true|United alone generic/common word, massive collision risk
+2135|UNITED BROTHERHOOD OF CARPENTERS AND JOINERS OF AMERICA|Carpenters Union|false|distinctive well-known labor union identity
+2136|UNITED EGG PRODUCERS|NONE|true|generic descriptive trade-association name
+2138|UNITED KEETOOWAH BAND OF CHEROKEE INDIANS IN OKLAHOMA|NONE|false|distinctive tribal name
+2139|UNITED LAUNCH ALLIANCE, LLC|ULA|false|distinctive well-known aerospace joint venture
+2140|UNITED NETWORK FOR ORGAN SHARING (UNOS)|UNOS|false|distinctive well-known organization and abbreviation
+2141|UNITED PARCEL SERVICE|NONE|false|distinctive full phrase, not overly generic
+2142|UNITED SERVICES AUTOMOBILE ASSOCIATION|USAA|false|distinctive well-known name despite generic component words
+2143|UNITED SERVICES AUTOMOBILE ASSOCIATION (USAA)|USAA|false|distinctive well-known abbreviation
+2144|UNITED SPINAL ASSOCIATION|NONE|true|generic descriptive advocacy name
+2145|UNITED STATES CELLULAR CORPORATION|U.S. Cellular|false|distinctive well-known telecom brand name
+2146|UNITED STATES STEEL CORPORATION|U.S. Steel|false|distinctive well-known steel company brand name
+2147|UNITED STATES TELECOM ASSOCIATION|USTelecom|false|distinctive well-known trade association and short form
+2149|UNITED WHOLESALE MORTGAGE, LLC|UWM|false|distinctive well-known mortgage company and abbreviation
+2153|UNIVERSITY OF ARIZONA|NONE|false|distinctive named university
+2154|UNIVERSITY OF CONNECTICUT|UConn|false|distinctive named university and abbreviation
+2155|UNIVERSITY OF HOUSTON|NONE|false|distinctive named university
+2156|UNIVERSITY OF IDAHO|NONE|false|distinctive named university
+2157|UNIVERSITY OF ILLINOIS|NONE|false|distinctive named university
+2158|UNIVERSITY OF MIAMI|NONE|false|distinctive named university
+2159|UNIVERSITY OF MINNESOTA|NONE|false|distinctive named university
+2160|UNIVERSITY OF NEBRASKA|NONE|false|distinctive named university
+2161|UNIVERSITY OF NOTRE DAME|Notre Dame|false|distinctive named university
+2162|UNIVERSITY OF OKLAHOMA|NONE|false|distinctive named university
+2163|UNIVERSITY OF PHOENIX, INC.|University of Phoenix|false|distinctive named for-profit university
+2165|UNIVERSITY OF PITTSBURGH MEDICAL CENTER|UPMC|false|distinctive well-known health system and abbreviation
+2166|UPMC|NONE|false|distinctive well-known abbreviation
+2168|URANIUM PRODUCERS OF AMERICA|NONE|true|generic descriptive trade-association name
+2169|URSA MAJOR|NONE|true|Ursa Major well-known constellation name
+2170|URSA MAJOR TECHNOLOGIES, INC.|NONE|true|same collision risk, constellation ambiguity
+2171|US PHYSICIAN PARTNERS (INFORMAL COALITION)|NONE|true|generic descriptive name
+2172|USA EB5 IMMIGRATION, LLC|NONE|true|generic descriptive name built from common program terms
+2173|UTE INDIAN TRIBE|NONE|false|distinctive tribal name
+2174|VALERO ENERGY CORPORATION|Valero|false|distinctive well-known energy brand name
+2175|VALERO SERVICES, INC.|Valero|false|distinctive well-known energy brand name
+2177|VANADIUM PRODUCERS AND RECLAIMERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+2178|VANGUARD CHARITABLE|NONE|true|Vanguard collides with The Vanguard Group
+2179|VANNEVAR LABS, INC.|Vannevar Labs|false|distinctive coined name
+2182|VAPOR TECHNOLOGY ASSOCIATION|NONE|true|generic descriptive trade-association name
+2183|VAULTLINK INC.|VaultLink|false|distinctive coined brand name
+2184|VECTOR GROUP LTD|NONE|true|Vector common generic word
+2189|VERIZON|NONE|false|distinctive well-known telecom brand name
+2190|VERIZON COMMUNICATIONS, INC.|Verizon|false|distinctive well-known telecom brand name
+2191|VERIZON COMMUNICATIONS INC. AND VARIOUS SUBSIDIARIES|Verizon|false|distinctive well-known telecom brand name
+2194|VIASAT, INC.|Viasat|false|distinctive coined brand name
+2195|VIATRIS INC.|Viatris|false|distinctive coined pharma brand name
+2196|VICTIMS OF TERRORISM - EAST AFRICA|NONE|true|generic descriptive advocacy name
+2197|VIEW, INC.|NONE|true|View common English word
+2198|VINYL INSTITUTE, INC.|NONE|false|distinctive trade-association name
+2199|VIR BIOTECHNOLOGY, INC.|VIR|false|distinctive biotech name/ticker
+2200|VIRTU FINANCIAL, INC.|Virtu|false|distinctive company name
+2201|VISA, INC.|NONE|false|distinctive globally-known brand
+2202|VISA, U.S.A., INC.|NONE|true|VISA also literally means travel/immigration visa
+2203|VISTRA CORPORATE SERVICES COMPANY|Vistra|false|distinctive company name
+2204|VISTRA ENERGY (FKA ENERGY FUTURE HOLDINGS)|Vistra;Vistra Energy;Energy Future Holdings|false|distinctive, former name given
+2205|VITA INCLINATA TECHNOLOGIES, INC.|Vita Inclinata|false|distinctive name
+2206|VITAS HEALTHCARE CORPORATION|Vitas;Vitas Healthcare|false|distinctive brand name
+2208|VIZIENT, INC.|Vizient|false|distinctive coined name
+2209|VMWARE, INC.|VMware|false|distinctive well-known brand
+2210|VOICES FOR NON-OPIOID CHOICES|NONE|true|generic advocacy-coalition name
+2211|VSP|NONE|true|short acronym, collision risk
+2212|VULCAN MATERIALS COMPANY|NONE|true|Vulcan alone common mythological/place/brand name
+2214|WABTEC CORPORATION|Wabtec|false|distinctive coined name
+2215|WACKER POLYSILICON NORTH AMERICA LLC|Wacker|false|distinctive company name
+2216|WALGREEN COMPANY|Walgreens|false|distinctive well-known brand
+2217|WALGREENS CO.|Walgreens|false|distinctive well-known brand
+2220|WASHINGTON GAS|NONE|true|Washington collides heavily with unrelated DC/state coverage
+2221|WASHINGTON STATE UNIVERSITY|NONE|true|Washington collides heavily with unrelated coverage
+2222|WASTE CONTROL SPECIALISTS, LLC|NONE|false|distinctive multi-word company name
+2223|WASTE MANAGEMENT, INC.|NONE|true|Waste Management also generic descriptive term/industry category
+2225|WATERWAYS COUNCIL, INCORPORATED|NONE|true|generic descriptive advocacy name
+2227|WAYMO LLC|Waymo|false|distinctive well-known brand
+2229|WE WORK FOR HEALTH|NONE|true|generic phrase-like coalition name
+2230|WEBBANK|NONE|false|distinctive coined name
+2232|WELLS FARGO & COMPANY|Wells Fargo|false|distinctive well-known brand
+2234|WESTERN DIGITAL CORPORATION|Western Digital|false|distinctive well-known brand
+2235|WESTERN STATES REGIONAL COUNCIL OF CARPENTERS|NONE|true|generic geographic+trade-union descriptive name
+2236|WESTERN UNION COMPANY|Western Union|false|distinctive well-known brand
+2237|WESTINGHOUSE ELECTRIC COMPANY LLC|Westinghouse|false|distinctive well-known brand
+2238|WESTLAKE CHEMICAL PARTNERS, LP|Westlake Chemical|false|distinctive company name
+2239|WESTLANDS WATER DISTRICT|NONE|true|generic geographic+water-district descriptive name
+2241|WEYERHAEUSER CO|Weyerhaeuser|false|distinctive well-known brand
+2242|WHOLESALE & SPECIALTY INSURANCE ASSOCIATION|NONE|true|generic descriptive trade-association name
+2243|WHOOP, INC.|NONE|true|Whoop common exclamation/word
+2244|WIELAND NORTH AMERICA, INC.|Wieland|false|distinctive company name
+2245|WIGGINS CHILDS PANTAZIS FISHER GOLDFARB|NONE|true|law-firm name composed of common surnames
+2246|WILLIAMS & LAKE, LLC|NONE|true|composed of extremely common surname/place words
+2247|WILLIAMS COMPANIES|NONE|true|Williams extremely common surname
+2249|WINCHESTER AMMUNITION|NONE|true|Winchester also common place name
+2250|WINDOW AND DOOR MANUFACTURERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+2251|WINDOW COVERING MANUFACTURERS ASSOCIATION|NONE|true|generic descriptive trade-association name
+2252|WINE AND SPIRITS WHOLESALERS OF AMERICA, INC.|NONE|true|generic descriptive trade-association name
+2253|WING AVIATION LLC|NONE|true|Wing common word
+2254|WIRELESS INFRASTRUCTURE ASSOCIATION|NONE|true|generic descriptive trade-association name
+2257|WOLTERS KLUWER|Wolters Kluwer|false|distinctive well-known brand
+2259|WOOLPERT CORPORATION|Woolpert|false|distinctive company name
+2260|WORKDAY, INC.|NONE|true|Workday also common English word
+2261|WORKING GROUP ON COMPETITIVE INTERNATIONAL TAXATION (INFORMAL COALITION)|NONE|true|generic descriptive coalition name
+2262|WORKIVA, INC.|Workiva|false|distinctive coined name
+2263|WORLD DOG ALLIANCE LIMITED|NONE|true|generic-sounding advocacy name
+2264|WORLD FUEL (FKA WORLD FUEL SERVICES)|NONE|true|World Fuel generic descriptive phrase
+2267|WYNN RESORTS, LIMITED|Wynn|false|distinctive well-known brand
+2268|X-BOW LAUNCH SYSTEMS INC.|X-Bow|false|distinctive coined name
+2269|XCEL ENERGY INC|Xcel|false|distinctive well-known brand
+2270|XTX MARKETS LLC (AMERICAS)|XTX|false|distinctive coined name
+2271|XYLEM, INC.|NONE|true|Xylem also common biology/botany term
+2272|YAHOO INC, AND VAR. SUBS/AFFILIATES (FKA COLLEGE PARENT, L.P. DBA "YAHOO")|Yahoo|false|distinctive well-known brand
+2273|YARA NORTH AMERICA INC.|NONE|true|Yara also common personal given name
+2274|YELLOW CORPORATION|NONE|true|Yellow common color word, very high false-positive risk
+2275|YELP, INC.|Yelp|false|distinctive well-known brand
+2276|YESHIVA UNIVERSITY|NONE|false|distinctive institutional name
+2277|YMCA OF THE USA|YMCA|false|distinctive well-known acronym/brand
+2278|YOCHA DEHE WINTUN NATION|NONE|false|distinctive tribal name
+2279|YODLEE, INC.|Yodlee|false|distinctive coined name
+2281|YSLETA DEL SUR PUEBLO TRIBE|NONE|false|distinctive tribal name
+2282|YUM! BRANDS, INC.|Yum Brands|false|distinctive well-known brand
+2283|ZEBRA TECHNOLOGIES CORPORATION|NONE|true|Zebra alone common animal word
+2284|ZELIS HEALTHCARE CORPORATION|Zelis|false|distinctive coined name
+2286|ZEROEYES, INC.|ZeroEyes|false|distinctive coined name
+2287|ZILLOW INC|Zillow|false|distinctive well-known brand
+2288|ZOCDOC|NONE|false|distinctive coined name
+2289|ZOETIS INC.|Zoetis|false|distinctive coined name
+2290|ZTE CORPORATION|ZTE|false|distinctive well-known brand/acronym
+2291|ZUFFA AND AFFILIATES|Zuffa;UFC|false|distinctive name
+2292|ZURICH AMERICAN INSURANCE COMPANY|NONE|true|Zurich also major city name

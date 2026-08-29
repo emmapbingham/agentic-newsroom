@@ -1,0 +1,51 @@
+issue_code,issue_display,baseline_avg,entrants_2025,score
+TAR,Tariff (miscellaneous tariff bills),59.0,211,152.0
+DOC,District of Columbia,9.333333333333334,13,4.0
+MON,Minting/Money/Gold Standard,7.0,7,0.0
+SPO,Sports/Athletics,43.333333333333336,40,-3.0
+REL,Religion,11.333333333333334,7,-4.0
+GAM,Gaming/Gambling/Casino,26.0,21,-5.0
+TOR,Torts,24.666666666666668,19,-6.0
+BEV,Beverage Industry,24.666666666666668,17,-8.0
+CDT,Commodities (big ticket),19.333333333333332,11,-8.0
+WEL,Welfare,31.666666666666668,24,-8.0
+APP,Apparel/Clothing Industry/Textiles,14.0,5,-9.0
+WAS,Waste (hazardous/solid/interstate/nuclear),27.0,17,-10.0
+ADV,Advertising,20.666666666666668,10,-11.0
+BNK,Bankruptcy,17.333333333333332,5,-12.0
+FIR,Firearms/Guns/Ammunition,33.666666666666664,22,-12.0
+CON,Constitution,28.0,15,-13.0
+MIA,Media (information/publishing),25.666666666666668,13,-13.0
+ACC,Accounting,45.666666666666664,31,-15.0
+UNM,Unemployment,17.0,1,-16.0
+ALC,Alcohol and Drug Abuse,33.0,13,-20.0
+URB,Urban Development/Municipalities,49.666666666666664,30,-20.0
+AER,Aerospace,85.0,60,-25.0
+INT,Intelligence,51.666666666666664,27,-25.0
+ROD,Roads/Highway,52.0,26,-26.0
+ART,Arts/Entertainment,38.666666666666664,10,-29.0
+IND,Indian/Native American Affairs,66.0,37,-29.0
+UTI,Utilities,63.0,33,-30.0
+FAM,Family issues/Abortion/Adoption,47.333333333333336,16,-31.0
+TOU,Travel/Tourism,50.333333333333336,19,-31.0
+ANI,Animals,57.666666666666664,25,-33.0
+TOB,Tobacco,48.666666666666664,16,-33.0
+TRU,Trucking/Shipping,47.666666666666664,15,-33.0
+RES,Real Estate/Land Use/Conservation,70.0,35,-35.0
+CHM,Chemicals/Chemical Industry,65.66666666666667,29,-37.0
+POS,Postal,52.666666666666664,12,-41.0
+FUE,Fuel/Gas/Oil,78.66666666666667,35,-44.0
+FOO,"Food Industry (safety, labeling, etc.)",98.66666666666667,52,-47.0
+RRR,Railroads,60.0,13,-47.0
+MAR,Marine/Maritime/Boating/Fisheries,98.0,50,-48.0
+AUT,Automotive Industry,82.0,31,-51.0
+MED,Medical/Disease Research/Clinical Labs,111.66666666666667,59,-53.0
+PHA,Pharmacy,91.66666666666667,38,-54.0
+CPI,Computer Industry,120.0,63,-57.0
+HOU,Housing,138.66666666666666,76,-63.0
+RET,Retirement,85.33333333333333,21,-64.0
+DIS,Disaster Planning/Emergencies,122.33333333333333,57,-65.0
+INS,Insurance,111.66666666666667,46,-66.0
+MAN,Manufacturing,166.0,98,-68.0
+COM,Communications/Broadcasting/Radio/TV,101.0,27,-74.0
+CIV,Civil Rights/Civil Liberties,116.33333333333333,39,-77.0

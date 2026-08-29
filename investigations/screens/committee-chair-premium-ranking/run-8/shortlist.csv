@@ -1,0 +1,49 @@
+committee,committee_id,chair_feca,member_mean,score
+House Committee on Homeland Security,HSHM,3796233.0,558938.0,6.8
+House Committee on Ways and Means,HSWM,9164064.0,1970328.0,4.7
+United States Senate Caucus on International Narcotics Control,SCNC,4830044.0,1021644.0,4.7
+House Committee on Transportation and Infrastructure,HSPW,2852456.0,718989.0,4.0
+House Committee on Energy and Commerce,HSIF,5500847.0,1426750.0,3.9
+House Committee on Natural Resources,HSII,2360949.0,608900.0,3.9
+House Committee on Armed Services,HSAS,2455722.0,713207.0,3.4
+House Committee on Oversight and Government Reform,HSGO,1618675.0,496647.0,3.3
+House Committee on House Administration,HSHA,3304198.0,1289227.0,2.6
+House Committee on Appropriations,HSAP,3537132.0,1415655.0,2.5
+House Committee on the Budget,HSBU,2722403.0,1143096.0,2.4
+Senate Committee on Armed Services,SSAS,4244120.0,1801507.0,2.4
+House Committee on Agriculture,HSAG,2139143.0,920755.0,2.3
+"Senate Committee on Agriculture, Nutrition, and Forestry",SSAF,3720588.0,1692626.0,2.2
+House Committee on Veterans' Affairs,HSVR,1512885.0,770080.0,2.0
+Senate Committee on Finance,SSFI,4917292.0,2641799.0,1.9
+House Committee on Rules,HSRU,1498720.0,876097.0,1.7
+House Committee on Small Business,HSSM,978200.0,588699.0,1.7
+Joint Committee of Congress on the Library,JSLC,3304198.0,1889763.0,1.7
+Senate Committee on Indian Affairs,SLIA,3218650.0,1924785.0,1.7
+Senate Committee on Appropriations,SSAP,3386053.0,2042608.0,1.7
+Senate Committee on Veterans' Affairs,SSVA,3753576.0,2257986.0,1.7
+House Committee on the Judiciary,HSJU,973881.0,612989.0,1.6
+Joint Committee on Taxation,JSTX,4917292.0,3019626.0,1.6
+Senate Committee on Environment and Public Works,SSEV,3111833.0,1991968.0,1.6
+"Senate Committee on Health, Education, Labor, and Pensions",SSHR,2994547.0,1900344.0,1.6
+Senate Select Committee on Ethics,SLET,2415820.0,1653839.0,1.5
+Senate Committee on Small Business and Entrepreneurship,SSSB,2416788.0,1597722.0,1.5
+"House Select Subcommittee to Investigate the Remaining Questions Surrounding January 6, 2021",HSQJ,819840.0,586583.0,1.4
+"House Committee on Science, Space, and Technology",HSSY,1075324.0,752523.0,1.4
+Joint Committee on Printing,JSPR,2448735.0,1735699.0,1.4
+Senate Special Committee on Aging,SPAG,1355493.0,997498.0,1.4
+"Senate Committee on Banking, Housing, and Urban Affairs",SSBK,3495116.0,2433408.0,1.4
+House Committee on Education and Workforce,HSED,1091709.0,827000.0,1.3
+Senate Committee on the Judiciary,SSJU,2124140.0,1881791.0,1.1
+Joint Economic Committee,JSEC,1771000.0,1700151.0,1.0
+"Senate Committee on Commerce, Science, and Transportation",SSCM,2503108.0,2486322.0,1.0
+Senate Committee on Rules and Administration,SSRA,2448735.0,2417917.0,1.0
+House Permanent Select Committee on Intelligence,HLIG,1208052.0,1346409.0,0.9
+House Select Committee on the Strategic Competition Between the United States and the Chinese Communist Party,HSZS,1553601.0,1679871.0,0.9
+House Committee on Foreign Affairs,HSFA,717513.0,857529.0,0.8
+House Committee on Ethics,HSSO,1012221.0,1461304.0,0.7
+Senate Committee on the Budget,SSBU,1505456.0,2144942.0,0.7
+Senate Committee on Energy and Natural Resources,SSEG,1488368.0,2136638.0,0.7
+House Committee on Financial Services,HSBA,759002.0,1398578.0,0.5
+Senate Select Committee on Intelligence,SLIN,1242850.0,2295920.0,0.5
+Senate Committee on Homeland Security and Governmental Affairs,SSGA,771673.0,1543596.0,0.5
+Senate Committee on Foreign Relations,SSFR,563500.0,2234993.0,0.3

@@ -1,0 +1,16 @@
+lobbyist_name,score,n_post_quarterlies,n_post_disclosed,share_missing,conviction_date,conviction_desc,n_filings_disclosed,missing_uuids
+"HUNTER, DUNCAN",6,6,0,1.0,2019-12-03,Defendant agrees to plead guilty ot Count One of the Indictment charging him with conspiring with co-defendant Margaret ,1,"11d51df2-e229-4a84-b28c-9c9faa5fb999,24be134b-6ad1-4010-93ed-aadff7d38aae,4ac94cc9-fa1d-498b-84cc-b23c81e7fbda,5767af8b-a3b8-4a14-9834-e4a3d8dd4e66,a2ab1e69-04a9-4326-871e-3a5f914c3c76"
+"HANSON, HAROLD",3,7,4,0.429,2013-07-16,"On or about January 29, 2009, Hanson made false or misleading statements to the U.S. Government in the course of an inve",4,"06b7c4cf-88ec-478e-affe-ff9c7b71b4f3,39b000c9-ee52-4fc8-8998-fefb18cbcf44,5550037a-1d72-451e-a3f5-4ff8cc3ca369"
+"WOHL, JACOB",1,182,181,0.005,2022-11-30,"Illegal campaign robo calls, telecommunications fraud. Cuyahoga County, Ohio. Offense took place in September 2020. Sect",239,1f0b6bd9-acc4-4aa0-9ec6-44646d9b4445
+"SMITH, LAWRENCE",0,4,4,0.0,1993-05-25,"5/23/1993, U.S. District Court, Southern District of Florida, two counts of tax evasion (failure to pay all tax due).",5,
+"JULIANO, RICHARD",0,17,17,0.0,2006-10-10,"U.S. District Court (ND IL), 18 U.S.C. 1341 (1 count)",17,
+"PATTI, C",0,16,16,0.0,2002-05-07,Violation of one count of 18 USC 1341; sentenced to two years of probation,16,
+"BURKMAN, JACK",0,471,471,0.0,2022-10-30,"Illegal campaign robo calls, telecommunications fraud. Cuyahoga County, Ohio. Offense took place in September 2020. Sect",621,
+"SUPLIZIO, PAUL",0,8,8,0.0,1996-12-11,"US Court Eastern District of Virginia, one count, 26 USC 7206(1)",8,
+"MILLER, JAMES",0,9,9,0.0,2019-06-21,Filing a false federal tax return,11,
+"HADDOW, MCCLAIN",0,94,94,0.0,1987-09-15,"9/15/1987, U.S. District Court, 18 U.S.C. Section 208(a), conflict of interest (2 counts)",95,
+"AVANT, LANIER",0,48,48,0.0,2016-11-16,One count in violation of 26 USC 7203,48,
+"RING, KEVIN",0,6,6,0.0,2010-11-15,Federal convictions: three counts of honest services wire fraud; one count of paying a gratuity to a public official; an,7,
+"BROWN, MICHAEL",0,5,5,0.0,2013-06-10,"United States District Court for the District of Columbia, 18 U.S.C.201(b)(2)(A)",7,
+"PETRELLA, CHRISTOPHER",0,1,1,0.0,2019-12-19,USC 18 1001 Misleading statement to a postal inspector,1,
+"STONE, ROGER",0,13,13,0.0,2019-11-15,"Obstruction of Proceeding, False Statements, Witness Tampering. Mr. Stone received a Presidential Pardon for all of thes",23,

@@ -1,0 +1,21 @@
+issue_code                           issue_name  best_lag  best_corr  lag0_corr  total_lobby  total_press  lag_advantage
+       MAR    Marine/Maritime/Boating/Fisheries        -3   0.832516  -0.006220         8576         4182       0.826297
+       INS                            Insurance         1  -0.829178  -0.091803         6728         1422       0.737375
+       COM Communications/Broadcasting/Radio/TV         2  -0.796036  -0.073270         6284         1572       0.722767
+       GAM               Gaming/Gambling/Casino        -3   0.747431   0.042959         2606          226       0.704471
+       DIS        Disaster Planning/Emergencies         3   0.664814   0.004460         6431         2372       0.660354
+       IND       Indian/Native American Affairs        -1   0.797834  -0.161579         8584         4293       0.636256
+       FUE                         Fuel/Gas/Oil        -3   0.635674  -0.008593         3964         7993       0.627081
+       URB     Urban Development/Municipalities         1   0.617236  -0.012339         7964         3067       0.604898
+       ENV                Environment/Superfund        -3   0.676066  -0.105456        25837        66466       0.570611
+       UTI                            Utilities        -1   0.777898  -0.210884         4245         1865       0.567014
+       FOR                    Foreign Relations        -2   0.564409   0.098672         7246         6590       0.465737
+       DOC                 District of Columbia         1   0.463142   0.021191          136         1242       0.441950
+       CSP      Consumer Issues/Safety/Products        -3   0.621574   0.202055        10395         1267       0.419519
+       MON          Minting/Money/Gold Standard        -2  -0.620380  -0.212797          150          472       0.407583
+       BAN                              Banking        -1   0.478238   0.073308        13891        12880       0.404930
+       POS                               Postal        -1  -0.788627  -0.398322         1833         1521       0.390305
+       HCR                        Health Issues         3  -0.388697  -0.023075        79205        51678       0.365622
+       TOU                       Travel/Tourism         1   0.586936   0.242031         2376         1774       0.344905
+       LBR     Labor Issues/Antitrust/Workplace        -1  -0.871620  -0.550268        18429        51646       0.321352
+       TEC                   Telecommunications        -1  -0.722794  -0.402027        18031         4146       0.320767

@@ -1,0 +1,77 @@
+=== E-recall-bug: narrow vs broad INS keyword recall ===
+bare word 'insurance': 6159
+narrow (shared, in-production) keyword match: 1422 (23.1% of bare)
+broad (case-local override) keyword match: 2406 (39.1% of bare)
+
+=== E-corpus-baseline: corpus-wide INS topic share (broad keywords) ===
+2406/141332 = 1.70%
+
+=== E-committee-topic-share: HSBA04 / SSBK04, INS vs other jurisdiction ===
+HSBA04 (House Committee on Financial Services -- Housing and Insurance)
+  total releases (roster-at-time members): 3234
+  INS: 52/3234 = 1.61%  (corpus baseline 1.70%)
+  HOU: 1309/3234 = 40.48%  (corpus baseline 35.28%)
+SSBK04 (Senate Committee on Banking Housing and Urban Affairs -- Securities Insurance and Investment)
+  total releases (roster-at-time members): 7022
+  INS: 187/7022 = 2.66%  (corpus baseline 1.70%)
+  FIN: 2258/7022 = 32.16%  (corpus baseline 24.67%)
+
+=== E-lobby-money: INS lobbying scale ===
+INS apportioned income (Senate, 2022-2026): $137,020,996
+INS total activities: 6728
+
+=== E-dollar-normalized: press per $1M lobbied, INS vs comparable industries ===
+code name                                       income_M  press/$1M
+HCR  Health Issues                                2020.5      25.58
+BUD  Budget/Appropriations                        1943.9      18.74
+TAX  Taxation/Internal Revenue Code               1517.9      46.06
+DEF  Defense                                      1397.4      27.78
+ENG  Energy/Nuclear                                891.5      35.64
+MMM  Medicare/Medicaid                             884.8      12.61
+TRD  Trade (domestic/foreign)                      777.0      58.40
+FIN  Financial Institutions/Investments/Secur      766.4      45.50
+TRA  Transportation                                630.1      52.23
+TEC  Telecommunications                            517.7       8.01
+AGR  Agriculture                                   454.4      51.10
+EDU  Education                                     400.4      91.59
+ENV  Environment/Superfund                         395.3     168.13
+NAT  Natural Resources                             374.2      14.28
+BAN  Banking                                       353.0      36.49
+LBR  Labor Issues/Antitrust/Workplace              302.1     170.99
+AVI  Aviation/Airlines/Airports                    253.8      23.46
+CPI  Computer Industry                             242.8       6.34
+MAN  Manufacturing                                 241.8      41.08
+IND  Indian/Native American Affairs                209.5      20.49
+CPT  Copyright/Patent/Trademark                    208.9       5.33
+FOR  Foreign Relations                             205.9      32.00
+HOU  Housing                                       199.0     250.58
+HOM  Homeland Security                             198.8     104.62
+CSP  Consumer Issues/Safety/Products               196.5       6.45
+PHA  Pharmacy                                      174.3      48.67
+MAR  Marine/Maritime/Boating/Fisheries             164.4      25.44
+COM  Communications/Broadcasting/Radio/TV          158.5       9.92
+ECN  Economics/Economic Development                155.8      45.36
+VET  Veterans                                      145.6     130.42
+LAW  Law Enforcement/Crime/Criminal Justice        140.6      71.69
+INS  Insurance                                     137.0      17.56  <-- INS
+IMM  Immigration                                   134.7     572.47
+MED  Medical/Disease Research/Clinical Labs        110.8      16.58
+URB  Urban Development/Municipalities              103.8      29.56
+CAW  Clean Air and Water (quality)                 103.2      32.47
+FUE  Fuel/Gas/Oil                                  101.6      78.69
+AUT  Automotive Industry                           101.2      20.37
+CIV  Civil Rights/Civil Liberties                   99.7      33.18
+FOO  Food Industry (safety, labeling, etc.)         99.5      23.83
+SMB  Small Business                                 86.8     103.89
+AER  Aerospace                                      83.6      13.94
+UTI  Utilities                                      83.4      22.35
+DIS  Disaster Planning/Emergencies                  82.0      28.92
+RET  Retirement                                     76.7      64.01
+TOB  Tobacco                                        74.9      10.78
+RES  Real Estate/Land Use/Conservation              72.3      16.01
+ACC  Accounting                                     69.2      18.59
+GAM  Gaming/Gambling/Casino                         62.8       3.60
+CHM  Chemicals/Chemical Industry                    60.7      23.82
+SPO  Sports/Athletics                               58.1       5.28
+RRR  Railroads                                      58.1      23.77
+TAR  Tariff (miscellaneous tariff bills)            51.3      57.10

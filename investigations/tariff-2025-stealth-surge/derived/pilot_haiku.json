@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "label": "unclear",
+    "confidence": 0.1,
+    "rationale": "Section 232 and IEEPA named but no directional ask stated."
+  },
+  {
+    "id": 2,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Section 232 and 301 mentioned for 'domestic supply chain considerations' — no clear direction."
+  },
+  {
+    "id": 3,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "BASF supports temporary reduction or suspension of duties; cost-efficient solar availability."
+  },
+  {
+    "id": 4,
+    "label": "monitoring",
+    "confidence": 0.7,
+    "rationale": "Monitor impact on manufacturers; reciprocal tariff; sectoral tariff impacts."
+  },
+  {
+    "id": 5,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "BASF supports temporary reduction or suspension of duties; cost-efficient solar."
+  },
+  {
+    "id": 6,
+    "label": "monitoring",
+    "confidence": 0.6,
+    "rationale": "Issues relating to opportunities; infrastructure and tariff bill context unnamed."
+  },
+  {
+    "id": 7,
+    "label": "monitoring",
+    "confidence": 0.8,
+    "rationale": "Will monitor staff changes, NIH freezes, and tariffs; uncertainties in industry."
+  },
+  {
+    "id": 8,
+    "label": "monitoring",
+    "confidence": 0.95,
+    "rationale": "Monitor and evaluate impacts of global tariffs; reciprocal tariff; auto/steel tariffs."
+  },
+  {
+    "id": 9,
+    "label": "unclear",
+    "confidence": 0.3,
+    "rationale": "Monitor and engage on MTB, 301 tariffs, deferment, suspensions — direction withheld."
+  },
+  {
+    "id": 10,
+    "label": "monitoring",
+    "confidence": 0.9,
+    "rationale": "Monitor legislative action on MTB petitions, 301 tariffs, deferment, suspensions."
+  },
+  {
+    "id": 11,
+    "label": "monitoring",
+    "confidence": 0.9,
+    "rationale": "Monitor Administration's tariff proposals, expansion, reform, adjustment/repeal."
+  },
+  {
+    "id": 12,
+    "label": "monitoring",
+    "confidence": 0.85,
+    "rationale": "Monitoring related to Miscellaneous Tariff Bills; trade competition legislation."
+  },
+  {
+    "id": 13,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Legislation to extend temporary suspension of duty on specific chemical compounds."
+  },
+  {
+    "id": 14,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Legislation to extend temporary suspension of duty on specific chemical compounds."
+  },
+  {
+    "id": 15,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Legislation to extend temporary suspension of duty on specific chemical compounds."
+  },
+  {
+    "id": 16,
+    "label": "mixed",
+    "confidence": 0.8,
+    "rationale": "Supports suspending tariffs AND opposes Section 232 expansion; urges inclusion process improvements."
+  },
+  {
+    "id": 17,
+    "label": "mixed",
+    "confidence": 0.85,
+    "rationale": "Supports tariff suspension for food/ag exports; opposes Section 232 expansion and petition."
+  },
+  {
+    "id": 18,
+    "label": "monitoring",
+    "confidence": 0.3,
+    "rationale": "Context on medical device manufacturing complexity; tariffs implied but no ask stated."
+  },
+  {
+    "id": 19,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Urged elimination of industrial tariffs and Section 232 tariffs; robust exclusions process."
+  },
+  {
+    "id": 20,
+    "label": "relief",
+    "confidence": 0.85,
+    "rationale": "Elimination of industrial tariffs and robust tariff exclusions process for companies."
+  },
+  {
+    "id": 21,
+    "label": "relief",
+    "confidence": 0.85,
+    "rationale": "Elimination of industrial tariffs and robust tariff exclusions process for companies."
+  },
+  {
+    "id": 22,
+    "label": "protection",
+    "confidence": 0.6,
+    "rationale": "Modernize MTB to not hinder manufacturing; reform de minimis; oppose China trade status."
+  },
+  {
+    "id": 23,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Opposition to new antidumping duties on tin mill products; tariffs harm cost of canned food."
+  },
+  {
+    "id": 24,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "Tariff disputes named but no clear directional ask; mixed instrument/policy list."
+  },
+  {
+    "id": 25,
+    "label": "protection",
+    "confidence": 0.7,
+    "rationale": "Support increasing congressional oversight of tariff imposition; restore agricultural tariff levels."
+  },
+  {
+    "id": 26,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Support GSP and MTB renewal for duty relief; remove Section 301 China tariffs."
+  },
+  {
+    "id": 27,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Support GSP and MTB renewal; remove Section 301 China tariffs; eliminate Superfund tax."
+  },
+  {
+    "id": 28,
+    "label": "relief",
+    "confidence": 0.95,
+    "rationale": "Support GSP and MTB renewal for duty relief; remove Section 301 China tariffs."
+  },
+  {
+    "id": 29,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Support GSP and MTB renewal; remove Section 301 tariffs; eliminate Superfund tax."
+  },
+  {
+    "id": 30,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Eliminate industrial tariffs, Section 232 tariffs; advocacy for MTB exemptions."
+  },
+  {
+    "id": 31,
+    "label": "mixed",
+    "confidence": 0.8,
+    "rationale": "Supports exclusion for tin mill; Section 301 review; but also 301 tariff extension support."
+  },
+  {
+    "id": 32,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Support exclusion for tin mill; oppose new duties; extend 301 exclusions; robust process."
+  },
+  {
+    "id": 33,
+    "label": "relief",
+    "confidence": 0.9,
+    "rationale": "Support exclusion for tin mill; oppose new duties; extend 301 exclusions; robust process."
+  },
+  {
+    "id": 34,
+    "label": "unclear",
+    "confidence": 0.05,
+    "rationale": "IVF and tariffs named; no clear directional ask or context."
+  },
+  {
+    "id": 35,
+    "label": "monitoring",
+    "confidence": 0.7,
+    "rationale": "Impact of reciprocal tariff on Japan — assess, no stated direction."
+  },
+  {
+    "id": 36,
+    "label": "unclear",
+    "confidence": 0.05,
+    "rationale": "Seaports and appropriations named; tariff content absent."
+  },
+  {
+    "id": 37,
+    "label": "unclear",
+    "confidence": 0.05,
+    "rationale": "Vision care and eyewear named; tariff content absent."
+  },
+  {
+    "id": 38,
+    "label": "unclear",
+    "confidence": 0.2,
+    "rationale": "MTB in COMPETES Act named; no directional ask stated."
+  },
+  {
+    "id": 39,
+    "label": "unclear",
+    "confidence": 0.1,
+    "rationale": "PHIT Act, Youth Sports, Tariffs named; no directional ask or context."
+  },
+  {
+    "id": 40,
+    "label": "monitoring",
+    "confidence": 0.5,
+    "rationale": "Section 232 tariffs named in all caps; posture unclear but likely watchful."
+  }
+]

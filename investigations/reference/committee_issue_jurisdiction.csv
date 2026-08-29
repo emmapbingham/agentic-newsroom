@@ -1,0 +1,135 @@
+committee_id,committee_name,issue_code,weight,notes
+HSAG,House Committee on Agriculture,AGR,primary,
+HSAG,House Committee on Agriculture,FOO,secondary,food safety/labeling touches Ag jurisdiction alongside E&C
+HSAP,House Committee on Appropriations,BUD,primary,full committee only -- subcommittees are spending-category not issue-code aligned and out of scope for this map
+HSAS,House Committee on Armed Services,DEF,primary,
+HSED,House Committee on Education and Workforce,EDU,primary,
+HSED,House Committee on Education and Workforce,LBR,secondary,workforce/labor jurisdiction
+HSIF,House Committee on Energy and Commerce,HCR,secondary,full-committee fallback; prefer HSIF14 (Health) subcommittee row when available
+HSIF,House Committee on Energy and Commerce,ENG,secondary,full-committee fallback; prefer HSIF03 (Energy) subcommittee row when available
+HSIF,House Committee on Energy and Commerce,TEC,secondary,full-committee fallback; prefer HSIF16 (Communications and Technology) subcommittee row when available
+HSIF,House Committee on Energy and Commerce,ENV,secondary,full-committee fallback; prefer HSIF18 (Environment) subcommittee row when available
+HSIF,House Committee on Energy and Commerce,COM,secondary,full-committee fallback; prefer HSIF16 (Communications and Technology) subcommittee row when available
+HSIF14,House Committee on Energy and Commerce -- Health,HCR,primary,
+HSIF14,House Committee on Energy and Commerce -- Health,MMM,primary,
+HSIF14,House Committee on Energy and Commerce -- Health,PHA,secondary,
+HSIF03,House Committee on Energy and Commerce -- Energy,ENG,primary,
+HSIF03,House Committee on Energy and Commerce -- Energy,FUE,secondary,
+HSIF16,House Committee on Energy and Commerce -- Communications and Technology,TEC,primary,
+HSIF16,House Committee on Energy and Commerce -- Communications and Technology,COM,primary,
+HSIF18,House Committee on Energy and Commerce -- Environment,ENV,primary,
+HSIF18,House Committee on Energy and Commerce -- Environment,CAW,secondary,
+HSIF17,House Committee on Energy and Commerce -- Commerce Manufacturing and Trade,MAN,primary,
+HSIF17,House Committee on Energy and Commerce -- Commerce Manufacturing and Trade,CSP,secondary,
+HSIF02,House Committee on Energy and Commerce -- Oversight and Investigations,GOV,secondary,cross-cutting oversight; no distinct issue-code jurisdiction
+HSSO,House Committee on Ethics,,none,no legislative-issue jurisdiction -- internal conduct only; out of scope
+HSBA,House Committee on Financial Services,FIN,secondary,full-committee fallback; prefer subcommittee rows when available
+HSBA,House Committee on Financial Services,BAN,secondary,full-committee fallback; prefer subcommittee rows when available
+HSBA,House Committee on Financial Services,INS,secondary,full-committee fallback; prefer subcommittee rows when available
+HSBA,House Committee on Financial Services,HOU,secondary,full-committee fallback; prefer subcommittee rows when available
+HSBA16,House Committee on Financial Services -- Capital Markets,FIN,primary,
+HSBA21,House Committee on Financial Services -- Digital Assets Financial Technology and Artificial Intelligence,FIN,secondary,no dedicated crypto/AI issue code in ref_issue_codes; mapped to closest existing code
+HSBA20,House Committee on Financial Services -- Financial Institutions,BAN,primary,
+HSBA04,House Committee on Financial Services -- Housing and Insurance,HOU,primary,
+HSBA04,House Committee on Financial Services -- Housing and Insurance,INS,primary,
+HSBA10,House Committee on Financial Services -- National Security Illicit Finance and International Financial Institutions,FIN,secondary,
+HSBA09,House Committee on Financial Services -- Oversight and Investigations,GOV,secondary,cross-cutting oversight; no distinct issue-code jurisdiction
+HSFA,House Committee on Foreign Affairs,FOR,primary,
+HSHM,House Committee on Homeland Security,HOM,primary,
+HSHA,House Committee on House Administration,,none,internal chamber administration -- out of scope
+HSII,House Committee on Natural Resources,NAT,primary,
+HSII,House Committee on Natural Resources,IND,secondary,Indian/Native American affairs subcommittee historically under this committee
+HSGO,House Committee on Oversight and Government Reform,GOV,primary,
+HSRU,House Committee on Rules,,none,internal procedure -- out of scope
+HSSY,House Committee on Science Space and Technology,SCI,primary,
+HSSM,House Committee on Small Business,SMB,primary,
+HSPW,House Committee on Transportation and Infrastructure,TRA,primary,
+HSPW,House Committee on Transportation and Infrastructure,AVI,secondary,
+HSPW,House Committee on Transportation and Infrastructure,ROD,secondary,
+HSPW,House Committee on Transportation and Infrastructure,RRR,secondary,
+HSPW,House Committee on Transportation and Infrastructure,MAR,secondary,
+HSVR,House Committee on Veterans' Affairs,VET,primary,
+HSWM,House Committee on Ways and Means,TAX,primary,
+HSWM,House Committee on Ways and Means,TAR,secondary,tariff bills route through Ways and Means trade jurisdiction
+HSWM,House Committee on Ways and Means,TRD,secondary,
+HSWM,House Committee on Ways and Means,RET,secondary,Social Security jurisdiction
+HSWM,House Committee on Ways and Means,MMM,secondary,Medicare (not Medicaid) is partly Ways and Means jurisdiction alongside E&C Health
+HSBU,House Committee on the Budget,BUD,primary,
+HSJU,House Committee on the Judiciary,LAW,primary,
+HSJU,House Committee on the Judiciary,CIV,secondary,
+HSJU,House Committee on the Judiciary,IMM,secondary,
+HSJU,House Committee on the Judiciary,CPT,secondary,
+HLIG,House Permanent Select Committee on Intelligence,INT,primary,
+HSZS,House Select Committee on the Strategic Competition Between the United States and the Chinese Communist Party,FOR,secondary,select investigative committee -- no standing legislative jurisdiction; loosely maps to foreign relations/trade for topic purposes only
+HSQJ,House Select Subcommittee to Investigate the Remaining Questions Surrounding January 6 2021,,none,investigative only -- no legislative-issue jurisdiction; out of scope
+SSAF,Senate Committee on Agriculture Nutrition and Forestry,AGR,primary,
+SSAF,Senate Committee on Agriculture Nutrition and Forestry,FOO,secondary,
+SSAP,Senate Committee on Appropriations,BUD,primary,full committee only -- subcommittees are spending-category not issue-code aligned and out of scope for this map
+SSAS,Senate Committee on Armed Services,DEF,primary,
+SSBK,Senate Committee on Banking Housing and Urban Affairs,BAN,secondary,full-committee fallback; prefer subcommittee rows when available
+SSBK,Senate Committee on Banking Housing and Urban Affairs,FIN,secondary,full-committee fallback; prefer subcommittee rows when available
+SSBK,Senate Committee on Banking Housing and Urban Affairs,HOU,secondary,full-committee fallback; prefer subcommittee rows when available
+SSBK13,Senate Committee on Banking Housing and Urban Affairs -- Digital Assets,FIN,secondary,no dedicated crypto issue code in ref_issue_codes; mapped to closest existing code
+SSBK12,Senate Committee on Banking Housing and Urban Affairs -- Economic Policy,ECN,primary,
+SSBK08,Senate Committee on Banking Housing and Urban Affairs -- Financial Institutions and Consumer Protection,BAN,primary,
+SSBK08,Senate Committee on Banking Housing and Urban Affairs -- Financial Institutions and Consumer Protection,CSP,secondary,
+SSBK09,Senate Committee on Banking Housing and Urban Affairs -- Housing Transportation and Community Development,HOU,primary,
+SSBK09,Senate Committee on Banking Housing and Urban Affairs -- Housing Transportation and Community Development,URB,secondary,
+SSBK05,Senate Committee on Banking Housing and Urban Affairs -- National Security and International Trade and Finance,FIN,secondary,
+SSBK04,Senate Committee on Banking Housing and Urban Affairs -- Securities Insurance and Investment,FIN,primary,
+SSBK04,Senate Committee on Banking Housing and Urban Affairs -- Securities Insurance and Investment,INS,primary,
+SSCM,Senate Committee on Commerce Science and Transportation,TRA,secondary,full-committee fallback; prefer subcommittee rows when available
+SSCM,Senate Committee on Commerce Science and Transportation,SCI,secondary,full-committee fallback; prefer subcommittee rows when available
+SSCM,Senate Committee on Commerce Science and Transportation,TEC,secondary,full-committee fallback; prefer subcommittee rows when available
+SSCM33,Senate Committee on Commerce Science and Transportation -- Aviation Space and Innovation,AVI,primary,
+SSCM36,Senate Committee on Commerce Science and Transportation -- Coast Guard Maritime and Fisheries,MAR,primary,
+SSCM35,Senate Committee on Commerce Science and Transportation -- Consumer Protection Technology and Data Privacy,CSP,primary,
+SSCM35,Senate Committee on Commerce Science and Transportation -- Consumer Protection Technology and Data Privacy,TEC,secondary,
+SSCM37,Senate Committee on Commerce Science and Transportation -- Science Manufacturing and Competitiveness,SCI,primary,
+SSCM37,Senate Committee on Commerce Science and Transportation -- Science Manufacturing and Competitiveness,MAN,secondary,
+SSCM38,Senate Committee on Commerce Science and Transportation -- Surface Transportation Freight Pipelines and Safety,TRA,primary,
+SSCM38,Senate Committee on Commerce Science and Transportation -- Surface Transportation Freight Pipelines and Safety,ROD,secondary,
+SSCM34,Senate Committee on Commerce Science and Transportation -- Telecommunications and Media,TEC,primary,
+SSCM34,Senate Committee on Commerce Science and Transportation -- Telecommunications and Media,COM,primary,
+SSCM39,Senate Committee on Commerce Science and Transportation -- Tourism Trade and Export Promotion,TOU,primary,
+SSCM39,Senate Committee on Commerce Science and Transportation -- Tourism Trade and Export Promotion,TRD,secondary,
+SSEG,Senate Committee on Energy and Natural Resources,ENG,secondary,full-committee fallback; prefer SSEG01 (Energy) subcommittee row when available
+SSEG,Senate Committee on Energy and Natural Resources,NAT,secondary,full-committee fallback; prefer SSEG03/04 subcommittee rows when available
+SSEG01,Senate Committee on Energy and Natural Resources -- Energy,ENG,primary,
+SSEG01,Senate Committee on Energy and Natural Resources -- Energy,FUE,secondary,
+SSEG04,Senate Committee on Energy and Natural Resources -- National Parks,NAT,primary,
+SSEG03,Senate Committee on Energy and Natural Resources -- Public Lands Forests and Mining,NAT,primary,
+SSEG07,Senate Committee on Energy and Natural Resources -- Water and Power,CAW,primary,
+SSEV,Senate Committee on Environment and Public Works,ENV,primary,
+SSEV,Senate Committee on Environment and Public Works,CAW,secondary,
+SSEV,Senate Committee on Environment and Public Works,WAS,secondary,
+SSFI,Senate Committee on Finance,TAX,secondary,full-committee fallback; prefer SSFI11 (Taxation and IRS Oversight) subcommittee row when available
+SSFI,Senate Committee on Finance,MMM,secondary,full-committee fallback; prefer SSFI10 (Health Care) subcommittee row when available
+SSFI11,Senate Committee on Finance -- Taxation and IRS Oversight,TAX,primary,
+SSFI10,Senate Committee on Finance -- Health Care,MMM,primary,
+SSFI10,Senate Committee on Finance -- Health Care,HCR,secondary,
+SSFI12,Senate Committee on Finance -- Energy Natural Resources and Infrastructure,ENG,secondary,
+SSFI13,Senate Committee on Finance -- International Trade Customs and Global Competitiveness,TRD,primary,
+SSFI13,Senate Committee on Finance -- International Trade Customs and Global Competitiveness,TAR,secondary,
+SSFI02,Senate Committee on Finance -- Social Security Pensions and Family Policy,RET,primary,
+SSFI14,Senate Committee on Finance -- Fiscal Responsibility and Economic Growth,ECN,secondary,
+SSFR,Senate Committee on Foreign Relations,FOR,primary,
+SSHR,Senate Committee on Health Education Labor and Pensions,HCR,primary,
+SSHR,Senate Committee on Health Education Labor and Pensions,EDU,primary,
+SSHR,Senate Committee on Health Education Labor and Pensions,LBR,primary,
+SSHR,Senate Committee on Health Education Labor and Pensions,RET,secondary,pensions jurisdiction
+SSGA,Senate Committee on Homeland Security and Governmental Affairs,HOM,primary,
+SSGA,Senate Committee on Homeland Security and Governmental Affairs,GOV,secondary,
+SLIA,Senate Committee on Indian Affairs,IND,primary,
+SSRA,Senate Committee on Rules and Administration,,none,internal procedure -- out of scope
+SSSB,Senate Committee on Small Business and Entrepreneurship,SMB,primary,
+SSVA,Senate Committee on Veterans' Affairs,VET,primary,
+SSBU,Senate Committee on the Budget,BUD,primary,
+SSJU,Senate Committee on the Judiciary,LAW,primary,
+SSJU,Senate Committee on the Judiciary,CIV,secondary,
+SSJU,Senate Committee on the Judiciary,IMM,secondary,
+SSJU,Senate Committee on the Judiciary,CPT,secondary,
+SLET,Senate Select Committee on Ethics,,none,no legislative-issue jurisdiction -- internal conduct only; out of scope
+SLIN,Senate Select Committee on Intelligence,INT,primary,
+SPAG,Senate Special Committee on Aging,RET,secondary,no dedicated committee-of-jurisdiction status; investigative/advisory only, weak signal
+SCNC,United States Senate Caucus on International Narcotics Control,ALC,secondary,caucus not a standing committee; weak signal, no formal legislative jurisdiction
