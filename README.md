@@ -1,4 +1,6 @@
-# GAIN Agentic AI Investigative Journalism Challenge — our entry
+# agentic-newsroom (GAIN Entry)
+
+Our entry for the [Agentic AI in Investigative Journalism Challenge](https://generative-ai-newsroom.com/announcing-the-winners-of-the-agentic-ai-investigative-challenge-76f119cc35ca) hosted by Northwestern GAIN. 
 
 **Team:** Emma Bingham and Ian Clester.
 
