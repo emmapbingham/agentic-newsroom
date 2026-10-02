@@ -53,7 +53,7 @@ CREATE TABLE {TABLE} (
     presence           TEXT    NOT NULL,   -- 'both' | 'senate_only' | 'house_only'
     senate_n           INTEGER NOT NULL DEFAULT 0,
     senate_income_sum  REAL,               -- sum of parsed income_amt (sparse; ~65% of filings)
-    senate_filing_uuids TEXT,              -- comma-joined source keys -> lda.gov/filings/public/filing/{uuid}/print/
+    senate_filing_uuids TEXT,              -- comma-joined source keys -> lda.gov/filings/public/filing/{{uuid}}/print/
     house_n            INTEGER NOT NULL DEFAULT 0,
     house_income_sum   REAL,
     house_filing_ids   TEXT,               -- comma-joined source keys
