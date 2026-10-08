@@ -54,9 +54,9 @@ is itself now a live, dateable news thread. Sen. Cornyn — who asked Senate
 Indian Affairs to hold off on the first version of this bill in 2019 — is
 leaving the Senate, having lost the May 2026 Texas GOP primary runoff to
 **Ken Paxton**. Paxton was one of the three Texas officials cited in that
-2019 objection, and has since, as sitting AG, personally led litigation
-against Ysleta del Sur's Speaking Rock casino, winning a court ruling
-against the tribe. He's now the Republican nominee for Cornyn's seat,
+2019 objection, and as sitting AG his office sued Ysleta del Sur in 2017
+over electronic bingo at its Speaking Rock casino, winning in the lower courts
+before losing 5–4 at the Supreme Court in 2022 [corrected 2026-10-07]. He's now the Republican nominee for Cornyn's seat,
 facing Talarico in November 2026. That means this story can be pegged to a
 live election: the seat that once housed a comparatively soft "hold on
 state concerns" position may soon belong to the tribes' single most

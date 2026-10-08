@@ -108,8 +108,9 @@ become a cross-border competitor.
 The previously reported story of this bill was Republican opposition — Cornyn
 asked a Senate committee to hold it in 2019. That thread just got more
 interesting: Cornyn lost his 2026 primary runoff to Ken Paxton, the Texas AG
-who personally led and won the state's litigation to close the Ysleta del Sur
-tribe's Speaking Rock casino, and who is now the Republican nominee for the
+whose office sued the Ysleta del Sur Pueblo in 2017 over electronic bingo at
+its Speaking Rock casino (a case Texas lost 5–4 at the Supreme Court in 2022),
+and who is now the Republican nominee for the
 November general. Gathering opposition on both fronts, no recent coverage
 anywhere, and a live electoral hook — the elements of a story are in place.
 
@@ -136,7 +137,8 @@ anywhere, and a live electoral hook — the elements of a story are in place.
   ([KTRE](https://www.ktre.com/2019/10/16/sen-cornyn-sends-letter-opposing-alabama-coushatta-tribes-gaming-facility/));
   Paxton beat Cornyn 63.8–36.2 in the 2026-05-26 runoff
   ([Texas Tribune](https://www.texastribune.org/2026/05/26/texas-john-cornyn-ken-paxton-us-senate-republican-primary-runoff/));
-  Paxton led the Speaking Rock litigation
+  Paxton's office sued over Speaking Rock in 2017 and lost at the Supreme Court
+  in 2022 (*Ysleta del Sur Pueblo v. Texas*, 596 U.S. 685)
   ([Texas Monthly](https://www.texasmonthly.com/news-politics/tigua-indian-tribe-loses-yet-another-court-fight-to-keep-speaking-rock-casino-open/)).
 - Base rate: corpus-wide, only 3 clients on tribal-gaming issues show any
   explicit opposition language; Sunland Park's streak is ~4.5× the
@@ -153,7 +155,7 @@ trade press: nothing names Sunland Park on this bill.
 **Caveats.** Scoped to "who has quietly opposed this bill and never been
 named" — not "why the bill stalls" (the Cornyn explanation predates Sunland
 Park and stands on its own). The motive rests on Sunland Park's own filing
-language. Paxton's documented record is the Speaking Rock litigation; any
+language. Paxton's documented record is his office's Speaking Rock suit; any
 characterization of his position on *this bill* must come from his own words —
 re-check immediately before publishing, as he is an active candidate.
 
@@ -446,3 +448,14 @@ company he names. Carter is a licensed pharmacist (a structural confound,
 disclosed). **Extensively pre-covered** (KFF's pharma-money tracker, STAT's
 2020 accounting, prior Carter/McKesson reporting): treat as corroboration
 using this corpus's records, not a scoop.
+
+---
+
+**Correction (2026-10-07).** An earlier version of this report said Ken Paxton
+"personally led and won the state's litigation to close" the Speaking Rock
+casino. His office sued the Ysleta del Sur Pueblo in 2017 over electronic bingo
+at Speaking Rock; Texas won in district court (2019) and at the Fifth Circuit
+(2020), but lost 5–4 at the U.S. Supreme Court in *Ysleta del Sur Pueblo v.
+Texas*, 596 U.S. 685 (2022). The earlier suit that shut down Speaking Rock's
+casino gaming (ruled 2001, closed 2002) was filed in 1999 under then-Attorney
+General John Cornyn. The case files have been corrected to match.
